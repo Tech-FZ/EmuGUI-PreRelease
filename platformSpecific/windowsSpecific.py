@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from pathlib import Path
 
 def setupWindowsBackend():
     connection = None
@@ -55,4 +56,4 @@ def windowsLogFile(logID):
     return fileName
 
 def windowsCreEmuGUIFolder():
-    os.mkdir(f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI")
+    Path(f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI").mkdir(parents=True, exist_ok=True)
