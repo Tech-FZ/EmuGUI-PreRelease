@@ -645,6 +645,7 @@ class Window(QMainWindow, Ui_MainWindow):
           connection.commit()
           if msg:
             print(f"Action {msg} successfully committed to the database.")
+          return cursor.fetchall()
         # If they don't exist yet, the settings and VM tables are created.
 
         try:
@@ -752,7 +753,7 @@ class Window(QMainWindow, Ui_MainWindow):
                     print(f"The query was executed successfully. The qemu-system-{architecture[0]} slot already is in the database.")
 
                 except:
-                    databaseUpdate(ins_query, f"create gemu-system-architecture[0] slot")
+                    databaseUpdate(ins_query, f"create qemu-system-{architecture[0]} slot")
         
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1131,12 +1132,8 @@ class Window(QMainWindow, Ui_MainWindow):
                             break
 
                         i += 1
-
             except:
-                cursor.execute(insert_theme)
-                connection.commit()
-                print("The query was executed successfully. The theme slot has been created.")
-        
+                databaseUpdate(insert_theme, "Create theme slot")
         except sqlite3.Error as e:
             print(f"The SQLite module encountered an error: {e}.")
 
@@ -1157,9 +1154,7 @@ class Window(QMainWindow, Ui_MainWindow):
             dialog.exec()
 
         try:
-            cursor.execute(select02ColumnsVM)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select02ColumnsVM, None)
 
             try:
                 qemu_img_slot = str(result[0])
@@ -1170,18 +1165,13 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertSoundColVM)
-                connection.commit()
+                databaseUpdate(insertSoundColVM, None)
 
-                cursor.execute(insertLinuxKernelColVM)
-                connection.commit()
+                databaseUpdate(insertLinuxKernelColVM, None)
 
-                cursor.execute(insertLinuxInitridColVM)
-                connection.commit()
+                databaseUpdate(insertLinuxInitridColVM, None)
 
-                cursor.execute(insertLinuxCmdColVM)
-                connection.commit()
-                print("The queries were executed successfully. The missing features have been added to the database.")
+                databaseUpdate(insertLinuxCmdColVM, "Add missing features to the DB")
             
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1203,8 +1193,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(select03ColumnsVM)
-            connection.commit()
+            databaseUpdate(select03ColumnsVM, None)
             result = cursor.fetchall()
 
             try:
@@ -1216,9 +1205,7 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertMouseTypeVM)
-                connection.commit()
-                print("The queries were executed successfully. The missing features have been added to the database.")
+                databaseUpdate(insertMouseTypeVM, "Add missing features to the DB")
             
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1240,9 +1227,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(select03ColumnsVM2)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select03ColumnsVM2, None) 
 
             try:
                 qemu_img_slot = str(result[0])
@@ -1253,12 +1238,8 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertCpuCoresVM)
-                connection.commit()
-
-                cursor.execute(insertBiosFileVM)
-                connection.commit()
-                print("The queries were executed successfully. The missing features have been added to the database.")
+                databaseUpdate(insertCpuCoresVM, None)
+                databaseUpdate(insertBiosFileVM, "Add missing features to the DB")
             
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1280,9 +1261,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(select04ColumnsVM)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select04ColumnsVM, None)
 
             try:
                 qemu_img_slot = str(result[0])
@@ -1293,12 +1272,8 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertKeyboardTypeVM)
-                connection.commit()
-
-                cursor.execute(insertUsbSupportVM)
-                connection.commit()
-                print("The queries were executed successfully. The missing features have been added to the database.")
+                databaseUpdate(insertKeyboardTypeVM, None)
+                databaseUpdate(insertUsbSupportVM, "Add missing features to the DB")
             
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1320,9 +1295,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(select05ColumnsVM)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select05ColumnsVM, "Create v0.5 features")
 
             try:
                 qemu_img_slot = str(result[0])
@@ -1333,10 +1306,8 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertUsbControllerVM)
-                connection.commit()
-                print("The queries were executed successfully. The missing features have been added to the database.")
-            
+                databaseUpdate(insertUsbControllerVM, "Add missing features to the DB")
+                
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
 
@@ -1357,9 +1328,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(select09ColumnsVM)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select09ColumnsVM, "Create v1.0 features")
 
             try:
                 qemu_img_slot = str(result[0])
