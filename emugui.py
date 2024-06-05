@@ -102,7 +102,7 @@ except:
     print("EmuGUI has to warn you.")
     print("Error code: W-06-NPGOP")
     print("If this error occurs multiple times, contact your administrator and/or ask for help on the EmuGUI Discord Server or on its GitHub repository.")
-
+          
 class Window(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         # This function initializes and runs EmuGUI
@@ -111,7 +111,6 @@ class Window(QMainWindow, Ui_MainWindow):
 
         except:
             super().__init__()
-        
         self.setupUi(self)
         self.connectSignalsSlots()
         self.timer = QTimer()
@@ -640,14 +639,16 @@ class Window(QMainWindow, Ui_MainWindow):
         cursor = connection.cursor()
         logman = errors.logman.LogMan()
         logman.logFile = logman.setLogFile()
+        # If they don't exist yet, the settings and VM tables are created.
         def databaseUpdate(arg, msg):
+          connection = self.connection
+          cursor = connection.cursor()
           cursor.execute(arg)
           connection.commit()
           if msg:
             print(f"Action {msg} successfully committed to the database.")
           return cursor.fetchall()
         # If they don't exist yet, the settings and VM tables are created.
-
         try:
             databaseUpdate(create_settings_table, None)
         
@@ -960,8 +961,7 @@ class Window(QMainWindow, Ui_MainWindow):
 
             except:
                 try:
-                    cursor.execute(insert_language)
-                    connection.commit()
+                    databaseUpdate(insert_language, None)
                     langmode = "system"
 
                     if platform.system() == "Windows":
@@ -1043,9 +1043,7 @@ class Window(QMainWindow, Ui_MainWindow):
             dialog.exec()
 
         try:
-            cursor.execute(select_theme)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select_theme, "Add theme slot to the DB")
 
             try:
                 qemu_img_slot = str(result[0])
@@ -1323,7 +1321,6 @@ class Window(QMainWindow, Ui_MainWindow):
                 logman.writeToLogFile(
                     f"{errors.errCodes.errCodes[2]}: Could not connect to the database to update the VM list."
                     )
-
                 dialog = ErrDialog(self)
                 dialog.exec()
 
@@ -1339,9 +1336,7 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertKbdLayoutVM)
-                connection.commit()
-                print("The queries were executed successfully. The missing features have been added to the database.")
+                databaseUpdate(insertKbdLayoutVM, "Add missing features")
             
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1363,9 +1358,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(select11ColumnsVM)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select11ColumnsVM, "Add v1.1 features to the DB.")
 
             try:
                 qemu_img_slot = str(result[0])
@@ -1376,8 +1369,7 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertAccelTypeVM)
-                connection.commit()
+                databaseUpdate(insertAccelTypeVM, "Add missing features to the DB")
 
                 print("The queries were executed successfully. The missing features have been added to the database.")
             
@@ -1401,9 +1393,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(select12ColumnsVM)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select12ColumnsVM, "Add first v1.2 features to the DB")
 
             try:
                 qemu_img_slot = str(result[0])
@@ -1414,12 +1404,8 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertStorageControllerCD1VM)
-                connection.commit()
-
-                cursor.execute(insertStorageControllerCD2VM)
-                connection.commit()
-                print("The queries were executed successfully. The missing features have been added to the database.")
+                databaseUpdate(insertStorageControllerCD1VM, None)
+                databaseUpdate(insertStorageControllerCD2VM, "Add missing features to the DB")
             
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1441,9 +1427,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(select12ColumnsVM2)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(select12ColumnsVM2, "Add first v1.2 features to the DB")
 
             try:
                 qemu_img_slot = str(result[0])
@@ -1454,9 +1438,7 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(inserthdaControlVM)
-                connection.commit()
-                print("The queries were executed successfully. The missing features have been added to the database.")
+                databaseUpdate(inserthdaControlVM, "Add missing features to the DB")
             
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1478,10 +1460,8 @@ class Window(QMainWindow, Ui_MainWindow):
                 dialog.exec()
 
         try:
-            cursor.execute(debug_db_settings)
-            connection.commit()
-            print(cursor.fetchall())
-            print("The query was executed successfully.")
+            result = databaseUpdate(debug_db_settings, None)
+            print(result)
         
         except sqlite3.Error as e:
             print(f"The SQLite module encountered an error: {e}.")
@@ -1489,7 +1469,14 @@ class Window(QMainWindow, Ui_MainWindow):
     def createNewVM(self):
         logman = errors.logman.LogMan()
         logman.logFile = logman.setLogFile()
-
+        def databaseUpdate(arg, msg):
+          connection = self.connection
+          cursor = connection.cursor()
+          cursor.execute(arg)
+          connection.commit()
+          if msg:
+            print(f"Action {msg} successfully committed to the database.")
+          return cursor.fetchall()
         # This is the code that launches the dialog for creating a VM.
         debug_db_settings = """
         SELECT name, value FROM settings;
@@ -1499,9 +1486,7 @@ class Window(QMainWindow, Ui_MainWindow):
         cursor = connection.cursor()
 
         try:
-            cursor.execute(debug_db_settings)
-            connection.commit()
-            result = cursor.fetchall()
+            result = databaseUpdate(debug_db_settings, None)
 
             print(result)
 
@@ -1564,7 +1549,14 @@ class Window(QMainWindow, Ui_MainWindow):
         cursor = connection.cursor()
         logman = errors.logman.LogMan()
         logman.logFile = logman.setLogFile()
-
+        def databaseUpdate(arg, msg):
+          connection = self.connection
+          cursor = connection.cursor()
+          cursor.execute(arg)
+          connection.commit()
+          if msg:
+            print(f"Action {msg} successfully committed to the database.")
+          return cursor.fetchall()
         try:
             cursor.execute(debug_db_settings)
             connection.commit()
