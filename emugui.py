@@ -129,7 +129,7 @@ class Window(QMainWindow, Ui_MainWindow):
         logman = errors.logman.LogMan()
         logman.generateLogID()
         logman.logFile = logman.setLogFile()
-        self.version = "2.0.6.5617"
+        self.version = "2.1.0.5700"
 
         self.architectures = [
             ["i386", self.lineEdit_4],
@@ -212,7 +212,7 @@ class Window(QMainWindow, Ui_MainWindow):
                     f"{errors.errCodes.errCodes[46]}: Less than 6 GB of RAM detected! As you're using Windows 11, proceed at your own risk. Support requests won't be prioritised."
                     )
 
-        self.label_8.setText(f"EmuGUI {self.version}\nCodename 'Ioana Rosa'")
+        self.label_8.setText(f"EmuGUI {self.version}\nCodename 'Fatima Nejla'")
         self.setWindowTitle(f"EmuGUI {self.version}")
 
         if datetime.date.today().day == 1 and datetime.date.today().month == 4:
@@ -227,7 +227,7 @@ class Window(QMainWindow, Ui_MainWindow):
         except:
             pass
 
-        self.versionCode = 5617
+        self.versionCode = 5700
 
         if platform.system() == "Windows":
             self.connection = platformSpecific.windowsSpecific.setupWindowsBackend()
