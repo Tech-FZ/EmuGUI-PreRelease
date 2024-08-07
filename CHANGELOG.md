@@ -7,6 +7,7 @@
 ## Changes compared to v2.0.6.5617
 
 - Thanks to Mizuki, we now have more flexible Windows-specific code.
+- As per the depreciation policy, the old USB Tablet checkbox has been removed for good.
 
 ## Known issues
 

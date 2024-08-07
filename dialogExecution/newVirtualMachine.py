@@ -849,11 +849,11 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         else:
             networkAdapter = self.cb_net.currentText()
 
-        if self.checkBox.isChecked():
+        """ if self.checkBox.isChecked():
             usbtablet = 1
 
         else:
-            usbtablet = 0
+            usbtablet = 0 """
 
         if self.checkBox_2.isChecked():
             win2k = 1
@@ -914,7 +914,6 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             hda,
             vga,
             net,
-            usbtablet,
             win2k,
             dirbios,
             additionalargs,
@@ -942,7 +941,6 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             "{vhd}",
             "{vga}",
             "{networkAdapter}",
-            {usbtablet},
             {win2k},
             "{ext_bios_dir}",
             "{add_args}",

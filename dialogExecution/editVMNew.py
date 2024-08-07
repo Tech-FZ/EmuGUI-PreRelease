@@ -715,8 +715,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
             i += 1
 
-        if vmSpecs[8] == "1":
-            self.checkBox_2.setChecked(True)
+        """ if vmSpecs[8] == "1":
+            self.checkBox_2.setChecked(True) """
 
         self.le_biosloc.setText(vmSpecs[10])
 
@@ -963,11 +963,11 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         else:
             networkAdapter = self.cb_net.currentText()
 
-        if self.checkBox_2.isChecked():
+        """ if self.checkBox_2.isChecked():
             usbtablet = 1
 
         else:
-            usbtablet = 0
+            usbtablet = 0 """
 
         if self.checkBox_3.isChecked():
             win2k = 1
@@ -1021,7 +1021,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         insert_into_vm_database = f"""
         UPDATE virtualmachines
         SET name = "{self.le_name.text()}", architecture = "{self.cb_arch.currentText()}", machine = "{machine}", cpu = "{cpu}",
-        ram = {ram}, hda = "{vhd}", vga = "{vga}", net = "{networkAdapter}", usbtablet = {usbtablet},
+        ram = {ram}, hda = "{vhd}", vga = "{vga}", net = "{networkAdapter}",
         win2k = {win2k}, dirbios = "{ext_bios_dir}", additionalargs = "{add_args}", sound = "{self.cb_sound.currentText()}",
         linuxkernel = "{self.le_kernel.text()}", linuxinitrid = "{self.le_initrd.text()}", linuxcmd = "{self.le_cmd.text()}",
         mousetype = "{self.cb_mouse.currentText()}", cores = {self.sb_cpuc.value()}, filebios = "{self.le_biosf.text()}",

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'NewVM2.ui'
+## Form generated from reading UI file 'NewVM2nrQhMJ.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -260,20 +260,23 @@ class Ui_Dialog(object):
         self.gridLayout_6 = QGridLayout(self.gridLayoutWidget_6)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.btn_next4 = QPushButton(self.gridLayoutWidget_6)
-        self.btn_next4.setObjectName(u"btn_next4")
-
-        self.gridLayout_6.addWidget(self.btn_next4, 4, 1, 1, 1)
-
         self.lbl_vga = QLabel(self.gridLayoutWidget_6)
         self.lbl_vga.setObjectName(u"lbl_vga")
 
         self.gridLayout_6.addWidget(self.lbl_vga, 0, 0, 1, 1)
 
-        self.label_18 = QLabel(self.gridLayoutWidget_6)
-        self.label_18.setObjectName(u"label_18")
+        self.lbl_mouse = QLabel(self.gridLayoutWidget_6)
+        self.lbl_mouse.setObjectName(u"lbl_mouse")
 
-        self.gridLayout_6.addWidget(self.label_18, 2, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.lbl_mouse, 2, 0, 1, 1)
+
+        self.cb_mouse = QComboBox(self.gridLayoutWidget_6)
+        self.cb_mouse.addItem("")
+        self.cb_mouse.addItem("")
+        self.cb_mouse.addItem("")
+        self.cb_mouse.setObjectName(u"cb_mouse")
+
+        self.gridLayout_6.addWidget(self.cb_mouse, 2, 1, 1, 2)
 
         self.lbl_net = QLabel(self.gridLayoutWidget_6)
         self.lbl_net.setObjectName(u"lbl_net")
@@ -283,17 +286,17 @@ class Ui_Dialog(object):
         self.btn_prev4 = QPushButton(self.gridLayoutWidget_6)
         self.btn_prev4.setObjectName(u"btn_prev4")
 
-        self.gridLayout_6.addWidget(self.btn_prev4, 4, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.btn_prev4, 3, 0, 1, 1)
+
+        self.btn_next4 = QPushButton(self.gridLayoutWidget_6)
+        self.btn_next4.setObjectName(u"btn_next4")
+
+        self.gridLayout_6.addWidget(self.btn_next4, 3, 1, 1, 1)
 
         self.btn_cancel4 = QPushButton(self.gridLayoutWidget_6)
         self.btn_cancel4.setObjectName(u"btn_cancel4")
 
-        self.gridLayout_6.addWidget(self.btn_cancel4, 4, 2, 1, 1)
-
-        self.lbl_mouse = QLabel(self.gridLayoutWidget_6)
-        self.lbl_mouse.setObjectName(u"lbl_mouse")
-
-        self.gridLayout_6.addWidget(self.lbl_mouse, 3, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.btn_cancel4, 3, 2, 1, 1)
 
         self.cb_vga = QComboBox(self.gridLayoutWidget_6)
         self.cb_vga.addItem("")
@@ -306,19 +309,6 @@ class Ui_Dialog(object):
         self.cb_net.setObjectName(u"cb_net")
 
         self.gridLayout_6.addWidget(self.cb_net, 1, 1, 1, 2)
-
-        self.cb_mouse = QComboBox(self.gridLayoutWidget_6)
-        self.cb_mouse.addItem("")
-        self.cb_mouse.addItem("")
-        self.cb_mouse.addItem("")
-        self.cb_mouse.setObjectName(u"cb_mouse")
-
-        self.gridLayout_6.addWidget(self.cb_mouse, 3, 1, 1, 2)
-
-        self.checkBox = QCheckBox(self.gridLayoutWidget_6)
-        self.checkBox.setObjectName(u"checkBox")
-
-        self.gridLayout_6.addWidget(self.checkBox, 2, 1, 1, 2)
 
         self.stackedWidget.addWidget(self.page_6)
         self.page_8 = QWidget()
@@ -517,7 +507,7 @@ class Ui_Dialog(object):
 
         self.lbl_leave = QLabel(self.gridLayoutWidget_10)
         self.lbl_leave.setObjectName(u"lbl_leave")
-        self.lbl_leave.setAlignment(Qt.AlignCenter)
+        self.lbl_leave.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.lbl_leave.setWordWrap(True)
 
         self.gridLayout_10.addWidget(self.lbl_leave, 3, 1, 1, 1)
@@ -1667,8 +1657,7 @@ class Ui_Dialog(object):
         QWidget.setTabOrder(self.btn_next3, self.btn_cancel3)
         QWidget.setTabOrder(self.btn_cancel3, self.cb_vga)
         QWidget.setTabOrder(self.cb_vga, self.cb_net)
-        QWidget.setTabOrder(self.cb_net, self.checkBox)
-        QWidget.setTabOrder(self.checkBox, self.cb_mouse)
+        QWidget.setTabOrder(self.cb_net, self.cb_mouse)
         QWidget.setTabOrder(self.cb_mouse, self.btn_prev4)
         QWidget.setTabOrder(self.btn_prev4, self.btn_next4)
         QWidget.setTabOrder(self.btn_next4, self.btn_cancel4)
@@ -1856,24 +1845,22 @@ class Ui_Dialog(object):
         self.cb_hddC.setItemText(2, QCoreApplication.translate("Dialog", u"VirtIO SCSI", None))
         self.cb_hddC.setItemText(3, QCoreApplication.translate("Dialog", u"AHCI", None))
 
-        self.btn_next4.setText(QCoreApplication.translate("Dialog", u"Next >", None))
         self.lbl_vga.setText(QCoreApplication.translate("Dialog", u"VGA", None))
-        self.label_18.setText(QCoreApplication.translate("Dialog", u"USB Device Tablet", None))
+        self.lbl_mouse.setText(QCoreApplication.translate("Dialog", u"Mouse", None))
+        self.cb_mouse.setItemText(0, QCoreApplication.translate("Dialog", u"PS/2 Mouse", None))
+        self.cb_mouse.setItemText(1, QCoreApplication.translate("Dialog", u"USB Mouse", None))
+        self.cb_mouse.setItemText(2, QCoreApplication.translate("Dialog", u"USB Tablet Device", None))
+
         self.lbl_net.setText(QCoreApplication.translate("Dialog", u"Network", None))
         self.btn_prev4.setText(QCoreApplication.translate("Dialog", u"< Previous", None))
+        self.btn_next4.setText(QCoreApplication.translate("Dialog", u"Next >", None))
         self.btn_cancel4.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
-        self.lbl_mouse.setText(QCoreApplication.translate("Dialog", u"Mouse", None))
         self.cb_vga.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
 
         self.cb_vga.setPlaceholderText(QCoreApplication.translate("Dialog", u"(Please select a graphics adapter)", None))
         self.cb_net.setItemText(0, QCoreApplication.translate("Dialog", u"none", None))
 
         self.cb_net.setPlaceholderText(QCoreApplication.translate("Dialog", u"(Please select a network adapter)", None))
-        self.cb_mouse.setItemText(0, QCoreApplication.translate("Dialog", u"PS/2 Mouse", None))
-        self.cb_mouse.setItemText(1, QCoreApplication.translate("Dialog", u"USB Mouse", None))
-        self.cb_mouse.setItemText(2, QCoreApplication.translate("Dialog", u"USB Tablet Device", None))
-
-        self.checkBox.setText(QCoreApplication.translate("Dialog", u"Yes, I want it (depreciated)", None))
         self.btn_cancel5.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
         self.btn_next5.setText(QCoreApplication.translate("Dialog", u"Next >", None))
         self.btn_prev5.setText(QCoreApplication.translate("Dialog", u"< Previous", None))

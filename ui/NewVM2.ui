@@ -474,13 +474,6 @@
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_6">
-      <item row="4" column="1">
-       <widget class="QPushButton" name="btn_next4">
-        <property name="text">
-         <string>Next &gt;</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="lbl_vga">
         <property name="text">
@@ -489,10 +482,29 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="label_18">
+       <widget class="QLabel" name="lbl_mouse">
         <property name="text">
-         <string>USB Device Tablet</string>
+         <string>Mouse</string>
         </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="QComboBox" name="cb_mouse">
+        <item>
+         <property name="text">
+          <string>PS/2 Mouse</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>USB Mouse</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>USB Tablet Device</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="1" column="0">
@@ -502,24 +514,24 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="3" column="0">
        <widget class="QPushButton" name="btn_prev4">
         <property name="text">
          <string>&lt; Previous</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="2">
-       <widget class="QPushButton" name="btn_cancel4">
+      <item row="3" column="1">
+       <widget class="QPushButton" name="btn_next4">
         <property name="text">
-         <string>Cancel</string>
+         <string>Next &gt;</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="lbl_mouse">
+      <item row="3" column="2">
+       <widget class="QPushButton" name="btn_cancel4">
         <property name="text">
-         <string>Mouse</string>
+         <string>Cancel</string>
         </property>
        </widget>
       </item>
@@ -545,32 +557,6 @@
           <string>none</string>
          </property>
         </item>
-       </widget>
-      </item>
-      <item row="3" column="1" colspan="2">
-       <widget class="QComboBox" name="cb_mouse">
-        <item>
-         <property name="text">
-          <string>PS/2 Mouse</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>USB Mouse</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>USB Tablet Device</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="2" column="1" colspan="2">
-       <widget class="QCheckBox" name="checkBox">
-        <property name="text">
-         <string>Yes, I want it (depreciated)</string>
-        </property>
        </widget>
       </item>
      </layout>
@@ -886,7 +872,7 @@ default BIOS)</string>
          <string>Leave empty if these aren't necessary</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -3733,7 +3719,6 @@ default BIOS)</string>
   <tabstop>btn_cancel3</tabstop>
   <tabstop>cb_vga</tabstop>
   <tabstop>cb_net</tabstop>
-  <tabstop>checkBox</tabstop>
   <tabstop>cb_mouse</tabstop>
   <tabstop>btn_prev4</tabstop>
   <tabstop>btn_next4</tabstop>

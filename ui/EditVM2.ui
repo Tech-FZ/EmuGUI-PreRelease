@@ -493,25 +493,11 @@
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="3" column="0">
-       <widget class="QCheckBox" name="checkBox_2">
+      <item row="2" column="0">
+       <widget class="QLabel" name="lbl_kbdlayout">
         <property name="text">
-         <string>USB Tablet Device (depreciated)</string>
+         <string>Keyboard layout</string>
         </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="cb_kbdtype">
-        <item>
-         <property name="text">
-          <string>PS/2 Keyboard</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>USB Keyboard</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item row="0" column="1">
@@ -533,13 +519,6 @@
         </item>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="lbl_mouse">
-        <property name="text">
-         <string>Mouse type</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="lbl_kbdtype">
         <property name="text">
@@ -547,11 +526,25 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="lbl_kbdlayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbl_mouse">
         <property name="text">
-         <string>Keyboard layout</string>
+         <string>Mouse type</string>
         </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="cb_kbdtype">
+        <item>
+         <property name="text">
+          <string>PS/2 Keyboard</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>USB Keyboard</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="2" column="1">
@@ -932,7 +925,6 @@
   <tabstop>cb_mouse</tabstop>
   <tabstop>cb_kbdtype</tabstop>
   <tabstop>cb_kbdlayout</tabstop>
-  <tabstop>checkBox_2</tabstop>
   <tabstop>le_biosloc</tabstop>
   <tabstop>le_biosf</tabstop>
   <tabstop>btn_biosf</tabstop>

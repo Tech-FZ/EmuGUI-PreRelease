@@ -12,11 +12,11 @@ EmuGUI's depreciation policy for built-in features is as follows: When one featu
 
 | Feature | State | Depreciated/Removed since | Minimum number of feature levels left | Reason for depreciation |
 | ------- | ----- | ------------------------- | ------------------------------------- | ----------------------- |
-| USB Tablet checkbox | Depreciated | 0.4 | 1 | A combobox with more possibilities has been created |
-| Windows 2000 checkbox | Depreciated | 0.6.5 | 3 | Rather prevents you from installing the OS in question than helping you |
-| doc/TESTED.md compatibility list | Depreciated | 0.7.2.5108 | 6 | It's not very productive to use two versions of the same file. Please visit the EmuGUI wiki on the stable repository on GitHub instead. |
-| Icelake-Client x86 CPU | Depreciated | 0.7.6.5112 | 6 | This CPU has been removed from QEMU 7.1 already, although EmuGUI is going to keep it for compatibility reasons (for now). Please change the CPU as soon as possible. |
-| HAXM accelerator | Depreciated | 2.0.0.5601_dev | 5 | After Intel discontinued the HAXM project, it also got removed from QEMU 8.2. For now, it will stay for compatibility, however, it's also for security reasons that you should switch to WHPX if possible. |
+| USB Tablet checkbox | Removed | 0.4 (Depreciated), 2.1 (Removed) | Removed | A combobox with more possibilities has been created |
+| Windows 2000 checkbox | Depreciated | 0.6.5 | 2 | Rather prevents you from installing the OS in question than helping you |
+| doc/TESTED.md compatibility list | Depreciated | 0.7.2.5108 | 5 | It's not very productive to use two versions of the same file. Please visit the EmuGUI wiki on the stable repository on GitHub instead. |
+| Icelake-Client x86 CPU | Depreciated | 0.7.6.5112 | 5 | This CPU has been removed from QEMU 7.1 already, although EmuGUI is going to keep it for compatibility reasons (for now). Please change the CPU as soon as possible. |
+| HAXM accelerator | Depreciated | 2.0.0.5601_dev | 4 | After Intel discontinued the HAXM project, it also got removed from QEMU 8.2. For now, it will stay for compatibility, however, it's also for security reasons that you should switch to WHPX if possible. |
 
 ## Supported host operating systems
 

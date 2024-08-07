@@ -452,11 +452,11 @@ class StartVirtualMachineDialog(QDialog, Ui_Dialog):
             if self.vmSpecs[20] == "1":
                 qemu_cmd = qemu_cmd + f" -usb -device {self.vmSpecs[21]}"
             
-            if self.vmSpecs[7] == "1":
+            """ if self.vmSpecs[7] == "1":
                 print("WARNING: Using the checkbox for the USB tablet is depreciated.")
                 print("This feature is going to be removed in a future update.")
                 print("Please use the combo box for this task instead.")
-                qemu_cmd = qemu_cmd + " -usbdevice tablet"
+                qemu_cmd = qemu_cmd + " -usbdevice tablet" """
 
             if self.vmSpecs[8] == "1" and self.vmSpecs[0] == "i386":
                 qemu_cmd = qemu_cmd + " -win2k-hack"

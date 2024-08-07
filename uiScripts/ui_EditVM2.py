@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'EditVM2.ui'
+## Form generated from reading UI file 'EditVM2XRIjMh.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -253,17 +253,10 @@ class Ui_Dialog(object):
         self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_3)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.checkBox_2 = QCheckBox(self.gridLayoutWidget_3)
-        self.checkBox_2.setObjectName(u"checkBox_2")
+        self.lbl_kbdlayout = QLabel(self.gridLayoutWidget_3)
+        self.lbl_kbdlayout.setObjectName(u"lbl_kbdlayout")
 
-        self.gridLayout_3.addWidget(self.checkBox_2, 3, 0, 1, 1)
-
-        self.cb_kbdtype = QComboBox(self.gridLayoutWidget_3)
-        self.cb_kbdtype.addItem("")
-        self.cb_kbdtype.addItem("")
-        self.cb_kbdtype.setObjectName(u"cb_kbdtype")
-
-        self.gridLayout_3.addWidget(self.cb_kbdtype, 1, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.lbl_kbdlayout, 2, 0, 1, 1)
 
         self.cb_mouse = QComboBox(self.gridLayoutWidget_3)
         self.cb_mouse.addItem("")
@@ -273,20 +266,22 @@ class Ui_Dialog(object):
 
         self.gridLayout_3.addWidget(self.cb_mouse, 0, 1, 1, 1)
 
-        self.lbl_mouse = QLabel(self.gridLayoutWidget_3)
-        self.lbl_mouse.setObjectName(u"lbl_mouse")
-
-        self.gridLayout_3.addWidget(self.lbl_mouse, 0, 0, 1, 1)
-
         self.lbl_kbdtype = QLabel(self.gridLayoutWidget_3)
         self.lbl_kbdtype.setObjectName(u"lbl_kbdtype")
 
         self.gridLayout_3.addWidget(self.lbl_kbdtype, 1, 0, 1, 1)
 
-        self.lbl_kbdlayout = QLabel(self.gridLayoutWidget_3)
-        self.lbl_kbdlayout.setObjectName(u"lbl_kbdlayout")
+        self.lbl_mouse = QLabel(self.gridLayoutWidget_3)
+        self.lbl_mouse.setObjectName(u"lbl_mouse")
 
-        self.gridLayout_3.addWidget(self.lbl_kbdlayout, 2, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.lbl_mouse, 0, 0, 1, 1)
+
+        self.cb_kbdtype = QComboBox(self.gridLayoutWidget_3)
+        self.cb_kbdtype.addItem("")
+        self.cb_kbdtype.addItem("")
+        self.cb_kbdtype.setObjectName(u"cb_kbdtype")
+
+        self.gridLayout_3.addWidget(self.cb_kbdtype, 1, 1, 1, 1)
 
         self.cb_kbdlayout = QComboBox(self.gridLayoutWidget_3)
         self.cb_kbdlayout.addItem("")
@@ -513,8 +508,7 @@ class Ui_Dialog(object):
         QWidget.setTabOrder(self.cb_cdc2, self.cb_mouse)
         QWidget.setTabOrder(self.cb_mouse, self.cb_kbdtype)
         QWidget.setTabOrder(self.cb_kbdtype, self.cb_kbdlayout)
-        QWidget.setTabOrder(self.cb_kbdlayout, self.checkBox_2)
-        QWidget.setTabOrder(self.checkBox_2, self.le_biosloc)
+        QWidget.setTabOrder(self.cb_kbdlayout, self.le_biosloc)
         QWidget.setTabOrder(self.le_biosloc, self.le_biosf)
         QWidget.setTabOrder(self.le_biosf, self.btn_biosf)
         QWidget.setTabOrder(self.btn_biosf, self.le_kernel)
@@ -614,17 +608,16 @@ class Ui_Dialog(object):
         self.cb_hddc.setItemText(3, QCoreApplication.translate("Dialog", u"AHCI", None))
 
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("Dialog", u"Virtual hard disks", None))
-        self.checkBox_2.setText(QCoreApplication.translate("Dialog", u"USB Tablet Device (depreciated)", None))
-        self.cb_kbdtype.setItemText(0, QCoreApplication.translate("Dialog", u"PS/2 Keyboard", None))
-        self.cb_kbdtype.setItemText(1, QCoreApplication.translate("Dialog", u"USB Keyboard", None))
-
+        self.lbl_kbdlayout.setText(QCoreApplication.translate("Dialog", u"Keyboard layout", None))
         self.cb_mouse.setItemText(0, QCoreApplication.translate("Dialog", u"PS/2 Mouse", None))
         self.cb_mouse.setItemText(1, QCoreApplication.translate("Dialog", u"USB Mouse", None))
         self.cb_mouse.setItemText(2, QCoreApplication.translate("Dialog", u"USB Tablet Device", None))
 
-        self.lbl_mouse.setText(QCoreApplication.translate("Dialog", u"Mouse type", None))
         self.lbl_kbdtype.setText(QCoreApplication.translate("Dialog", u"Keyboard type", None))
-        self.lbl_kbdlayout.setText(QCoreApplication.translate("Dialog", u"Keyboard layout", None))
+        self.lbl_mouse.setText(QCoreApplication.translate("Dialog", u"Mouse type", None))
+        self.cb_kbdtype.setItemText(0, QCoreApplication.translate("Dialog", u"PS/2 Keyboard", None))
+        self.cb_kbdtype.setItemText(1, QCoreApplication.translate("Dialog", u"USB Keyboard", None))
+
         self.cb_kbdlayout.setItemText(0, QCoreApplication.translate("Dialog", u"en-us", None))
         self.cb_kbdlayout.setItemText(1, QCoreApplication.translate("Dialog", u"en-gb", None))
         self.cb_kbdlayout.setItemText(2, QCoreApplication.translate("Dialog", u"de", None))
