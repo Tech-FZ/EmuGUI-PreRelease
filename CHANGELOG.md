@@ -1,4 +1,4 @@
-# EmuGUI v2.1.0.5700 "Ioana Rosa" (based on v2.0.6.5617)
+# EmuGUI v2.1.0.5700 "Fatima Nejla" (based on v2.0.6.5617)
 
 ## WARNING
 
