@@ -9,6 +9,27 @@
 - Thanks to Mizuki, we now have more flexible Windows-specific code.
 - As per the depreciation policy, the old USB Tablet checkbox has been removed for good.
 
+## Foreported from v2.0.7.5618
+
+- When creating new VMs, you can now choose custom BIOS files again.
+
+## Known issues
+
+- Unfortunately, you might have to run EmuGUI from the terminal on Linux.
+- You will not be notified about any more updates for now as update.txt will not be updated.
+- As for the TPM functionality, you must run `mkdir (insert-path-here)` and `swtpm socket --tpm2 --tpmstate dir=(insert-path-here) --ctrl type=unixio,path=(insert-path-here)/swtpm-sock --log level=20` in a terminal (You can leave the `--tpm2` argument away tho if you plan to use TPM 1.2 instead).
+- The QCOW2 format is prone to not work for some Windows VMs.
+
+# EmuGUI v2.0.7.5618 "Ioana Rosa" (based on v2.0.6.5617)
+
+## WARNING
+
+- You now need the latest version of your Linux distribution or at least Windows 10 to get official support for this release.
+
+## Changes compared to v2.0.6.5617
+
+- When creating new VMs, you can now choose custom BIOS files again.
+
 ## Known issues
 
 - Unfortunately, you might have to run EmuGUI from the terminal on Linux.
