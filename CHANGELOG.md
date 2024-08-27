@@ -17,6 +17,7 @@
 ## Changes compared to v2.1.0.5700_dev
 
 - The VM table on the database can now save information which you would set when starting the VM (excluding TPM information).
+- The VM dialogs now show UI elements for those settings.
 
 ## Known issues
 

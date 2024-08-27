@@ -573,27 +573,6 @@
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_8">
-      <item row="2" column="2">
-       <widget class="QPushButton" name="btn_cancel5">
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QPushButton" name="btn_next5">
-        <property name="text">
-         <string>Next &gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="btn_prev5">
-        <property name="text">
-         <string>&lt; Previous</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="lbl_biosF">
         <property name="text">
@@ -601,15 +580,29 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="le_biosF"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QPushButton" name="btn_biosF">
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="chb_rtc">
         <property name="text">
-         <string>Browse</string>
+         <string>Use RTC option</string>
         </property>
        </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="btn_next5">
+        <property name="text">
+         <string>Next &gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QPushButton" name="btn_prev5">
+        <property name="text">
+         <string>&lt; Previous</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="le_biosF"/>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="lbl_biosLoc">
@@ -624,8 +617,49 @@ default BIOS)</string>
         </property>
        </widget>
       </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="btn_biosF">
+        <property name="text">
+         <string>Browse</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QPushButton" name="btn_cancel5">
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="QDateTimeEdit" name="dtb_rtc">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="displayFormat">
+         <string>yyyy-MM-ddThh:mm:ss</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1" colspan="2">
        <widget class="QLineEdit" name="le_biosLoc"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lbl_floppy">
+        <property name="text">
+         <string>Floppy disk</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="le_floppy"/>
+      </item>
+      <item row="3" column="2">
+       <widget class="QPushButton" name="btn_floppy">
+        <property name="text">
+         <string>Browse</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -3504,69 +3538,17 @@ default BIOS)</string>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_25">
-      <item row="4" column="2">
+      <item row="8" column="2">
        <widget class="QPushButton" name="btn_cancel8">
         <property name="text">
          <string>Cancel</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
-       <widget class="QPushButton" name="btn_next8">
-        <property name="text">
-         <string>Next &gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QPushButton" name="btn_prev8">
-        <property name="text">
-         <string>&lt; Previous</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="lbl_cdc2">
-        <property name="text">
-         <string>CD controller 2</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="lbl_cdc1">
+       <widget class="QLabel" name="lbl_cd1">
         <property name="text">
-         <string>CD controller 1</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" colspan="2">
-       <widget class="QComboBox" name="cb_cdc1">
-        <item>
-         <property name="text">
-          <string>Let QEMU decide</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>IDE</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SCSI</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Virtio</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="lbl_accel">
-        <property name="text">
-         <string>Acceleration</string>
+         <string>CD 1</string>
         </property>
        </widget>
       </item>
@@ -3604,7 +3586,14 @@ default BIOS)</string>
         </item>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2">
+      <item row="8" column="0">
+       <widget class="QPushButton" name="btn_prev8">
+        <property name="text">
+         <string>&lt; Previous</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1" colspan="2">
        <widget class="QComboBox" name="cb_cdc2">
         <item>
          <property name="text">
@@ -3624,6 +3613,116 @@ default BIOS)</string>
         <item>
          <property name="text">
           <string>Virtio</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="lbl_cd2">
+        <property name="text">
+         <string>CD 2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QPushButton" name="btn_next8">
+        <property name="text">
+         <string>Next &gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="le_cd1"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lbl_cdc1">
+        <property name="text">
+         <string>CD controller 1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="2">
+       <widget class="QComboBox" name="cb_cdc1">
+        <item>
+         <property name="text">
+          <string>Let QEMU decide</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>IDE</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>SCSI</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Virtio</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="le_cd2"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="lbl_cdc2">
+        <property name="text">
+         <string>CD controller 2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="btn_cd1">
+        <property name="text">
+         <string>Browse</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QPushButton" name="btn_cd2">
+        <property name="text">
+         <string>Browse</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbl_accel">
+        <property name="text">
+         <string>Acceleration</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="lbl_bootfrom">
+        <property name="text">
+         <string>Boot from</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1" colspan="2">
+       <widget class="QComboBox" name="cb_bootfrom">
+        <item>
+         <property name="text">
+          <string>c</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>a</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>d</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Let QEMU decide</string>
          </property>
         </item>
        </widget>

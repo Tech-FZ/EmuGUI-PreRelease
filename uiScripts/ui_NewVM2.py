@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'NewVM2nrQhMJ.ui'
+## Form generated from reading UI file 'NewVM2LIlZEj.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
-    QGridLayout, QLabel, QLineEdit, QPushButton,
-    QSizePolicy, QSpinBox, QStackedWidget, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDateTimeEdit,
+    QDialog, QGridLayout, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QSpinBox, QStackedWidget,
+    QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -319,35 +320,30 @@ class Ui_Dialog(object):
         self.gridLayout_8 = QGridLayout(self.gridLayoutWidget_8)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.btn_cancel5 = QPushButton(self.gridLayoutWidget_8)
-        self.btn_cancel5.setObjectName(u"btn_cancel5")
-
-        self.gridLayout_8.addWidget(self.btn_cancel5, 2, 2, 1, 1)
-
-        self.btn_next5 = QPushButton(self.gridLayoutWidget_8)
-        self.btn_next5.setObjectName(u"btn_next5")
-
-        self.gridLayout_8.addWidget(self.btn_next5, 2, 1, 1, 1)
-
-        self.btn_prev5 = QPushButton(self.gridLayoutWidget_8)
-        self.btn_prev5.setObjectName(u"btn_prev5")
-
-        self.gridLayout_8.addWidget(self.btn_prev5, 2, 0, 1, 1)
-
         self.lbl_biosF = QLabel(self.gridLayoutWidget_8)
         self.lbl_biosF.setObjectName(u"lbl_biosF")
 
         self.gridLayout_8.addWidget(self.lbl_biosF, 1, 0, 1, 1)
 
+        self.chb_rtc = QCheckBox(self.gridLayoutWidget_8)
+        self.chb_rtc.setObjectName(u"chb_rtc")
+
+        self.gridLayout_8.addWidget(self.chb_rtc, 2, 0, 1, 1)
+
+        self.btn_next5 = QPushButton(self.gridLayoutWidget_8)
+        self.btn_next5.setObjectName(u"btn_next5")
+
+        self.gridLayout_8.addWidget(self.btn_next5, 4, 1, 1, 1)
+
+        self.btn_prev5 = QPushButton(self.gridLayoutWidget_8)
+        self.btn_prev5.setObjectName(u"btn_prev5")
+
+        self.gridLayout_8.addWidget(self.btn_prev5, 4, 0, 1, 1)
+
         self.le_biosF = QLineEdit(self.gridLayoutWidget_8)
         self.le_biosF.setObjectName(u"le_biosF")
 
         self.gridLayout_8.addWidget(self.le_biosF, 1, 1, 1, 1)
-
-        self.btn_biosF = QPushButton(self.gridLayoutWidget_8)
-        self.btn_biosF.setObjectName(u"btn_biosF")
-
-        self.gridLayout_8.addWidget(self.btn_biosF, 1, 2, 1, 1)
 
         self.lbl_biosLoc = QLabel(self.gridLayoutWidget_8)
         self.lbl_biosLoc.setObjectName(u"lbl_biosLoc")
@@ -355,10 +351,41 @@ class Ui_Dialog(object):
 
         self.gridLayout_8.addWidget(self.lbl_biosLoc, 0, 0, 1, 1)
 
+        self.btn_biosF = QPushButton(self.gridLayoutWidget_8)
+        self.btn_biosF.setObjectName(u"btn_biosF")
+
+        self.gridLayout_8.addWidget(self.btn_biosF, 1, 2, 1, 1)
+
+        self.btn_cancel5 = QPushButton(self.gridLayoutWidget_8)
+        self.btn_cancel5.setObjectName(u"btn_cancel5")
+
+        self.gridLayout_8.addWidget(self.btn_cancel5, 4, 2, 1, 1)
+
+        self.dtb_rtc = QDateTimeEdit(self.gridLayoutWidget_8)
+        self.dtb_rtc.setObjectName(u"dtb_rtc")
+        self.dtb_rtc.setEnabled(False)
+
+        self.gridLayout_8.addWidget(self.dtb_rtc, 2, 1, 1, 2)
+
         self.le_biosLoc = QLineEdit(self.gridLayoutWidget_8)
         self.le_biosLoc.setObjectName(u"le_biosLoc")
 
         self.gridLayout_8.addWidget(self.le_biosLoc, 0, 1, 1, 2)
+
+        self.lbl_floppy = QLabel(self.gridLayoutWidget_8)
+        self.lbl_floppy.setObjectName(u"lbl_floppy")
+
+        self.gridLayout_8.addWidget(self.lbl_floppy, 3, 0, 1, 1)
+
+        self.le_floppy = QLineEdit(self.gridLayoutWidget_8)
+        self.le_floppy.setObjectName(u"le_floppy")
+
+        self.gridLayout_8.addWidget(self.le_floppy, 3, 1, 1, 1)
+
+        self.btn_floppy = QPushButton(self.gridLayoutWidget_8)
+        self.btn_floppy.setObjectName(u"btn_floppy")
+
+        self.gridLayout_8.addWidget(self.btn_floppy, 3, 2, 1, 1)
 
         self.stackedWidget.addWidget(self.page_8)
         self.page_9 = QWidget()
@@ -1530,41 +1557,12 @@ class Ui_Dialog(object):
         self.btn_cancel8 = QPushButton(self.gridLayoutWidget_25)
         self.btn_cancel8.setObjectName(u"btn_cancel8")
 
-        self.gridLayout_25.addWidget(self.btn_cancel8, 4, 2, 1, 1)
+        self.gridLayout_25.addWidget(self.btn_cancel8, 8, 2, 1, 1)
 
-        self.btn_next8 = QPushButton(self.gridLayoutWidget_25)
-        self.btn_next8.setObjectName(u"btn_next8")
+        self.lbl_cd1 = QLabel(self.gridLayoutWidget_25)
+        self.lbl_cd1.setObjectName(u"lbl_cd1")
 
-        self.gridLayout_25.addWidget(self.btn_next8, 4, 1, 1, 1)
-
-        self.btn_prev8 = QPushButton(self.gridLayoutWidget_25)
-        self.btn_prev8.setObjectName(u"btn_prev8")
-
-        self.gridLayout_25.addWidget(self.btn_prev8, 4, 0, 1, 1)
-
-        self.lbl_cdc2 = QLabel(self.gridLayoutWidget_25)
-        self.lbl_cdc2.setObjectName(u"lbl_cdc2")
-
-        self.gridLayout_25.addWidget(self.lbl_cdc2, 2, 0, 1, 1)
-
-        self.lbl_cdc1 = QLabel(self.gridLayoutWidget_25)
-        self.lbl_cdc1.setObjectName(u"lbl_cdc1")
-
-        self.gridLayout_25.addWidget(self.lbl_cdc1, 1, 0, 1, 1)
-
-        self.cb_cdc1 = QComboBox(self.gridLayoutWidget_25)
-        self.cb_cdc1.addItem("")
-        self.cb_cdc1.addItem("")
-        self.cb_cdc1.addItem("")
-        self.cb_cdc1.addItem("")
-        self.cb_cdc1.setObjectName(u"cb_cdc1")
-
-        self.gridLayout_25.addWidget(self.cb_cdc1, 1, 1, 1, 2)
-
-        self.lbl_accel = QLabel(self.gridLayoutWidget_25)
-        self.lbl_accel.setObjectName(u"lbl_accel")
-
-        self.gridLayout_25.addWidget(self.lbl_accel, 0, 0, 1, 1)
+        self.gridLayout_25.addWidget(self.lbl_cd1, 1, 0, 1, 1)
 
         self.cb_accel = QComboBox(self.gridLayoutWidget_25)
         self.cb_accel.addItem("")
@@ -1577,6 +1575,11 @@ class Ui_Dialog(object):
 
         self.gridLayout_25.addWidget(self.cb_accel, 0, 1, 1, 2)
 
+        self.btn_prev8 = QPushButton(self.gridLayoutWidget_25)
+        self.btn_prev8.setObjectName(u"btn_prev8")
+
+        self.gridLayout_25.addWidget(self.btn_prev8, 8, 0, 1, 1)
+
         self.cb_cdc2 = QComboBox(self.gridLayoutWidget_25)
         self.cb_cdc2.addItem("")
         self.cb_cdc2.addItem("")
@@ -1584,7 +1587,75 @@ class Ui_Dialog(object):
         self.cb_cdc2.addItem("")
         self.cb_cdc2.setObjectName(u"cb_cdc2")
 
-        self.gridLayout_25.addWidget(self.cb_cdc2, 2, 1, 1, 2)
+        self.gridLayout_25.addWidget(self.cb_cdc2, 5, 1, 1, 2)
+
+        self.lbl_cd2 = QLabel(self.gridLayoutWidget_25)
+        self.lbl_cd2.setObjectName(u"lbl_cd2")
+
+        self.gridLayout_25.addWidget(self.lbl_cd2, 4, 0, 1, 1)
+
+        self.btn_next8 = QPushButton(self.gridLayoutWidget_25)
+        self.btn_next8.setObjectName(u"btn_next8")
+
+        self.gridLayout_25.addWidget(self.btn_next8, 8, 1, 1, 1)
+
+        self.le_cd1 = QLineEdit(self.gridLayoutWidget_25)
+        self.le_cd1.setObjectName(u"le_cd1")
+
+        self.gridLayout_25.addWidget(self.le_cd1, 1, 1, 1, 1)
+
+        self.lbl_cdc1 = QLabel(self.gridLayoutWidget_25)
+        self.lbl_cdc1.setObjectName(u"lbl_cdc1")
+
+        self.gridLayout_25.addWidget(self.lbl_cdc1, 3, 0, 1, 1)
+
+        self.cb_cdc1 = QComboBox(self.gridLayoutWidget_25)
+        self.cb_cdc1.addItem("")
+        self.cb_cdc1.addItem("")
+        self.cb_cdc1.addItem("")
+        self.cb_cdc1.addItem("")
+        self.cb_cdc1.setObjectName(u"cb_cdc1")
+
+        self.gridLayout_25.addWidget(self.cb_cdc1, 3, 1, 1, 2)
+
+        self.le_cd2 = QLineEdit(self.gridLayoutWidget_25)
+        self.le_cd2.setObjectName(u"le_cd2")
+
+        self.gridLayout_25.addWidget(self.le_cd2, 4, 1, 1, 1)
+
+        self.lbl_cdc2 = QLabel(self.gridLayoutWidget_25)
+        self.lbl_cdc2.setObjectName(u"lbl_cdc2")
+
+        self.gridLayout_25.addWidget(self.lbl_cdc2, 5, 0, 1, 1)
+
+        self.btn_cd1 = QPushButton(self.gridLayoutWidget_25)
+        self.btn_cd1.setObjectName(u"btn_cd1")
+
+        self.gridLayout_25.addWidget(self.btn_cd1, 1, 2, 1, 1)
+
+        self.btn_cd2 = QPushButton(self.gridLayoutWidget_25)
+        self.btn_cd2.setObjectName(u"btn_cd2")
+
+        self.gridLayout_25.addWidget(self.btn_cd2, 4, 2, 1, 1)
+
+        self.lbl_accel = QLabel(self.gridLayoutWidget_25)
+        self.lbl_accel.setObjectName(u"lbl_accel")
+
+        self.gridLayout_25.addWidget(self.lbl_accel, 0, 0, 1, 1)
+
+        self.lbl_bootfrom = QLabel(self.gridLayoutWidget_25)
+        self.lbl_bootfrom.setObjectName(u"lbl_bootfrom")
+
+        self.gridLayout_25.addWidget(self.lbl_bootfrom, 6, 0, 1, 1)
+
+        self.cb_bootfrom = QComboBox(self.gridLayoutWidget_25)
+        self.cb_bootfrom.addItem("")
+        self.cb_bootfrom.addItem("")
+        self.cb_bootfrom.addItem("")
+        self.cb_bootfrom.addItem("")
+        self.cb_bootfrom.setObjectName(u"cb_bootfrom")
+
+        self.gridLayout_25.addWidget(self.cb_bootfrom, 6, 1, 1, 2)
 
         self.stackedWidget.addWidget(self.page_14)
         self.page_7 = QWidget()
@@ -1861,15 +1932,19 @@ class Ui_Dialog(object):
         self.cb_net.setItemText(0, QCoreApplication.translate("Dialog", u"none", None))
 
         self.cb_net.setPlaceholderText(QCoreApplication.translate("Dialog", u"(Please select a network adapter)", None))
-        self.btn_cancel5.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
+        self.lbl_biosF.setText(QCoreApplication.translate("Dialog", u"External BIOS file", None))
+        self.chb_rtc.setText(QCoreApplication.translate("Dialog", u"Use RTC option", None))
         self.btn_next5.setText(QCoreApplication.translate("Dialog", u"Next >", None))
         self.btn_prev5.setText(QCoreApplication.translate("Dialog", u"< Previous", None))
-        self.lbl_biosF.setText(QCoreApplication.translate("Dialog", u"External BIOS file", None))
-        self.btn_biosF.setText(QCoreApplication.translate("Dialog", u"Browse", None))
         self.lbl_biosLoc.setText(QCoreApplication.translate("Dialog", u"Location of external\n"
 "BIOS file (Leave\n"
 "empty to use the\n"
 "default BIOS)", None))
+        self.btn_biosF.setText(QCoreApplication.translate("Dialog", u"Browse", None))
+        self.btn_cancel5.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
+        self.dtb_rtc.setDisplayFormat(QCoreApplication.translate("Dialog", u"yyyy-MM-ddThh:mm:ss", None))
+        self.lbl_floppy.setText(QCoreApplication.translate("Dialog", u"Floppy disk", None))
+        self.btn_floppy.setText(QCoreApplication.translate("Dialog", u"Browse", None))
         self.lbl_kbdlayout.setText(QCoreApplication.translate("Dialog", u"Keyboard layout", None))
         self.btn_next6.setText(QCoreApplication.translate("Dialog", u"Next >", None))
         self.btn_cancel6.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
@@ -2357,16 +2432,7 @@ class Ui_Dialog(object):
 
         self.checkBox_6.setText(QCoreApplication.translate("Dialog", u"Add USB support", None))
         self.btn_cancel8.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
-        self.btn_next8.setText(QCoreApplication.translate("Dialog", u"Next >", None))
-        self.btn_prev8.setText(QCoreApplication.translate("Dialog", u"< Previous", None))
-        self.lbl_cdc2.setText(QCoreApplication.translate("Dialog", u"CD controller 2", None))
-        self.lbl_cdc1.setText(QCoreApplication.translate("Dialog", u"CD controller 1", None))
-        self.cb_cdc1.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
-        self.cb_cdc1.setItemText(1, QCoreApplication.translate("Dialog", u"IDE", None))
-        self.cb_cdc1.setItemText(2, QCoreApplication.translate("Dialog", u"SCSI", None))
-        self.cb_cdc1.setItemText(3, QCoreApplication.translate("Dialog", u"Virtio", None))
-
-        self.lbl_accel.setText(QCoreApplication.translate("Dialog", u"Acceleration", None))
+        self.lbl_cd1.setText(QCoreApplication.translate("Dialog", u"CD 1", None))
         self.cb_accel.setItemText(0, QCoreApplication.translate("Dialog", u"None", None))
         self.cb_accel.setItemText(1, QCoreApplication.translate("Dialog", u"TCG", None))
         self.cb_accel.setItemText(2, QCoreApplication.translate("Dialog", u"HAXM (depreciated)", None))
@@ -2374,10 +2440,29 @@ class Ui_Dialog(object):
         self.cb_accel.setItemText(4, QCoreApplication.translate("Dialog", u"WHPX (kernel-irqchip off)", None))
         self.cb_accel.setItemText(5, QCoreApplication.translate("Dialog", u"KVM", None))
 
+        self.btn_prev8.setText(QCoreApplication.translate("Dialog", u"< Previous", None))
         self.cb_cdc2.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
         self.cb_cdc2.setItemText(1, QCoreApplication.translate("Dialog", u"IDE", None))
         self.cb_cdc2.setItemText(2, QCoreApplication.translate("Dialog", u"SCSI", None))
         self.cb_cdc2.setItemText(3, QCoreApplication.translate("Dialog", u"Virtio", None))
+
+        self.lbl_cd2.setText(QCoreApplication.translate("Dialog", u"CD 2", None))
+        self.btn_next8.setText(QCoreApplication.translate("Dialog", u"Next >", None))
+        self.lbl_cdc1.setText(QCoreApplication.translate("Dialog", u"CD controller 1", None))
+        self.cb_cdc1.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
+        self.cb_cdc1.setItemText(1, QCoreApplication.translate("Dialog", u"IDE", None))
+        self.cb_cdc1.setItemText(2, QCoreApplication.translate("Dialog", u"SCSI", None))
+        self.cb_cdc1.setItemText(3, QCoreApplication.translate("Dialog", u"Virtio", None))
+
+        self.lbl_cdc2.setText(QCoreApplication.translate("Dialog", u"CD controller 2", None))
+        self.btn_cd1.setText(QCoreApplication.translate("Dialog", u"Browse", None))
+        self.btn_cd2.setText(QCoreApplication.translate("Dialog", u"Browse", None))
+        self.lbl_accel.setText(QCoreApplication.translate("Dialog", u"Acceleration", None))
+        self.lbl_bootfrom.setText(QCoreApplication.translate("Dialog", u"Boot from", None))
+        self.cb_bootfrom.setItemText(0, QCoreApplication.translate("Dialog", u"c", None))
+        self.cb_bootfrom.setItemText(1, QCoreApplication.translate("Dialog", u"a", None))
+        self.cb_bootfrom.setItemText(2, QCoreApplication.translate("Dialog", u"d", None))
+        self.cb_bootfrom.setItemText(3, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
 
         self.btn_finish.setText(QCoreApplication.translate("Dialog", u"Finish", None))
         self.btn_cancel9.setText(QCoreApplication.translate("Dialog", u"Cancel", None))
