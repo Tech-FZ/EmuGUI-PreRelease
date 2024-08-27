@@ -464,7 +464,8 @@ class Window(QMainWindow, Ui_MainWindow):
             cd1 TEXT,
             cd2 TEXT,
             floppy TEXT,
-            timemgr TEXT DEFAULT "system" NOT NULL
+            timemgr TEXT DEFAULT "system" NOT NULL,
+            bootfrom TEXT DEFAULT "Let QEMU decide" NOT NULL
         );
         """
 
@@ -521,7 +522,7 @@ class Window(QMainWindow, Ui_MainWindow):
         
         # The v2.1 feature set
         select21ColumnsVM = """
-        SELECT cd1, cd2, floppy, timemgr FROM virtualmachines;
+        SELECT cd1, cd2, floppy, timemgr, bootfrom FROM virtualmachines;
         """
 
         insertSoundColVM = """
@@ -617,6 +618,11 @@ class Window(QMainWindow, Ui_MainWindow):
         insertTimemgrVM = """
         ALTER TABLE virtualmachines
         ADD COLUMN timemgr TEXT DEFAULT "system" NOT NULL;
+        """
+        
+        insertBootfromVM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN bootfrom TEXT DEFAULT "Let QEMU decide" NOT NULL;
         """
 
         insert_qemu_img = """
@@ -1570,17 +1576,12 @@ class Window(QMainWindow, Ui_MainWindow):
         
         except sqlite3.Error as e:
             try:
-                cursor.execute(insertCd1VM)
-                connection.commit()
+                features21 = [insertCd1VM, insertCd2VM, insertFloppyVM, insertTimemgrVM, insertBootfromVM]
                 
-                cursor.execute(insertCd2VM)
-                connection.commit()
-                
-                cursor.execute(insertFloppyVM)
-                connection.commit()
-                
-                cursor.execute(insertTimemgrVM)
-                connection.commit()
+                for feature in features21:
+                    cursor.execute(feature)
+                    connection.commit()
+                    
                 print("The queries were executed successfully. The missing features have been added to the database.")
             
             except sqlite3.Error as e:
