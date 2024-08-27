@@ -19,6 +19,7 @@
 - The VM table on the database can now save information which you would set when starting the VM (excluding TPM information).
     - The bootfrom part has been added afterwards.
 - The VM dialogs now show UI elements for those settings.
+- The time settings can now be enabled and disabled in the VM dialogs using the RTC checkbox.
 
 ## Known issues
 

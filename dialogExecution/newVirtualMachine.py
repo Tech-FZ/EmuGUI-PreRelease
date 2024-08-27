@@ -112,6 +112,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         self.btn_cancel5.clicked.connect(self.close)
         self.btn_next5.clicked.connect(self.soundCard)
         self.btn_biosF.clicked.connect(self.extBiosFileLocation)
+        self.chb_rtc.checkStateChanged.connect(self.rtcTimeCheckboxHandler)
 
         # Page 6 (Sound card)
         self.btn_prev6.clicked.connect(self.extBios)
@@ -710,6 +711,13 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
 
         if filename:
             self.le_biosF.setText(filename)
+            
+    def rtcTimeCheckboxHandler(self):
+        if self.chb_rtc.isChecked():
+            self.dtb_rtc.setEnabled(True)
+            
+        else:
+            self.dtb_rtc.setEnabled(False)
 
     def soundCard(self):
         self.stackedWidget.setCurrentIndex(5)
