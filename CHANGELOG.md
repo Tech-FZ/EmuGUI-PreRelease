@@ -20,6 +20,7 @@
     - The bootfrom part has been added afterwards.
 - The VM dialogs now show UI elements for those settings.
 - The time settings can now be enabled and disabled in the VM dialogs using the RTC checkbox.
+- The floppy seems to be able to get set on the dialogs.
 
 ## Known issues
 
@@ -27,6 +28,7 @@
 - You will not be notified about any more updates for now as update.txt will not be updated.
 - As for the TPM functionality, you must run `mkdir (insert-path-here)` and `swtpm socket --tpm2 --tpmstate dir=(insert-path-here) --ctrl type=unixio,path=(insert-path-here)/swtpm-sock --log level=20` in a terminal (You can leave the `--tpm2` argument away tho if you plan to use TPM 1.2 instead).
 - The QCOW2 format is prone to not work for some Windows VMs.
+- VMs can no longer be created as the depreciated feature "USB Tablet Checkbox" has been removed.
 
 # EmuGUI v2.1.0.5700_dev "Fatima Nejla" (based on v2.0.6.5617)
 
