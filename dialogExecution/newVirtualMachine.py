@@ -127,7 +127,9 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         self.btn_cancel7.clicked.connect(self.close)
         self.btn_next7.clicked.connect(self.accelSettings)
 
-        # Page 8 (Acceleration options)
+        # Page 8 (Acceleration/CD options)
+        self.btn_cd1.clicked.connect(self.cd1Location)
+        self.btn_cd2.clicked.connect(self.cd2Location)
         self.btn_prev8.clicked.connect(self.linuxVMSpecific)
         self.btn_next8.clicked.connect(self.win2kHacker)
         self.btn_cancel8.clicked.connect(self.close)
@@ -725,6 +727,18 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
 
         if filename:
             self.le_floppy.setText(filename)
+            
+    def cd1Location(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select first ISO file', dir='.', filter='ISO image (*.iso);;All files (*.*)')
+
+        if filename:
+            self.le_cd1.setText(filename)
+            
+    def cd2Location(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select second ISO file', dir='.', filter='ISO image (*.iso);;All files (*.*)')
+
+        if filename:
+            self.le_cd2.setText(filename)
 
     def soundCard(self):
         self.stackedWidget.setCurrentIndex(5)
@@ -921,7 +935,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         else:
             timemgr = "system"
             
-        if letQemuDecideVariantsStr.__contains__(self.cb_bootfrom):
+        if letQemuDecideVariantsStr.__contains__(self.cb_bootfrom.currentText()):
             bootfrom = "Let QEMU decide"
             
         else:

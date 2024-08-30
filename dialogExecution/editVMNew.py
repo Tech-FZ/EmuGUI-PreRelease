@@ -71,6 +71,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         self.btn_initrd.clicked.connect(self.linuxInitridBrowseLocation)
         self.chb_rtc.checkStateChanged.connect(self.rtcTimeCheckboxHandler)
         self.btn_floppy.clicked.connect(self.floppyLocation)
+        self.btn_cd1.clicked.connect(self.cd1Location)
+        self.btn_cd2.clicked.connect(self.cd2Location)
 
         # For new and existing
         self.le_vhdp.setEnabled(True)
@@ -581,6 +583,18 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
         if filename:
             self.le_initrd.setText(filename)
+            
+    def cd1Location(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select first ISO file', dir='.', filter='ISO image (*.iso);;All files (*.*)')
+
+        if filename:
+            self.le_cd1.setText(filename)
+            
+    def cd2Location(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select second ISO file', dir='.', filter='ISO image (*.iso);;All files (*.*)')
+
+        if filename:
+            self.le_cd2.setText(filename)
 
     def setupCB(self):
         for plugin in self.hw_plugins:
@@ -1029,7 +1043,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         else:
             timemgr = "system"
             
-        if letQemuDecideVariantsStr.__contains__(self.cb_bootfrom):
+        if letQemuDecideVariantsStr.__contains__(self.cb_bootfrom.currentText()):
             bootfrom = "Let QEMU decide"
             
         else:
