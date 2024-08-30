@@ -107,11 +107,13 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         self.btn_cancel4.clicked.connect(self.close)
         self.btn_next4.clicked.connect(self.extBios)
 
-        # Page 5 (External BIOS)
+        # Page 5 (External BIOS and Floppy)
         self.btn_prev5.clicked.connect(self.vgaNetworkMenu)
         self.btn_cancel5.clicked.connect(self.close)
         self.btn_next5.clicked.connect(self.soundCard)
         self.btn_biosF.clicked.connect(self.extBiosFileLocation)
+        self.chb_rtc.checkStateChanged.connect(self.rtcTimeCheckboxHandler)
+        self.btn_floppy.clicked.connect(self.floppyLocation)
 
         # Page 6 (Sound card)
         self.btn_prev6.clicked.connect(self.extBios)
@@ -710,6 +712,19 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
 
         if filename:
             self.le_biosF.setText(filename)
+            
+    def rtcTimeCheckboxHandler(self):
+        if self.chb_rtc.isChecked():
+            self.dtb_rtc.setEnabled(True)
+            
+        else:
+            self.dtb_rtc.setEnabled(False)
+            
+    def floppyLocation(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select floppy disk', dir='.', filter='Floppy image (*.img);;Floppy file (*.flp);;Floppy image (*.ima);;All files (*.*)')
+
+        if filename:
+            self.le_floppy.setText(filename)
 
     def soundCard(self):
         self.stackedWidget.setCurrentIndex(5)

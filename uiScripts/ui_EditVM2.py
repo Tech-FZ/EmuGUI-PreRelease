@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'EditVM2XRIjMh.ui'
+## Form generated from reading UI file 'EditVM2zjfRun.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
-    QGridLayout, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QSpinBox, QStackedWidget,
-    QTabWidget, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDateTimeEdit,
+    QDialog, QGridLayout, QHBoxLayout, QLabel,
+    QLineEdit, QPushButton, QSizePolicy, QSpinBox,
+    QStackedWidget, QTabWidget, QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -136,72 +136,6 @@ class Ui_Dialog(object):
         self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.lbl_vhdp = QLabel(self.gridLayoutWidget_2)
-        self.lbl_vhdp.setObjectName(u"lbl_vhdp")
-
-        self.gridLayout_2.addWidget(self.lbl_vhdp, 1, 0, 1, 1)
-
-        self.lbl_maxsize = QLabel(self.gridLayoutWidget_2)
-        self.lbl_maxsize.setObjectName(u"lbl_maxsize")
-
-        self.gridLayout_2.addWidget(self.lbl_maxsize, 3, 0, 1, 1)
-
-        self.lbl_cdc2 = QLabel(self.gridLayoutWidget_2)
-        self.lbl_cdc2.setObjectName(u"lbl_cdc2")
-
-        self.gridLayout_2.addWidget(self.lbl_cdc2, 5, 0, 1, 1)
-
-        self.cb_cdc2 = QComboBox(self.gridLayoutWidget_2)
-        self.cb_cdc2.addItem("")
-        self.cb_cdc2.addItem("")
-        self.cb_cdc2.addItem("")
-        self.cb_cdc2.addItem("")
-        self.cb_cdc2.setObjectName(u"cb_cdc2")
-
-        self.gridLayout_2.addWidget(self.cb_cdc2, 5, 1, 1, 2)
-
-        self.cb_vhdu = QComboBox(self.gridLayoutWidget_2)
-        self.cb_vhdu.addItem("")
-        self.cb_vhdu.addItem("")
-        self.cb_vhdu.addItem("")
-        self.cb_vhdu.setObjectName(u"cb_vhdu")
-
-        self.gridLayout_2.addWidget(self.cb_vhdu, 0, 1, 1, 2)
-
-        self.lbl_cdc1 = QLabel(self.gridLayoutWidget_2)
-        self.lbl_cdc1.setObjectName(u"lbl_cdc1")
-
-        self.gridLayout_2.addWidget(self.lbl_cdc1, 4, 0, 1, 1)
-
-        self.btn_vhdp = QPushButton(self.gridLayoutWidget_2)
-        self.btn_vhdp.setObjectName(u"btn_vhdp")
-
-        self.gridLayout_2.addWidget(self.btn_vhdp, 1, 2, 1, 1)
-
-        self.cb_cdc1 = QComboBox(self.gridLayoutWidget_2)
-        self.cb_cdc1.addItem("")
-        self.cb_cdc1.addItem("")
-        self.cb_cdc1.addItem("")
-        self.cb_cdc1.addItem("")
-        self.cb_cdc1.setObjectName(u"cb_cdc1")
-
-        self.gridLayout_2.addWidget(self.cb_cdc1, 4, 1, 1, 2)
-
-        self.lbl_vhdu = QLabel(self.gridLayoutWidget_2)
-        self.lbl_vhdu.setObjectName(u"lbl_vhdu")
-
-        self.gridLayout_2.addWidget(self.lbl_vhdu, 0, 0, 1, 1)
-
-        self.le_vhdp = QLineEdit(self.gridLayoutWidget_2)
-        self.le_vhdp.setObjectName(u"le_vhdp")
-
-        self.gridLayout_2.addWidget(self.le_vhdp, 1, 1, 1, 1)
-
-        self.lbl_vhdf = QLabel(self.gridLayoutWidget_2)
-        self.lbl_vhdf.setObjectName(u"lbl_vhdf")
-
-        self.gridLayout_2.addWidget(self.lbl_vhdf, 2, 0, 1, 1)
-
         self.cb_maxsize = QComboBox(self.gridLayoutWidget_2)
         self.cb_maxsize.addItem("")
         self.cb_maxsize.addItem("")
@@ -210,11 +144,53 @@ class Ui_Dialog(object):
 
         self.gridLayout_2.addWidget(self.cb_maxsize, 3, 2, 1, 1)
 
-        self.sb_maxsize = QSpinBox(self.gridLayoutWidget_2)
-        self.sb_maxsize.setObjectName(u"sb_maxsize")
-        self.sb_maxsize.setMaximum(214748368)
+        self.lbl_cdc1 = QLabel(self.gridLayoutWidget_2)
+        self.lbl_cdc1.setObjectName(u"lbl_cdc1")
 
-        self.gridLayout_2.addWidget(self.sb_maxsize, 3, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.lbl_cdc1, 5, 0, 1, 1)
+
+        self.cb_cdc1 = QComboBox(self.gridLayoutWidget_2)
+        self.cb_cdc1.addItem("")
+        self.cb_cdc1.addItem("")
+        self.cb_cdc1.addItem("")
+        self.cb_cdc1.addItem("")
+        self.cb_cdc1.setObjectName(u"cb_cdc1")
+
+        self.gridLayout_2.addWidget(self.cb_cdc1, 5, 1, 1, 2)
+
+        self.cb_hddc = QComboBox(self.gridLayoutWidget_2)
+        self.cb_hddc.addItem("")
+        self.cb_hddc.addItem("")
+        self.cb_hddc.addItem("")
+        self.cb_hddc.addItem("")
+        self.cb_hddc.setObjectName(u"cb_hddc")
+
+        self.gridLayout_2.addWidget(self.cb_hddc, 8, 1, 1, 2)
+
+        self.btn_vhdp = QPushButton(self.gridLayoutWidget_2)
+        self.btn_vhdp.setObjectName(u"btn_vhdp")
+
+        self.gridLayout_2.addWidget(self.btn_vhdp, 1, 2, 1, 1)
+
+        self.lbl_floppy = QLabel(self.gridLayoutWidget_2)
+        self.lbl_floppy.setObjectName(u"lbl_floppy")
+
+        self.gridLayout_2.addWidget(self.lbl_floppy, 9, 0, 1, 1)
+
+        self.lbl_cdc2 = QLabel(self.gridLayoutWidget_2)
+        self.lbl_cdc2.setObjectName(u"lbl_cdc2")
+
+        self.gridLayout_2.addWidget(self.lbl_cdc2, 7, 0, 1, 1)
+
+        self.btn_floppy = QPushButton(self.gridLayoutWidget_2)
+        self.btn_floppy.setObjectName(u"btn_floppy")
+
+        self.gridLayout_2.addWidget(self.btn_floppy, 9, 2, 1, 1)
+
+        self.lbl_vhdu = QLabel(self.gridLayoutWidget_2)
+        self.lbl_vhdu.setObjectName(u"lbl_vhdu")
+
+        self.gridLayout_2.addWidget(self.lbl_vhdu, 0, 0, 1, 1)
 
         self.cb_vhdf = QComboBox(self.gridLayoutWidget_2)
         self.cb_vhdf.addItem("")
@@ -230,19 +206,88 @@ class Ui_Dialog(object):
 
         self.gridLayout_2.addWidget(self.cb_vhdf, 2, 1, 1, 2)
 
+        self.lbl_vhdp = QLabel(self.gridLayoutWidget_2)
+        self.lbl_vhdp.setObjectName(u"lbl_vhdp")
+
+        self.gridLayout_2.addWidget(self.lbl_vhdp, 1, 0, 1, 1)
+
+        self.le_floppy = QLineEdit(self.gridLayoutWidget_2)
+        self.le_floppy.setObjectName(u"le_floppy")
+
+        self.gridLayout_2.addWidget(self.le_floppy, 9, 1, 1, 1)
+
+        self.le_cd1 = QLineEdit(self.gridLayoutWidget_2)
+        self.le_cd1.setObjectName(u"le_cd1")
+
+        self.gridLayout_2.addWidget(self.le_cd1, 4, 1, 1, 1)
+
+        self.cb_vhdu = QComboBox(self.gridLayoutWidget_2)
+        self.cb_vhdu.addItem("")
+        self.cb_vhdu.addItem("")
+        self.cb_vhdu.addItem("")
+        self.cb_vhdu.setObjectName(u"cb_vhdu")
+
+        self.gridLayout_2.addWidget(self.cb_vhdu, 0, 1, 1, 2)
+
+        self.lbl_maxsize = QLabel(self.gridLayoutWidget_2)
+        self.lbl_maxsize.setObjectName(u"lbl_maxsize")
+
+        self.gridLayout_2.addWidget(self.lbl_maxsize, 3, 0, 1, 1)
+
+        self.sb_maxsize = QSpinBox(self.gridLayoutWidget_2)
+        self.sb_maxsize.setObjectName(u"sb_maxsize")
+        self.sb_maxsize.setMaximum(214748368)
+
+        self.gridLayout_2.addWidget(self.sb_maxsize, 3, 1, 1, 1)
+
+        self.lbl_cd1 = QLabel(self.gridLayoutWidget_2)
+        self.lbl_cd1.setObjectName(u"lbl_cd1")
+
+        self.gridLayout_2.addWidget(self.lbl_cd1, 4, 0, 1, 1)
+
+        self.cb_cdc2 = QComboBox(self.gridLayoutWidget_2)
+        self.cb_cdc2.addItem("")
+        self.cb_cdc2.addItem("")
+        self.cb_cdc2.addItem("")
+        self.cb_cdc2.addItem("")
+        self.cb_cdc2.setObjectName(u"cb_cdc2")
+
+        self.gridLayout_2.addWidget(self.cb_cdc2, 7, 1, 1, 2)
+
+        self.btn_cd1 = QPushButton(self.gridLayoutWidget_2)
+        self.btn_cd1.setObjectName(u"btn_cd1")
+
+        self.gridLayout_2.addWidget(self.btn_cd1, 4, 2, 1, 1)
+
         self.lbl_hddc = QLabel(self.gridLayoutWidget_2)
         self.lbl_hddc.setObjectName(u"lbl_hddc")
 
-        self.gridLayout_2.addWidget(self.lbl_hddc, 6, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.lbl_hddc, 8, 0, 1, 1)
 
-        self.cb_hddc = QComboBox(self.gridLayoutWidget_2)
-        self.cb_hddc.addItem("")
-        self.cb_hddc.addItem("")
-        self.cb_hddc.addItem("")
-        self.cb_hddc.addItem("")
-        self.cb_hddc.setObjectName(u"cb_hddc")
+        self.lbl_vhdf = QLabel(self.gridLayoutWidget_2)
+        self.lbl_vhdf.setObjectName(u"lbl_vhdf")
 
-        self.gridLayout_2.addWidget(self.cb_hddc, 6, 1, 1, 2)
+        self.gridLayout_2.addWidget(self.lbl_vhdf, 2, 0, 1, 1)
+
+        self.le_vhdp = QLineEdit(self.gridLayoutWidget_2)
+        self.le_vhdp.setObjectName(u"le_vhdp")
+
+        self.gridLayout_2.addWidget(self.le_vhdp, 1, 1, 1, 1)
+
+        self.lbl_cd2 = QLabel(self.gridLayoutWidget_2)
+        self.lbl_cd2.setObjectName(u"lbl_cd2")
+
+        self.gridLayout_2.addWidget(self.lbl_cd2, 6, 0, 1, 1)
+
+        self.le_cd2 = QLineEdit(self.gridLayoutWidget_2)
+        self.le_cd2.setObjectName(u"le_cd2")
+
+        self.gridLayout_2.addWidget(self.le_cd2, 6, 1, 1, 1)
+
+        self.btn_cd2 = QPushButton(self.gridLayoutWidget_2)
+        self.btn_cd2.setObjectName(u"btn_cd2")
+
+        self.gridLayout_2.addWidget(self.btn_cd2, 6, 2, 1, 1)
 
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_5 = QWidget()
@@ -309,10 +354,11 @@ class Ui_Dialog(object):
         self.gridLayout_5 = QGridLayout(self.gridLayoutWidget_5)
         self.gridLayout_5.setObjectName(u"gridLayout_5")
         self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.le_biosf = QLineEdit(self.gridLayoutWidget_5)
-        self.le_biosf.setObjectName(u"le_biosf")
+        self.lbl_biosf = QLabel(self.gridLayoutWidget_5)
+        self.lbl_biosf.setObjectName(u"lbl_biosf")
+        self.lbl_biosf.setWordWrap(True)
 
-        self.gridLayout_5.addWidget(self.le_biosf, 1, 1, 1, 1)
+        self.gridLayout_5.addWidget(self.lbl_biosf, 1, 0, 1, 1)
 
         self.lbl_biosloc = QLabel(self.gridLayoutWidget_5)
         self.lbl_biosloc.setObjectName(u"lbl_biosloc")
@@ -320,21 +366,45 @@ class Ui_Dialog(object):
 
         self.gridLayout_5.addWidget(self.lbl_biosloc, 0, 0, 1, 1)
 
-        self.lbl_biosf = QLabel(self.gridLayoutWidget_5)
-        self.lbl_biosf.setObjectName(u"lbl_biosf")
-        self.lbl_biosf.setWordWrap(True)
+        self.dtb_rtc = QDateTimeEdit(self.gridLayoutWidget_5)
+        self.dtb_rtc.setObjectName(u"dtb_rtc")
+        self.dtb_rtc.setEnabled(False)
 
-        self.gridLayout_5.addWidget(self.lbl_biosf, 1, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.dtb_rtc, 2, 1, 1, 2)
+
+        self.chb_rtc = QCheckBox(self.gridLayoutWidget_5)
+        self.chb_rtc.setObjectName(u"chb_rtc")
+
+        self.gridLayout_5.addWidget(self.chb_rtc, 2, 0, 1, 1)
+
+        self.le_biosloc = QLineEdit(self.gridLayoutWidget_5)
+        self.le_biosloc.setObjectName(u"le_biosloc")
+
+        self.gridLayout_5.addWidget(self.le_biosloc, 0, 1, 1, 2)
+
+        self.le_biosf = QLineEdit(self.gridLayoutWidget_5)
+        self.le_biosf.setObjectName(u"le_biosf")
+
+        self.gridLayout_5.addWidget(self.le_biosf, 1, 1, 1, 1)
 
         self.btn_biosf = QPushButton(self.gridLayoutWidget_5)
         self.btn_biosf.setObjectName(u"btn_biosf")
 
         self.gridLayout_5.addWidget(self.btn_biosf, 1, 2, 1, 1)
 
-        self.le_biosloc = QLineEdit(self.gridLayoutWidget_5)
-        self.le_biosloc.setObjectName(u"le_biosloc")
+        self.lbl_bootfrom = QLabel(self.gridLayoutWidget_5)
+        self.lbl_bootfrom.setObjectName(u"lbl_bootfrom")
 
-        self.gridLayout_5.addWidget(self.le_biosloc, 0, 1, 1, 2)
+        self.gridLayout_5.addWidget(self.lbl_bootfrom, 3, 0, 1, 1)
+
+        self.cb_bootfrom = QComboBox(self.gridLayoutWidget_5)
+        self.cb_bootfrom.addItem("")
+        self.cb_bootfrom.addItem("")
+        self.cb_bootfrom.addItem("")
+        self.cb_bootfrom.addItem("")
+        self.cb_bootfrom.setObjectName(u"cb_bootfrom")
+
+        self.gridLayout_5.addWidget(self.cb_bootfrom, 3, 1, 1, 2)
 
         self.tabWidget.addTab(self.tab_6, "")
         self.tab_7 = QWidget()
@@ -566,31 +636,26 @@ class Ui_Dialog(object):
         self.cb_machine.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
 
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("Dialog", u"Machine", None))
-        self.lbl_vhdp.setText(QCoreApplication.translate("Dialog", u"VHD path", None))
-        self.lbl_maxsize.setText(QCoreApplication.translate("Dialog", u"Maximum size", None))
-        self.lbl_cdc2.setText(QCoreApplication.translate("Dialog", u"CD controller 2", None))
-        self.cb_cdc2.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
-        self.cb_cdc2.setItemText(1, QCoreApplication.translate("Dialog", u"IDE", None))
-        self.cb_cdc2.setItemText(2, QCoreApplication.translate("Dialog", u"SCSI", None))
-        self.cb_cdc2.setItemText(3, QCoreApplication.translate("Dialog", u"Virtio", None))
-
-        self.cb_vhdu.setItemText(0, QCoreApplication.translate("Dialog", u"Add an existing virtual hard drive", None))
-        self.cb_vhdu.setItemText(1, QCoreApplication.translate("Dialog", u"Create a new virtual hard drive", None))
-        self.cb_vhdu.setItemText(2, QCoreApplication.translate("Dialog", u"Don't add a virtual hard drive", None))
+        self.cb_maxsize.setItemText(0, QCoreApplication.translate("Dialog", u"KB", None))
+        self.cb_maxsize.setItemText(1, QCoreApplication.translate("Dialog", u"MB", None))
+        self.cb_maxsize.setItemText(2, QCoreApplication.translate("Dialog", u"GB", None))
 
         self.lbl_cdc1.setText(QCoreApplication.translate("Dialog", u"CD controller 1", None))
-        self.btn_vhdp.setText(QCoreApplication.translate("Dialog", u"Browse", None))
         self.cb_cdc1.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
         self.cb_cdc1.setItemText(1, QCoreApplication.translate("Dialog", u"IDE", None))
         self.cb_cdc1.setItemText(2, QCoreApplication.translate("Dialog", u"SCSI", None))
         self.cb_cdc1.setItemText(3, QCoreApplication.translate("Dialog", u"Virtio", None))
 
-        self.lbl_vhdu.setText(QCoreApplication.translate("Dialog", u"VHD usage", None))
-        self.lbl_vhdf.setText(QCoreApplication.translate("Dialog", u"VHD file format", None))
-        self.cb_maxsize.setItemText(0, QCoreApplication.translate("Dialog", u"KB", None))
-        self.cb_maxsize.setItemText(1, QCoreApplication.translate("Dialog", u"MB", None))
-        self.cb_maxsize.setItemText(2, QCoreApplication.translate("Dialog", u"GB", None))
+        self.cb_hddc.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
+        self.cb_hddc.setItemText(1, QCoreApplication.translate("Dialog", u"IDE", None))
+        self.cb_hddc.setItemText(2, QCoreApplication.translate("Dialog", u"VirtIO SCSI", None))
+        self.cb_hddc.setItemText(3, QCoreApplication.translate("Dialog", u"AHCI", None))
 
+        self.btn_vhdp.setText(QCoreApplication.translate("Dialog", u"Browse", None))
+        self.lbl_floppy.setText(QCoreApplication.translate("Dialog", u"Floppy disk", None))
+        self.lbl_cdc2.setText(QCoreApplication.translate("Dialog", u"CD controller 2", None))
+        self.btn_floppy.setText(QCoreApplication.translate("Dialog", u"Browse", None))
+        self.lbl_vhdu.setText(QCoreApplication.translate("Dialog", u"VHD usage", None))
         self.cb_vhdf.setItemText(0, QCoreApplication.translate("Dialog", u"qcow2", None))
         self.cb_vhdf.setItemText(1, QCoreApplication.translate("Dialog", u"qcow", None))
         self.cb_vhdf.setItemText(2, QCoreApplication.translate("Dialog", u"vdi", None))
@@ -601,12 +666,23 @@ class Ui_Dialog(object):
         self.cb_vhdf.setItemText(7, QCoreApplication.translate("Dialog", u"parallels", None))
         self.cb_vhdf.setItemText(8, QCoreApplication.translate("Dialog", u"file", None))
 
-        self.lbl_hddc.setText(QCoreApplication.translate("Dialog", u"HDD controller", None))
-        self.cb_hddc.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
-        self.cb_hddc.setItemText(1, QCoreApplication.translate("Dialog", u"IDE", None))
-        self.cb_hddc.setItemText(2, QCoreApplication.translate("Dialog", u"VirtIO SCSI", None))
-        self.cb_hddc.setItemText(3, QCoreApplication.translate("Dialog", u"AHCI", None))
+        self.lbl_vhdp.setText(QCoreApplication.translate("Dialog", u"VHD path", None))
+        self.cb_vhdu.setItemText(0, QCoreApplication.translate("Dialog", u"Add an existing virtual hard drive", None))
+        self.cb_vhdu.setItemText(1, QCoreApplication.translate("Dialog", u"Create a new virtual hard drive", None))
+        self.cb_vhdu.setItemText(2, QCoreApplication.translate("Dialog", u"Don't add a virtual hard drive", None))
 
+        self.lbl_maxsize.setText(QCoreApplication.translate("Dialog", u"Maximum size", None))
+        self.lbl_cd1.setText(QCoreApplication.translate("Dialog", u"CD 1", None))
+        self.cb_cdc2.setItemText(0, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
+        self.cb_cdc2.setItemText(1, QCoreApplication.translate("Dialog", u"IDE", None))
+        self.cb_cdc2.setItemText(2, QCoreApplication.translate("Dialog", u"SCSI", None))
+        self.cb_cdc2.setItemText(3, QCoreApplication.translate("Dialog", u"Virtio", None))
+
+        self.btn_cd1.setText(QCoreApplication.translate("Dialog", u"Browse", None))
+        self.lbl_hddc.setText(QCoreApplication.translate("Dialog", u"HDD controller", None))
+        self.lbl_vhdf.setText(QCoreApplication.translate("Dialog", u"VHD file format", None))
+        self.lbl_cd2.setText(QCoreApplication.translate("Dialog", u"CD 2", None))
+        self.btn_cd2.setText(QCoreApplication.translate("Dialog", u"Browse", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("Dialog", u"Virtual hard disks", None))
         self.lbl_kbdlayout.setText(QCoreApplication.translate("Dialog", u"Keyboard layout", None))
         self.cb_mouse.setItemText(0, QCoreApplication.translate("Dialog", u"PS/2 Mouse", None))
@@ -632,9 +708,17 @@ class Ui_Dialog(object):
         self.cb_kbdlayout.setItemText(11, QCoreApplication.translate("Dialog", u"fi", None))
 
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("Dialog", u"Peripherals", None))
-        self.lbl_biosloc.setText(QCoreApplication.translate("Dialog", u"Location of external BIOS file (Leave empty to use the default BIOS)", None))
         self.lbl_biosf.setText(QCoreApplication.translate("Dialog", u"External BIOS file", None))
+        self.lbl_biosloc.setText(QCoreApplication.translate("Dialog", u"Location of external BIOS file (Leave empty to use the default BIOS)", None))
+        self.dtb_rtc.setDisplayFormat(QCoreApplication.translate("Dialog", u"yyyy-MM-ddThh:mm:ss", None))
+        self.chb_rtc.setText(QCoreApplication.translate("Dialog", u"Use RTC option", None))
         self.btn_biosf.setText(QCoreApplication.translate("Dialog", u"Browse", None))
+        self.lbl_bootfrom.setText(QCoreApplication.translate("Dialog", u"Boot from", None))
+        self.cb_bootfrom.setItemText(0, QCoreApplication.translate("Dialog", u"c", None))
+        self.cb_bootfrom.setItemText(1, QCoreApplication.translate("Dialog", u"a", None))
+        self.cb_bootfrom.setItemText(2, QCoreApplication.translate("Dialog", u"d", None))
+        self.cb_bootfrom.setItemText(3, QCoreApplication.translate("Dialog", u"Let QEMU decide", None))
+
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), QCoreApplication.translate("Dialog", u"BIOS", None))
         self.btn_kernel.setText(QCoreApplication.translate("Dialog", u"Browse", None))
         self.lbl_initrd.setText(QCoreApplication.translate("Dialog", u"Linux initrd image", None))

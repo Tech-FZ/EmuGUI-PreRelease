@@ -69,6 +69,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         self.btn_biosf.clicked.connect(self.extBiosFileLocation)
         self.btn_kernel.clicked.connect(self.linuxKernelBrowseLocation)
         self.btn_initrd.clicked.connect(self.linuxInitridBrowseLocation)
+        self.chb_rtc.checkStateChanged.connect(self.rtcTimeCheckboxHandler)
+        self.btn_floppy.clicked.connect(self.floppyLocation)
 
         # For new and existing
         self.le_vhdp.setEnabled(True)
@@ -359,6 +361,19 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
             if filename:
                 self.le_vhdp.setText(filename)
+                
+    def rtcTimeCheckboxHandler(self):
+        if self.chb_rtc.isChecked():
+            self.dtb_rtc.setEnabled(True)
+            
+        else:
+            self.dtb_rtc.setEnabled(False)
+            
+    def floppyLocation(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select floppy disk', dir='.', filter='Floppy image (*.img);;Floppy file (*.flp);;Floppy image (*.ima);;All files (*.*)')
+
+        if filename:
+            self.le_floppy.setText(filename)
 
     def archChanged(self):
         while 1 < self.cb_machine.count():

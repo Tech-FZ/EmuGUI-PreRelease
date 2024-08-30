@@ -460,7 +460,12 @@ class Window(QMainWindow, Ui_MainWindow):
             acceltype TEXT DEFAULT "None" NOT NULL,
             storagecontrollercd1 TEXT DEFAULT "Let QEMU decide" NOT NULL,
             storagecontrollercd2 TEXT DEFAULT "Let QEMU decide" NOT NULL,
-            hdacontrol TEXT DEFAULT "Let QEMU decide" NOT NULL
+            hdacontrol TEXT DEFAULT "Let QEMU decide" NOT NULL,
+            cd1 TEXT,
+            cd2 TEXT,
+            floppy TEXT,
+            timemgr TEXT DEFAULT "system" NOT NULL,
+            bootfrom TEXT DEFAULT "Let QEMU decide" NOT NULL
         );
         """
 
@@ -513,6 +518,11 @@ class Window(QMainWindow, Ui_MainWindow):
 
         select12ColumnsVM2 = """
         SELECT hdacontrol FROM virtualmachines;
+        """
+        
+        # The v2.1 feature set
+        select21ColumnsVM = """
+        SELECT cd1, cd2, floppy, timemgr, bootfrom FROM virtualmachines;
         """
 
         insertSoundColVM = """
@@ -588,6 +598,31 @@ class Window(QMainWindow, Ui_MainWindow):
         inserthdaControlVM = """
         ALTER TABLE virtualmachines
         ADD COLUMN hdacontrol TEXT DEFAULT "Let QEMU decide" NOT NULL;
+        """
+        
+        insertCd1VM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN cd1 TEXT;
+        """
+        
+        insertCd2VM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN cd2 TEXT;
+        """
+        
+        insertFloppyVM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN floppy TEXT;
+        """
+        
+        insertTimemgrVM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN timemgr TEXT DEFAULT "system" NOT NULL;
+        """
+        
+        insertBootfromVM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN bootfrom TEXT DEFAULT "Let QEMU decide" NOT NULL;
         """
 
         insert_qemu_img = """
@@ -1526,6 +1561,47 @@ class Window(QMainWindow, Ui_MainWindow):
 
                 dialog = ErrDialog(self)
                 dialog.exec()
+                
+        try:
+            cursor.execute(select21ColumnsVM)
+            connection.commit()
+            result = cursor.fetchall()
+
+            try:
+                qemu_img_slot = str(result[0])
+                print("The query was executed successfully. The v2.1 feature columns already are in the VM table.")
+
+            except:
+                pass
+        
+        except sqlite3.Error as e:
+            try:
+                features21 = [insertCd1VM, insertCd2VM, insertFloppyVM, insertTimemgrVM, insertBootfromVM]
+                
+                for feature in features21:
+                    cursor.execute(feature)
+                    connection.commit()
+                    
+                print("The queries were executed successfully. The missing features have been added to the database.")
+            
+            except sqlite3.Error as e:
+                print(f"The SQLite module encountered an error: {e}.")
+
+                if platform.system() == "Windows":
+                    errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
+        
+                else:
+                    errorFile = platformSpecific.unixSpecific.unixErrorFile()
+
+                with open(errorFile, "w+") as errCodeFile:
+                    errCodeFile.write(errors.errCodes.errCodes[2])
+
+                logman.writeToLogFile(
+                    f"{errors.errCodes.errCodes[2]}: Could not connect to the database to update the VM list."
+                    )
+
+                dialog = ErrDialog(self)
+                dialog.exec()
 
         try:
             cursor.execute(debug_db_settings)
@@ -1628,7 +1704,7 @@ class Window(QMainWindow, Ui_MainWindow):
             get_vm_to_start = f"""
             SELECT architecture, machine, cpu, ram, hda, vga, net, usbtablet, win2k, dirbios, additionalargs, sound, linuxkernel,
             linuxinitrid, linuxcmd, mousetype, cores, filebios, keyboardtype, usbsupport, usbcontroller, kbdtype, acceltype,
-            storagecontrollercd1, storagecontrollercd2, hdacontrol
+            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy
             FROM virtualmachines WHERE name = '{selectedVM}'
             """
 
@@ -1884,7 +1960,7 @@ class Window(QMainWindow, Ui_MainWindow):
             get_vm_to_start = f"""
             SELECT architecture, machine, cpu, ram, hda, vga, net, usbtablet, win2k, dirbios, additionalargs, sound, linuxkernel,
             linuxinitrid, linuxcmd, mousetype, cores, filebios, keyboardtype, usbsupport, usbcontroller, kbdtype, acceltype,
-            storagecontrollercd1, storagecontrollercd2, hdacontrol
+            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy
             FROM virtualmachines WHERE name = '{selectedVM}'
             """
 
@@ -2274,7 +2350,7 @@ class Window(QMainWindow, Ui_MainWindow):
             get_vm_to_start = f"""
             SELECT architecture, machine, cpu, ram, hda, vga, net, usbtablet, win2k, dirbios, additionalargs, sound, linuxkernel,
             linuxinitrid, linuxcmd, mousetype, cores, filebios, keyboardtype, usbsupport, usbcontroller, kbdtype, acceltype,
-            storagecontrollercd1, storagecontrollercd2, hdacontrol
+            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy
             FROM virtualmachines WHERE name = '{selectedVM}'
             """
 
