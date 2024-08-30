@@ -914,6 +914,18 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         
         else:
             accelerator = self.cb_accel.currentText()
+            
+        if self.dtb_rtc.isEnabled():
+            timemgr = self.dtb_rtc.text()
+            
+        else:
+            timemgr = "system"
+            
+        if letQemuDecideVariantsStr.__contains__(self.cb_bootfrom):
+            bootfrom = "Let QEMU decide"
+            
+        else:
+            bootfrom = self.cb_bootfrom.currentText()
         
         insert_into_vm_database = f"""
         INSERT INTO virtualmachines (
@@ -943,7 +955,12 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             acceltype,
             storagecontrollercd1,
             storagecontrollercd2,
-            hdacontrol
+            hdacontrol,
+            cd1,
+            cd2,
+            floppy,
+            timemgr,
+            bootfrom
         ) VALUES (
             "{self.le_vmname.text()}",
             "{self.cb_arch.currentText()}",
@@ -971,7 +988,12 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             "{accelerator}",
             "{cd_control1}",
             "{cd_control2}",
-            "{hda_control}"
+            "{hda_control}",
+            "{self.le_cd1.text()}",
+            "{self.le_cd2.text()}",
+            "{self.le_floppy.text()}",
+            "{timemgr}",
+            "{bootfrom}"
         );
         """
 

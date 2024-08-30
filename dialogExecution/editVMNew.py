@@ -935,12 +935,6 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
                 vhd_cmd = f"{qemu_binary} create -f {self.cb_vhdf.currentText()} \"{vhd}\" {str(vhd_size_in_b)}"
 
-                """ if platform.system() == "Windows":
-                    vhd_cmd = f"{qemu_binary} create -f {self.cb_vhdf.currentText()} \"{vhd}\" {str(vhd_size_in_b)}"
-
-                else:
-                    vhd_cmd = f"{qemu_binary} create -f {self.cb_vhdf.currentText()} {vhd} {str(vhd_size_in_b)}" """
-
                 if vhdAction.startswith("overwrite"):
                     subprocess.Popen(vhd_cmd)
 
@@ -1028,6 +1022,18 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
         else:
             accelerator = self.cb_accel.currentText()
+            
+        if self.dtb_rtc.isEnabled():
+            timemgr = self.dtb_rtc.text()
+            
+        else:
+            timemgr = "system"
+            
+        if letQemuDecideVariantsStr.__contains__(self.cb_bootfrom):
+            bootfrom = "Let QEMU decide"
+            
+        else:
+            bootfrom = self.cb_bootfrom.currentText()
         
         insert_into_vm_database = f"""
         UPDATE virtualmachines
@@ -1038,7 +1044,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         mousetype = "{self.cb_mouse.currentText()}", cores = {self.sb_cpuc.value()}, filebios = "{self.le_biosf.text()}",
         keyboardtype = "{self.cb_kbdtype.currentText()}", usbsupport = {usb_support}, usbcontroller = "{self.cb_usb.currentText()}",
         kbdtype = "{kbdlayout}", acceltype = "{accelerator}", storagecontrollercd1 = "{cd_control1}",
-        storagecontrollercd2 = "{cd_control2}", hdacontrol = "{hda_control}"
+        storagecontrollercd2 = "{cd_control2}", hdacontrol = "{hda_control}", cd1 = "{self.le_cd1.text()}", cd2 = "{self.le_cd2.text()}",
+        floppy = "{self.le_floppy.text()}", timemgr = "{timemgr}", bootfrom = "{bootfrom}"
         WHERE name = "{self.vmSpecs[0]}";
         """
 
