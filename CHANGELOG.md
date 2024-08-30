@@ -2,6 +2,7 @@
 
 ## WARNING
 
+- This is a pre-release, so please don't use this for any productive purposes.
 - You now need the latest version of your Linux distribution or at least Windows 10 to get official support for this release.
 
 ## Changes compared to v2.0.6.5617
