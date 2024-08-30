@@ -979,7 +979,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
         add_args = self.le_addargs.text()
 
-        if self.checkBox_2.isChecked() or self.chb_usb.isChecked() or self.cb_mouse.currentText() == "USB Mouse":
+        if self.chb_usb.isChecked() or self.cb_mouse.currentText() == "USB Mouse":
             usb_support = 1
 
         elif self.cb_mouse.currentText() == "USB Tablet Device" or self.cb_kbdtype.currentText() == "USB Keyboard":

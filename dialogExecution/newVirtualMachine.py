@@ -865,7 +865,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
 
         add_args = self.le_addargs.text()
 
-        if self.chb_usb.isChecked() or self.checkBox.isChecked() or self.cb_mouse.currentText() == "USB Mouse":
+        if self.chb_usb.isChecked() or self.cb_mouse.currentText() == "USB Mouse":
             usb_support = 1
 
         elif self.cb_kbd.currentText() == "USB Tablet Device" or self.cb_kbd.currentText() == "USB Keyboard":
@@ -915,6 +915,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             vga,
             net,
             win2k,
+            usbtablet,
             dirbios,
             additionalargs,
             sound,
@@ -942,6 +943,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             "{vga}",
             "{networkAdapter}",
             {win2k},
+            0,
             "{ext_bios_dir}",
             "{add_args}",
             "{self.cb_sound.currentText()}",
