@@ -880,7 +880,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
 
         add_args = self.le_addargs.text()
 
-        if self.chb_usb.isChecked() or self.checkBox.isChecked() or self.cb_mouse.currentText() == "USB Mouse":
+        if self.chb_usb.isChecked() or self.cb_mouse.currentText() == "USB Mouse":
             usb_support = 1
 
         elif self.cb_kbd.currentText() == "USB Tablet Device" or self.cb_kbd.currentText() == "USB Keyboard":
@@ -889,11 +889,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         else:
             usb_support = 0
 
-        if sysDefContent.__contains__(self.cb_kbdlayout.currentText()):
-            kbdlayout = "en-us"
-
-        else:
-            kbdlayout = self.cb_kbdlayout.currentText()
+        kbdlayout = self.cb_kbdlayout.currentText()
 
         if letQemuDecideVariantsStr.__contains__(self.cb_cdc1.currentText()):
             cd_control1 = "Let QEMU decide"
@@ -930,6 +926,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             vga,
             net,
             win2k,
+            usbtablet,
             dirbios,
             additionalargs,
             sound,
@@ -957,6 +954,7 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             "{vga}",
             "{networkAdapter}",
             {win2k},
+            0,
             "{ext_bios_dir}",
             "{add_args}",
             "{self.cb_sound.currentText()}",
