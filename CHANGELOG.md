@@ -23,6 +23,7 @@
 ## Changes compared to v2.1.0.5700_dev
 
 - An issue which failed VM creation and editing has been eliminated.
+- User0 has also made Linux users more flexible with where they store user data.
 
 ## Known issues
 
