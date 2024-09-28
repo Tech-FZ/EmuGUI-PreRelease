@@ -29,6 +29,7 @@
 - The floppy seems to be able to get set on the dialogs.
 - The newcomers can now be saved onto the database permanently.
 - The CD Browse buttons work now.
+- A class for storing VMs is on its way to replace the bad temporary file saving practice with good OOP practice.
 
 ## Known issues
 
