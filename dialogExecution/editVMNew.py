@@ -31,9 +31,10 @@ import errors.errCodes
 from dialogExecution.errDialog import ErrDialog
 import plugins.pluginmgr.hw_reader as hwpr # HWPR = HardWare Plug-in Reader
 import services.pathfinder as pf
+import services.vm_data as vmd
 
 class EditVMNewDialog(QDialog, Ui_Dialog):
-    def __init__(self, parent=None):
+    def __init__(self, vmdata, parent=None):
         try:
             super().__init__(parent)
 
@@ -47,6 +48,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         self.connectSignalsSlots()
         self.tabWidget.setCurrentIndex(0)
         self.hw_plugins = hwpr.read_hw_plugin()
+        self.vmdata = vmd.VirtualMachineData(vmdata)
         self.vmSpecs = self.readTempVmFile()
         self.langDetect()
         
@@ -621,6 +623,115 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
             except:
                 pass
+
+    def fillForm(self):
+        try:
+            with open(f"{self.exec_folder}translations/createnewvhd.txt", "r+", encoding="utf8") as creNewVhdFile:
+                creNewVhdContent = creNewVhdFile.read()
+
+            with open(f"{self.exec_folder}translations/addexistingvhd.txt", "r+", encoding="utf8") as addExistVhdFile:
+                addExistVhdContent = addExistVhdFile.read()
+
+            with open(f"{self.exec_folder}translations/addnovhd.txt", "r+", encoding="utf8") as noVhdFile:
+                noVhdContent = noVhdFile.read()
+
+            with open(f"{self.exec_folder}translations/letqemudecide.txt", "r+", encoding="utf8") as letQemuDecideFile:
+                letQemuDecideContent = letQemuDecideFile.read()
+            
+            self.le_name.setText(self.vmdata.vm_name)
+            
+            i = 0
+            
+            while i < self.cb_arch.count():
+                if self.cb_arch.itemText(i) == self.vmdata.arch:
+                    self.cb_arch.setCurrentIndex(i)
+                    break
+                
+                i += 1
+                
+            self.archChanged()
+            
+            i = 0
+            
+            while i < self.cb_machine.count():
+                if letQemuDecideContent.__contains__(self.cb_machine.itemText(i)):
+                    if self.vmdata.machine == "Let QEMU decide":
+                        self.cb_machine.setCurrentIndex(i)
+                        break
+                    
+                elif self.cb_machine.itemText(i) == self.vmdata.machine:
+                    self.cb_machine.setCurrentIndex(i)
+                    break
+                
+                i += 1
+                
+            i = 0
+            
+            while i < self.cb_cpu.count():
+                if letQemuDecideContent.__contains__(self.cb_cpu.itemText(i)):
+                    if self.vmdata.cpu == "Let QEMU decide":
+                        self.cb_cpu.setCurrentIndex(i)
+                        break
+                    
+                elif self.cb_cpu.itemText(i) == self.vmdata.machine:
+                    self.cb_cpu.setCurrentIndex(i)
+                    break
+                
+                i += 1
+            
+            try:    
+                self.sb_ram.setValue(int(self.vmdata.ram))
+                
+            except:
+                if platform.system() == "Windows":
+                    errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
+        
+                else:
+                    errorFile = platformSpecific.unixSpecific.unixErrorFile()
+
+                with open(errorFile, "w+") as errCodeFile:
+                    errCodeFile.write(errors.errCodes.errCodes[61])
+
+                self.logman.writeToLogFile(
+                            f"{errors.errCodes.errCodes[61]}: The RAM variable could not be converted. Please set it up yourself."
+                            )
+
+                dialog = ErrDialog(self)
+                dialog.exec()
+            
+        except OSError as ex:
+            if platform.system() == "Windows":
+                errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
+        
+            else:
+                errorFile = platformSpecific.unixSpecific.unixErrorFile()
+
+            with open(errorFile, "w+") as errCodeFile:
+                errCodeFile.write(errors.errCodes.errCodes[59])
+
+            self.logman.writeToLogFile(
+                        f"{errors.errCodes.errCodes[59]}: The files required to initialise the combo boxes could not be read: \"{ex}\""
+                        )
+
+            dialog = ErrDialog(self)
+            dialog.exec()
+            
+        except Exception as ex:
+            if platform.system() == "Windows":
+                errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
+        
+            else:
+                errorFile = platformSpecific.unixSpecific.unixErrorFile()
+
+            with open(errorFile, "w+") as errCodeFile:
+                errCodeFile.write(errors.errCodes.errCodes[60])
+
+            self.logman.writeToLogFile(
+                        f"{errors.errCodes.errCodes[60]}: An error previously unknown to the EmuGUI developers occured: \"{ex}\""
+                        )
+
+            dialog = ErrDialog(self)
+            dialog.exec()
 
     def readTempVmFile(self):
         with open(f"{self.exec_folder}translations/createnewvhd.txt", "r+", encoding="utf8") as creNewVhdFile:

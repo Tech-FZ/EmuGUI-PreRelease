@@ -30,6 +30,7 @@
 - The newcomers can now be saved onto the database permanently.
 - The CD Browse buttons work now.
 - A class for storing VMs is on its way to replace the bad temporary file saving practice with good OOP practice.
+- The edit VM dialog is being adapted to the new OOP-based approach.
 
 ## Known issues
 
