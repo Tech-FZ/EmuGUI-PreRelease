@@ -1336,11 +1336,13 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         else:
             usbtablet = 0 """
 
-        if self.checkBox_3.isChecked():
+        """ if self.checkBox_3.isChecked():
             win2k = 1
 
         else:
-            win2k = 0
+            win2k = 0 """
+            
+        win2k = 0 # The bug caused by this is intended for now.
 
         ext_bios_dir = self.le_biosloc.text()
 

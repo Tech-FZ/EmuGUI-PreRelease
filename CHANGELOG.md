@@ -57,6 +57,7 @@
     - "Boot from" option
     - Time option
 - The Win2k checkbox is to be removed because of the OOP adaption.
+    - The Edit VM dialog will now turn the Win2k optimisations off regardless of what you really want.
 
 ## Known issues
 
