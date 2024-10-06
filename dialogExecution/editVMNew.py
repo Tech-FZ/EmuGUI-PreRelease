@@ -745,6 +745,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+                
+            self.le_biosloc.setText(self.vmdata.biosdir)
             
         except OSError as ex:
             if platform.system() == "Windows":

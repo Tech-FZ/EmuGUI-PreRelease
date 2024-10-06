@@ -40,6 +40,7 @@
     - Basic VHD settings
     - VGA
     - Network
+    - BIOS location
 
 ## Known issues
 
