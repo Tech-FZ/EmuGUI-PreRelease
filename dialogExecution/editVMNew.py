@@ -750,6 +750,15 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
             
             self.le_addargs.setText(self.vmdata.addargs)
             
+            i = 0
+            
+            while i < self.cb_sound.count():
+                if self.cb_sound.itemText(i) == self.vmdata.sound:
+                    self.cb_sound.setCurrentIndex(i)
+                    break
+                
+                i += 1
+            
         except OSError as ex:
             if platform.system() == "Windows":
                 errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
