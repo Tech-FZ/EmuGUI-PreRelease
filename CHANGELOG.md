@@ -58,6 +58,7 @@
     - Time option
 - The Win2k checkbox is to be removed because of the OOP adaption.
     - The Edit VM dialog will now turn the Win2k optimisations off regardless of what you really want.
+- The Edit VM dialog would now use the new OOP-based initialisation instead of the file-based one.
 
 ## Known issues
 

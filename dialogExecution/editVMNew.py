@@ -966,6 +966,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
             dialog = ErrDialog(self)
             dialog.exec()
 
+    """
     def readTempVmFile(self):
         with open(f"{self.exec_folder}translations/createnewvhd.txt", "r+", encoding="utf8") as creNewVhdFile:
             creNewVhdContent = creNewVhdFile.read()
@@ -1088,8 +1089,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
             i += 1
 
-        """ if vmSpecs[8] == "1":
-            self.checkBox_2.setChecked(True) """
+        if vmSpecs[8] == "1":
+            self.checkBox_2.setChecked(True)
 
         self.le_biosloc.setText(vmSpecs[10])
 
@@ -1211,6 +1212,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
             i += 1
         
         return vmSpecs
+    """
 
     def finishCreation(self):
         with open(f"{self.exec_folder}translations/letqemudecide.txt", "r+", encoding="utf8") as letQemuDecideVariants:
