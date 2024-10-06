@@ -723,6 +723,20 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
             self.vhdAddingChange()
             self.setupCB()
             
+            i = 0
+            
+            while i < self.cb_vga.count():
+                if self.vmdata.vga == "Let QEMU decide":
+                    if letQemuDecideContent.__contains__(self.cb_vga.itemText(i)):
+                        self.cb_vga.setCurrentIndex(i)
+                        break
+                    
+                elif self.cb_vga.itemText(i) == self.vmdata.vga:
+                    self.cb_vga.setCurrentIndex(i)
+                    break
+                
+                i += 1
+            
         except OSError as ex:
             if platform.system() == "Windows":
                 errorFile = platformSpecific.windowsSpecific.windowsErrorFile()

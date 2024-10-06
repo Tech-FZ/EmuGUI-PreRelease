@@ -38,6 +38,7 @@
     - CPU
     - RAM
     - Basic VHD settings
+    - VGA
 
 ## Known issues
 
