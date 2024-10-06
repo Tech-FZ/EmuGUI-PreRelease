@@ -41,7 +41,7 @@
     - Basic VHD settings
     - VGA
     - Network
-    - BIOS location
+    - BIOS location & files
     - Additional arguments
     - Sound card
     - Linux settings

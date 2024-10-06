@@ -746,7 +746,9 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                 
                 i += 1
                 
+            # BIOS stuff
             self.le_biosloc.setText(self.vmdata.biosdir)
+            self.le_biosf.setText(self.vmdata.biosfile)
             
             self.le_addargs.setText(self.vmdata.addargs)
             
