@@ -698,6 +698,30 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
                 dialog = ErrDialog(self)
                 dialog.exec()
+                
+            if self.vmdata.hda != "NULL" and self.vmdata.hda != "":
+                self.le_vhdp.setText(self.vmdata.hda)
+                i = 0
+                
+                while i < self.cb_vhdu.count():
+                    if addExistVhdContent.__contains__(self.cb_vhdu.itemText(i)):
+                        self.cb_vhdu.setCurrentIndex(i)
+                        break
+                    
+                    i += 1
+                    
+            else:
+                i = 0
+                
+                while i < self.cb_vhdu.count():
+                    if noVhdContent.__contains__(self.cb_vhdu.itemText(i)):
+                        self.cb_vhdu.setCurrentIndex(i)
+                        break
+                    
+                    i += 1
+                    
+            self.vhdAddingChange()
+            self.setupCB()
             
         except OSError as ex:
             if platform.system() == "Windows":
