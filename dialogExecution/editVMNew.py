@@ -756,6 +756,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+            
+            self.le_cd1.setText(self.vmdata.cd1)
                 
             i = 0
             
@@ -770,7 +772,9 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
-                
+            
+            self.le_cd2.setText(self.vmdata.cd2)
+            
             i = 0
             
             while i < self.cb_cdc2.count():
