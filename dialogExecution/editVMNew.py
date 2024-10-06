@@ -812,6 +812,15 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+                
+            i = 0
+            
+            while i < self.cb_usb.count():
+                if self.cb_usb.itemText(i) == self.vmdata.usb_controller:
+                    self.cb_usb.setCurrentIndex(i)
+                    break
+                
+                i += 1
             
         except OSError as ex:
             if platform.system() == "Windows":
