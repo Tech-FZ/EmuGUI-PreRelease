@@ -47,6 +47,7 @@
     - Linux settings
     - Mouse
     - CPU cores
+    - Keyboard type
 - The Win2k checkbox is to be removed because of the OOP adaption.
 
 ## Known issues
