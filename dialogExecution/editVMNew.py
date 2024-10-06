@@ -678,6 +678,26 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+                
+            try:
+                self.sb_cpuc.setValue(int(self.vmdata.cores))
+                
+            except:
+                if platform.system() == "Windows":
+                    errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
+        
+                else:
+                    errorFile = platformSpecific.unixSpecific.unixErrorFile()
+
+                with open(errorFile, "w+") as errCodeFile:
+                    errCodeFile.write(errors.errCodes.errCodes[61])
+
+                self.logman.writeToLogFile(
+                            f"{errors.errCodes.errCodes[62]}: The CPU cores variable could not be converted. Please set it up yourself."
+                            )
+
+                dialog = ErrDialog(self)
+                dialog.exec()
             
             try:    
                 self.sb_ram.setValue(int(self.vmdata.ram))
