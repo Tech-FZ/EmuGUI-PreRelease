@@ -33,7 +33,7 @@
     - The VHD variable had to be added.
     - The addargs also had to be added.
 - The edit VM dialog is being adapted to the new OOP-based approach. The following has already been added:
-    - Name
+    - Name (now fully adapted)
     - Architecture
     - Machine
     - CPU
