@@ -39,6 +39,7 @@
     - RAM
     - Basic VHD settings
     - VGA
+    - Network
 
 ## Known issues
 

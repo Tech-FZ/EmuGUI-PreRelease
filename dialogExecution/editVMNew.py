@@ -736,6 +736,15 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+                
+            i = 0
+            
+            while i < self.cb_net.count():
+                if self.cb_net.itemText(i) == self.vmdata.net:
+                    self.cb_net.setCurrentIndex(i)
+                    break
+                
+                i += 1
             
         except OSError as ex:
             if platform.system() == "Windows":
