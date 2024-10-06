@@ -43,6 +43,7 @@
     - Network
     - BIOS location
     - Additional arguments
+- The Win2k checkbox is to be removed because of the OOP adaption.
 
 ## Known issues
 
