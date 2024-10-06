@@ -28,7 +28,8 @@ class VirtualMachineData:
         cd2,
         floppy,
         timemgr,
-        bootfrom
+        bootfrom,
+        hda
     ):
         self.vm_name = vm_name
         self.arch = arch
@@ -58,5 +59,5 @@ class VirtualMachineData:
         self.floppy = floppy
         self.timemgr = timemgr
         self.bootfrom = bootfrom
-        
+        self.hda = hda
     
