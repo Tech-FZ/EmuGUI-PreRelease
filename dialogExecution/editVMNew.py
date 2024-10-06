@@ -789,6 +789,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                 
                 i += 1
             
+            self.le_floppy.setText(self.vmdata.floppy)
+            
             i = 0
             
             while i < self.cb_vga.count():

@@ -53,6 +53,7 @@
     - HDD Controller
     - CD Controllers
     - CDs
+    - Floppy
 - The Win2k checkbox is to be removed because of the OOP adaption.
 
 ## Known issues
