@@ -45,6 +45,7 @@
     - Additional arguments
     - Sound card
     - Linux settings
+    - Mouse
 - The Win2k checkbox is to be removed because of the OOP adaption.
 
 ## Known issues

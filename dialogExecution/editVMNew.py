@@ -766,6 +766,15 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
             self.le_initrd.setText(self.vmdata.initrd)
             self.le_cmd.setText(self.vmdata.linuxcmd)
             
+            i = 0
+            
+            while i < self.cb_mouse.count():
+                if self.cb_mouse.itemText(i) == self.vmdata.mouse:
+                    self.cb_mouse.setCurrentIndex(i)
+                    break
+                
+                i += 1
+            
         except OSError as ex:
             if platform.system() == "Windows":
                 errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
