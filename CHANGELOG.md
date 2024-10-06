@@ -54,6 +54,7 @@
     - CD Controllers
     - CDs
     - Floppy
+    - "Boot from" option
 - The Win2k checkbox is to be removed because of the OOP adaption.
 
 ## Known issues

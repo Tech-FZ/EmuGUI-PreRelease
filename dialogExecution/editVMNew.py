@@ -793,6 +793,20 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
             
             i = 0
             
+            while i < self.cb_bootfrom.count():
+                if self.vmdata.bootfrom == "Let QEMU decide":
+                    if letQemuDecideContent.__contains__(self.cb_bootfrom.itemText(i)):
+                        self.cb_bootfrom.setCurrentIndex(i)
+                        break
+                    
+                elif self.cb_bootfrom.itemText(i) == self.vmdata.bootfrom:
+                    self.cb_bootfrom.setCurrentIndex(i)
+                    break
+                
+                i += 1
+            
+            i = 0
+            
             while i < self.cb_vga.count():
                 if self.vmdata.vga == "Let QEMU decide":
                     if letQemuDecideContent.__contains__(self.cb_vga.itemText(i)):
