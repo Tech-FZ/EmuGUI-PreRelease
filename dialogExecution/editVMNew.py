@@ -756,6 +756,34 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+                
+            i = 0
+            
+            while i < self.cb_cdc1.count():
+                if self.vmdata.cd_control1 == "Let QEMU decide":
+                    if letQemuDecideContent.__contains__(self.cb_cdc1.itemText(i)):
+                        self.cb_cdc1.setCurrentIndex(i)
+                        break
+                    
+                elif self.cb_cdc1.itemText(i) == self.vmdata.cd_control1:
+                    self.cb_cdc1.setCurrentIndex(i)
+                    break
+                
+                i += 1
+                
+            i = 0
+            
+            while i < self.cb_cdc2.count():
+                if self.vmdata.cd_control2 == "Let QEMU decide":
+                    if letQemuDecideContent.__contains__(self.cb_cdc2.itemText(i)):
+                        self.cb_cdc2.setCurrentIndex(i)
+                        break
+                    
+                elif self.cb_cdc2.itemText(i) == self.vmdata.cd_control2:
+                    self.cb_cdc2.setCurrentIndex(i)
+                    break
+                
+                i += 1
             
             i = 0
             

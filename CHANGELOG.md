@@ -51,6 +51,7 @@
     - USB Controller & Support
     - Hardware Acceleration
     - HDD Controller
+    - CD Controllers
 - The Win2k checkbox is to be removed because of the OOP adaption.
 
 ## Known issues
