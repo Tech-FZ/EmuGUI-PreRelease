@@ -44,6 +44,7 @@
     - BIOS location
     - Additional arguments
     - Sound card
+    - Linux settings
 - The Win2k checkbox is to be removed because of the OOP adaption.
 
 ## Known issues

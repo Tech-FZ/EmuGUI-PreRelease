@@ -758,6 +758,11 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+                
+            # Linux stuff
+            self.le_kernel.setText(self.vmdata.kernel)
+            self.le_initrd.setText(self.vmdata.initrd)
+            self.le_cmd.setText(self.vmdata.linuxcmd)
             
         except OSError as ex:
             if platform.system() == "Windows":
