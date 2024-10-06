@@ -29,7 +29,8 @@ class VirtualMachineData:
         floppy,
         timemgr,
         bootfrom,
-        hda
+        hda,
+        addargs
     ):
         self.vm_name = vm_name
         self.arch = arch
@@ -60,4 +61,4 @@ class VirtualMachineData:
         self.timemgr = timemgr
         self.bootfrom = bootfrom
         self.hda = hda
-    
+        self.addargs = addargs

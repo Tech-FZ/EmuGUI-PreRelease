@@ -31,6 +31,7 @@
 - The CD Browse buttons work now.
 - A class for storing VMs is on its way to replace the bad temporary file saving practice with good OOP practice.
     - The VHD variable had to be added.
+    - The addargs also had to be added.
 - The edit VM dialog is being adapted to the new OOP-based approach. The following has already been added:
     - Name
     - Architecture
@@ -41,6 +42,7 @@
     - VGA
     - Network
     - BIOS location
+    - Additional arguments
 
 ## Known issues
 
