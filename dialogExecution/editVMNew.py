@@ -813,6 +813,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                 
                 i += 1
                 
+            self.chb_usb.setChecked(str(self.vmdata.usb_support) == "1")
+            
             i = 0
             
             while i < self.cb_usb.count():
