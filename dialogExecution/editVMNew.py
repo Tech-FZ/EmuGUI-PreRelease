@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import *
 from PySide6 import QtGui
+from PySide6.QtCore import *
 from uiScripts.ui_EditVM2 import Ui_Dialog
 import sqlite3
 import platform
@@ -32,6 +33,7 @@ from dialogExecution.errDialog import ErrDialog
 import plugins.pluginmgr.hw_reader as hwpr # HWPR = HardWare Plug-in Reader
 import services.pathfinder as pf
 import services.vm_data as vmd
+from datetime import datetime
 
 class EditVMNewDialog(QDialog, Ui_Dialog):
     def __init__(self, vmdata, parent=None):
@@ -690,7 +692,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     errorFile = platformSpecific.unixSpecific.unixErrorFile()
 
                 with open(errorFile, "w+") as errCodeFile:
-                    errCodeFile.write(errors.errCodes.errCodes[61])
+                    errCodeFile.write(errors.errCodes.errCodes[62])
 
                 self.logman.writeToLogFile(
                             f"{errors.errCodes.errCodes[62]}: The CPU cores variable could not be converted. Please set it up yourself."
@@ -899,6 +901,35 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+                
+            if self.vmdata.timemgr == "system":
+                self.chb_rtc.setChecked(True)
+                
+            else:
+                date_format = "%Y-%m-%dT%H-%M-%S"
+                
+                try:
+                    date_prop = datetime.strptime(self.vmdata.timemgr, date_format)
+                    date_qtcompatible = QDate(y=date_prop.year, m=date_prop.month, d=date_prop.day)
+                    time_qtcompatible = QTime(h=date_prop.hour, m=date_prop.minute, s=date_prop.second)
+                    self.dtb_rtc.setDateTime(QDateTime(date=date_qtcompatible, time=time_qtcompatible))
+                    
+                except:
+                    if platform.system() == "Windows":
+                        errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
+        
+                    else:
+                        errorFile = platformSpecific.unixSpecific.unixErrorFile()
+
+                    with open(errorFile, "w+") as errCodeFile:
+                        errCodeFile.write(errors.errCodes.errCodes[63])
+
+                    self.logman.writeToLogFile(
+                                f"{errors.errCodes.errCodes[63]}: The CPU cores variable could not be converted. Please set it up yourself."
+                                )
+
+                    dialog = ErrDialog(self)
+                    dialog.exec()
             
         except OSError as ex:
             if platform.system() == "Windows":
