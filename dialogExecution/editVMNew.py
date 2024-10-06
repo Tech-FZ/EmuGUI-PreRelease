@@ -823,6 +823,20 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                     break
                 
                 i += 1
+                
+            i = 0
+            
+            while i < self.cb_accel.count():
+                if self.vmdata.hwaccel == "HAXM":
+                    if self.cb_accel.itemText(i) == "HAXM (depreciated)":
+                        self.cb_accel.setCurrentIndex(i)
+                        break
+                    
+                elif self.cb_accel.itemText(i) == self.vmdata.hwaccel:
+                    self.cb_accel.setCurrentIndex(i)
+                    break
+                
+                i += 1
             
         except OSError as ex:
             if platform.system() == "Windows":
