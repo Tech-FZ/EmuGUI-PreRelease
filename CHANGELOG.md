@@ -50,6 +50,7 @@
     - Keyboard type & layout
     - USB Controller & Support
     - Hardware Acceleration
+    - HDD Controller
 - The Win2k checkbox is to be removed because of the OOP adaption.
 
 ## Known issues
