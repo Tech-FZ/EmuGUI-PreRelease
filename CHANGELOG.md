@@ -83,6 +83,7 @@
                     - Kernel
                     - Linux initrd
                     - Linux cmd args
+                    - Mouse
 
 ## Known issues
 

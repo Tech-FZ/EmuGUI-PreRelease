@@ -275,7 +275,7 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd = qemu_cmd + f" -append \"{self.vmdata.linuxcmd}\""
                 qemu_cmd_list.append(f"-append \"{self.vmdata.linuxcmd}\"")
 
-            if self.vmSpecs[16] == "USB Mouse" and self.vmdata.net == "0":
+            if self.vmdata.mouse == "USB Mouse" and self.vmdata.net == "0":
                 if self.vmdata.arch == "aarch64" or self.vmdata.arch == "arm":
                     qemu_cmd = qemu_cmd + " -device usb-mouse"
                     qemu_cmd_list.append("-device usb-mouse")
@@ -284,7 +284,7 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                     qemu_cmd = qemu_cmd + " -usbdevice mouse"
                     qemu_cmd_list.append("-usbdevice mouse")
 
-            if self.vmSpecs[16] == "USB Tablet Device" and self.vmdata.net == "0":
+            if self.vmdata.mouse == "USB Tablet Device" and self.vmdata.net == "0":
                 if self.vmdata.arch == "aarch64" or self.vmdata.arch == "arm":
                     qemu_cmd = qemu_cmd + " -device usb-tablet"
                     qemu_cmd_list.append("-device usb-tablet")
