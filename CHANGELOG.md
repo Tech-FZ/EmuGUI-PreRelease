@@ -89,6 +89,7 @@
                     - Acceleration
                     - TPM
             - Clicking the corresponding button should start it now.
+    - The main dialog is now opening that instead of the old one.
 
 ## Known issues
 
@@ -98,6 +99,7 @@
 - The QCOW2 format is prone to not work for some Windows VMs.
 - ~~The Browse buttons on CDs don't work yet.~~ Fixed by Tech-FZ
 - The new settings aren't applied yet. However, as the way to temporarily save VM settings is to be changed anyway, this won't be fixed until then.
+- You can't start VMs right now. Use EmuGUI 2.0 instead.
 
 # EmuGUI v2.1.0.5701_dev "Fatima Nejla" (based on v2.1.0.5700_dev)
 
