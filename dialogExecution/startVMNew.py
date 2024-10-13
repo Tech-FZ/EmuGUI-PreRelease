@@ -69,7 +69,7 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
             self.connection = platformSpecific.unixSpecific.setupUnixBackend()
         
     def connectSignalsSlots(self):
-        pass
+        self.btn_startVM.clicked.connect(self.startVirtualMachine)
     
     def startVirtualMachine(self):
         connection = self.connection

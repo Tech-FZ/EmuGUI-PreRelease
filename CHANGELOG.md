@@ -88,6 +88,7 @@
                     - Additional args
                     - Acceleration
                     - TPM
+            - Clicking the corresponding button should start it now.
 
 ## Known issues
 
