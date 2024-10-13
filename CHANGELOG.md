@@ -75,6 +75,7 @@
                 - The following other parameters:
                     - Machine
                     - CPU
+                    - VGA
 
 ## Known issues
 

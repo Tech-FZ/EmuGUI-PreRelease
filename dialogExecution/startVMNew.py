@@ -146,12 +146,15 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
             if self.vmdata.cpu != "Let QEMU decide":
                 qemu_cmd = qemu_cmd + f" -cpu {self.vmdata.cpu}"
 
-            if self.vmSpecs[6] != "Let QEMU decide":
-                if self.vmSpecs[6] == "std" or self.vmSpecs[6] == "qxl" or self.vmSpecs[6] == "cirrus" or self.vmSpecs[6] == "cg3" or self.vmSpecs[6] == "tcx":
-                    qemu_cmd = qemu_cmd + f" -vga {self.vmSpecs[6]}"
+            if self.vmdata.vga != "Let QEMU decide":
+                if self.vmdata.vga == "std" or self.vmdata.vga == "qxl" or self.vmdata.vga == "cirrus" or self.vmdata.vga == "cg3":
+                    qemu_cmd = qemu_cmd + f" -vga {self.vmdata.vga}"
+                    
+                elif self.vmdata.vga == "tcx":
+                    qemu_cmd = qemu_cmd + f" -vga {self.vmdata.vga}"
 
                 else:
-                    qemu_cmd = qemu_cmd + f" -device {self.vmSpecs[6]}"
+                    qemu_cmd = qemu_cmd + f" -device {self.vmdata.vga}"
 
             if self.vmSpecs[7] != "none":
                 if self.vmSpecs[1] == "i386" or self.vmSpecs[1] == "x86_64" or self.vmSpecs[1] == "ppc" or self.vmSpecs[1] == "ppc64" or self.vmSpecs[1] == "sparc" or self.vmSpecs[1] == "sparc64":
