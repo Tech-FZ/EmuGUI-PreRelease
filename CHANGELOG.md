@@ -59,6 +59,7 @@
 - The Win2k checkbox is to be removed because of the OOP adaption.
     - The Edit VM dialog will now turn the Win2k optimisations off regardless of what you really want.
 - The Edit VM dialog would now use the new OOP-based initialisation instead of the file-based one.
+    - A log text had to be adjusted.
 - A new Start VM dialog has already been designed.
     - The code is in preparation.
         - The vmdata can be passed on to the new Start VM dialog.

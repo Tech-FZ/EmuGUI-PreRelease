@@ -926,7 +926,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                         errCodeFile.write(errors.errCodes.errCodes[63])
 
                     self.logman.writeToLogFile(
-                                f"{errors.errCodes.errCodes[63]}: The CPU cores variable could not be converted. Please set it up yourself."
+                                f"{errors.errCodes.errCodes[63]}: The datetime variable could not be converted. Please set it up yourself."
                                 )
 
                     dialog = ErrDialog(self)
