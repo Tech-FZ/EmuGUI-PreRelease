@@ -62,6 +62,8 @@
 - A new Start VM dialog has already been designed.
     - The code is in preparation.
         - The vmdata can be passed on to the new Start VM dialog.
+        - The icon would be shown.
+        - The database connection would be set up.
 
 ## Known issues
 

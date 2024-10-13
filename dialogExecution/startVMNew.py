@@ -56,5 +56,17 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
             "alpha", "riscv32", "riscv64"
         ]
         
+        try:
+            self.setWindowIcon(QtGui.QIcon(f"{self.exec_folder}EmuGUI.png"))
+
+        except:
+            pass
+
+        if platform.system() == "Windows":
+            self.connection = platformSpecific.windowsSpecific.setupWindowsBackend()
+        
+        else:
+            self.connection = platformSpecific.unixSpecific.setupUnixBackend()
+        
     def connectSignalsSlots(self):
         pass
