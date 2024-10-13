@@ -77,6 +77,7 @@
                     - CPU
                     - VGA
                     - Network
+                    - USB
 
 ## Known issues
 

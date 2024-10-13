@@ -186,8 +186,8 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                     mac_to_use = f"{mac_gen[0]}:{mac_gen[1]}:{mac_gen[2]}:{mac_gen[3]}:{mac_gen[4]}:{mac_gen[5]}"
                     qemu_cmd = qemu_cmd + f" -device {self.vmdata.net},netdev=hostnet0,mac={mac_to_use} -netdev user,id=hostnet0"
 
-            if self.vmSpecs[20] == "1":
-                qemu_cmd = qemu_cmd + f" -usb -device {self.vmSpecs[21]}"
+            if self.vmdata.usb_support == "1":
+                qemu_cmd = qemu_cmd + f" -usb -device {self.vmdata.usb_controller}"
             
             """ if self.vmdata.net == "1":
                 print("WARNING: Using the checkbox for the USB tablet is depreciated.")
@@ -195,8 +195,8 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 print("Please use the combo box for this task instead.")
                 qemu_cmd = qemu_cmd + " -usbdevice tablet" """
 
-            if self.vmSpecs[8] == "1" and self.vmSpecs[0] == "i386":
-                qemu_cmd = qemu_cmd + " -win2k-hack"
+            """ if self.vmSpecs[8] == "1" and self.vmSpecs[0] == "i386":
+                qemu_cmd = qemu_cmd + " -win2k-hack" """
 
             if fda_file != "":
                 qemu_cmd = qemu_cmd + f" -drive format=raw,file=\"{fda_file}\",index=0,if=floppy"
