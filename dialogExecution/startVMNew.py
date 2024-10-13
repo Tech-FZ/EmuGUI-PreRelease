@@ -255,11 +255,11 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd = qemu_cmd + f" -L {self.vmdata.biosdir}"
                 qemu_cmd_list.append(f"-L {self.vmdata.biosdir}")
 
-            if self.vmSpecs[12] != "none":
-                qemu_cmd = qemu_cmd + f" -device {self.vmSpecs[12]}"
-                qemu_cmd_list.append(f"-device {self.vmSpecs[12]}")
+            if self.vmdata.sound != "none":
+                qemu_cmd = qemu_cmd + f" -device {self.vmdata.sound}"
+                qemu_cmd_list.append(f"-device {self.vmdata.sound}")
 
-                if self.vmSpecs[12] == "intel-hda":
+                if self.vmdata.sound == "intel-hda":
                     qemu_cmd = qemu_cmd + " -device hda-duplex"
                     qemu_cmd_list.append(f"-device hda-duplex")
 

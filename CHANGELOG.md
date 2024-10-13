@@ -79,6 +79,7 @@
                     - Network
                     - USB
                     - BIOS Directory
+                    - Sound
 
 ## Known issues
 
