@@ -78,6 +78,7 @@
                     - VGA
                     - Network
                     - USB
+                    - BIOS Directory
 
 ## Known issues
 
