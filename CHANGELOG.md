@@ -64,6 +64,7 @@
         - The vmdata can be passed on to the new Start VM dialog.
         - The icon would be shown.
         - The database connection would be set up.
+        - The old code for actually starting the VM is used as a base.
 
 ## Known issues
 
