@@ -72,6 +72,8 @@
                 - Architecture selection
                 - Base command
                 - HDA Addition
+                - The following other parameters:
+                    - Machine
 
 ## Known issues
 

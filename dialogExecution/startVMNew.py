@@ -140,8 +140,8 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                             qemu_cmd = qemu_cmd + f" file=\"{self.vmdata.hda}\",if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0"
                             qemu_cmd_list.append(f"file=\"{self.vmdata.hda}\",if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0")
 
-            if self.vmSpecs[2] != "Let QEMU decide":
-                qemu_cmd = qemu_cmd + f" -M {self.vmSpecs[2]}"
+            if self.vmdata.machine != "Let QEMU decide":
+                qemu_cmd = qemu_cmd + f" -M {self.vmdata.machine}"
 
             if self.vmSpecs[3] != "Let QEMU decide":
                 qemu_cmd = qemu_cmd + f" -cpu {self.vmSpecs[3]}"
