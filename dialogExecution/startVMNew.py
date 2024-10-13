@@ -104,8 +104,8 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
 
             qemu_to_execute = result[0][0]
 
-            qemu_cmd = f"\"{qemu_to_execute}\" -m {self.vmSpecs[4]} -smp {self.vmSpecs[17]} -k {self.vmSpecs[21]}"
-            qemu_cmd_list = [qemu_to_execute, "-m", self.vmSpecs[4], "-smp", self.vmSpecs[17], "-k", self.vmSpecs[21]]
+            qemu_cmd = f"\"{qemu_to_execute}\" -m {self.vmdata.ram} -smp {self.vmdata.cores} -k {self.vmdata.kbdlayout}"
+            qemu_cmd_list = [qemu_to_execute, "-m", self.vmdata.ram, "-smp", self.vmdata.cores, "-k", self.vmdata.kbdlayout]
 
             if self.checkBox.isChecked():
                 qemu_cmd = qemu_cmd + f" -rtc base=\"{dateTimeForVM}\",clock=vm"

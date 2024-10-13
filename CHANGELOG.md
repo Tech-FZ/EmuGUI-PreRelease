@@ -69,6 +69,7 @@
                 - Media
                 - Date and time
                 - Architecture selection
+                - Base command
 
 ## Known issues
 
