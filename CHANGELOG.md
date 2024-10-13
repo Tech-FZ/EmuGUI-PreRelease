@@ -74,6 +74,7 @@
                 - HDA Addition
                 - The following other parameters:
                     - Machine
+                    - CPU
 
 ## Known issues
 

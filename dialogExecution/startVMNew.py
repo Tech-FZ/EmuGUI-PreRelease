@@ -143,8 +143,8 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
             if self.vmdata.machine != "Let QEMU decide":
                 qemu_cmd = qemu_cmd + f" -M {self.vmdata.machine}"
 
-            if self.vmSpecs[3] != "Let QEMU decide":
-                qemu_cmd = qemu_cmd + f" -cpu {self.vmSpecs[3]}"
+            if self.vmdata.cpu != "Let QEMU decide":
+                qemu_cmd = qemu_cmd + f" -cpu {self.vmdata.cpu}"
 
             if self.vmSpecs[6] != "Let QEMU decide":
                 if self.vmSpecs[6] == "std" or self.vmSpecs[6] == "qxl" or self.vmSpecs[6] == "cirrus" or self.vmSpecs[6] == "cg3" or self.vmSpecs[6] == "tcx":
