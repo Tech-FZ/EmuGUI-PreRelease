@@ -50,7 +50,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         self.connectSignalsSlots()
         self.tabWidget.setCurrentIndex(0)
         self.hw_plugins = hwpr.read_hw_plugin()
-        self.vmdata = vmd.VirtualMachineData(vmdata)
+        self.vmdata = vmdata
         #self.vmSpecs = self.readTempVmFile()
         self.fillForm()
         self.langDetect()

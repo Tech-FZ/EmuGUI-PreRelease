@@ -48,7 +48,7 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.exec_folder = pf.retrieveExecFolder()
         self.connectSignalsSlots()
-        self.vmdata = vmd.VirtualMachineData(vmdata)
+        self.vmdata = vmdata
         
         self.architectures = [
             "i386", "x86_64", "ppc", "ppc64", "mips64", "mips64el",
