@@ -204,38 +204,38 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd_list.append(f"format=raw,file=\"{fda_file}\",index=0,if=floppy")
 
             if cdrom_file != "":
-                if self.vmSpecs[24] == "Let QEMU decide":
+                if self.vmdata.cd_control1 == "Let QEMU decide":
                     qemu_cmd = qemu_cmd + f" -cdrom \"{cdrom_file}\""
                     qemu_cmd_list.append(f"-cdrom \"{cdrom_file}\"")
 
                 else:
-                    if self.vmSpecs[24] == "IDE":
+                    if self.vmdata.cd_control1 == "IDE":
                         qemu_cmd = qemu_cmd + f" -drive file=\"{cdrom_file}\",if=ide,media=cdrom"
                         qemu_cmd_list.append(f"-drive file=\"{cdrom_file}\",if=ide,media=cdrom")
 
-                    elif self.vmSpecs[24] == "SCSI":
+                    elif self.vmdata.cd_control1 == "SCSI":
                         qemu_cmd = qemu_cmd + f" -drive file=\"{cdrom_file}\",if=scsi,media=cdrom"
                         qemu_cmd_list.append(f"-drive file=\"{cdrom_file}\",if=scsi,media=cdrom")
 
-                    elif self.vmSpecs[24] == "Virtio":
+                    elif self.vmdata.cd_control1 == "Virtio":
                         qemu_cmd = qemu_cmd + f" -drive file=\"{cdrom_file}\",if=virtio,media=cdrom"
                         qemu_cmd_list.append(f"-drive file=\"{cdrom_file}\",if=virtio,media=cdrom")
 
             if cdrom_file2 != "":
-                if self.vmSpecs[25] == "Let QEMU decide":
+                if self.vmdata.cd_control2 == "Let QEMU decide":
                     qemu_cmd = qemu_cmd + f" -cdrom \"{cdrom_file2}\""
                     qemu_cmd_list.append(f"-cdrom \"{cdrom_file2}\"")
 
                 else:
-                    if self.vmSpecs[25] == "IDE":
+                    if self.vmdata.cd_control2 == "IDE":
                         qemu_cmd = qemu_cmd + f" -drive file={cdrom_file2},if=ide,media=cdrom"
                         qemu_cmd_list.append(f"-drive file=\"{cdrom_file2}\",if=ide,media=cdrom")
 
-                    elif self.vmSpecs[25] == "SCSI":
+                    elif self.vmdata.cd_control2 == "SCSI":
                         qemu_cmd = qemu_cmd + f" -drive file={cdrom_file2},if=scsi,media=cdrom"
                         qemu_cmd_list.append(f"-drive file=\"{cdrom_file2}\",if=scsi,media=cdrom")
 
-                    elif self.vmSpecs[25] == "Virtio":
+                    elif self.vmdata.cd_control2 == "Virtio":
                         qemu_cmd = qemu_cmd + f" -drive file={cdrom_file2},if=virtio,media=cdrom"
                         qemu_cmd_list.append(f"-drive file=\"{cdrom_file2}\",if=virtio,media=cdrom")
 
