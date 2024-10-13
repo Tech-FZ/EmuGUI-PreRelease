@@ -86,6 +86,7 @@
                     - Mouse
                     - BIOS file
                     - Additional args
+                    - Acceleration
 
 ## Known issues
 

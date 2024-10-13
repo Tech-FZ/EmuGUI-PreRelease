@@ -305,23 +305,23 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd = qemu_cmd + f" {self.vmdata.addargs}"
                 qemu_cmd_list.append(self.vmdata.addargs)
 
-            if self.vmSpecs[23] == "TCG":
+            if self.vmdata.hwaccel == "TCG":
                 qemu_cmd = qemu_cmd + " -accel tcg"
                 qemu_cmd_list.append("-accel tcg")
 
-            elif self.vmSpecs[23] == "HAXM":
+            elif str(self.vmdata.hwaccel).startswith("HAXM"):
                 qemu_cmd = qemu_cmd + " -accel hax"
                 qemu_cmd_list.append("-accel hax")
 
-            elif self.vmSpecs[23] == "WHPX":
+            elif self.vmdata.hwaccel == "WHPX":
                 qemu_cmd = qemu_cmd + " -accel whpx"
                 qemu_cmd_list.append("-accel whpx")
 
-            elif self.vmSpecs[23] == "WHPX (kernel-irqchip off)":
+            elif self.vmdata.hwaccel == "WHPX (kernel-irqchip off)":
                 qemu_cmd = qemu_cmd + " -accel whpx,kernel-irqchip=off"
                 qemu_cmd_list.append("-accel whpx,kernel-irqchip=off")
 
-            elif self.vmSpecs[23] == "KVM":
+            elif self.vmdata.hwaccel == "KVM":
                 qemu_cmd = qemu_cmd + " -enable-kvm"
                 qemu_cmd_list.append("-enable-kvm")
 
