@@ -301,9 +301,9 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd = qemu_cmd + " -device usb-kbd"
                 qemu_cmd_list.append("-device usb-kbd")
 
-            if self.vmSpecs[11] != "":
-                qemu_cmd = qemu_cmd + f" {self.vmSpecs[11]}"
-                qemu_cmd_list.append(self.vmSpecs[11])
+            if self.vmdata.addargs != "":
+                qemu_cmd = qemu_cmd + f" {self.vmdata.addargs}"
+                qemu_cmd_list.append(self.vmdata.addargs)
 
             if self.vmSpecs[23] == "TCG":
                 qemu_cmd = qemu_cmd + " -accel tcg"

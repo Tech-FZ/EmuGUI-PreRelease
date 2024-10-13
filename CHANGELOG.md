@@ -85,6 +85,7 @@
                     - Linux cmd args
                     - Mouse
                     - BIOS file
+                    - Additional args
 
 ## Known issues
 
