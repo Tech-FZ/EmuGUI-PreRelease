@@ -65,6 +65,7 @@
         - The icon would be shown.
         - The database connection would be set up.
         - The old code for actually starting the VM is used as a base.
+            - References are changed to the new OOP ones.
 
 ## Known issues
 

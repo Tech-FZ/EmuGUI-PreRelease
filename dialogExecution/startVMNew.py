@@ -75,11 +75,11 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
         connection = self.connection
         cursor = connection.cursor()
 
-        fda_file = self.lineEdit.text()
-        cdrom_file = self.lineEdit_2.text()
-        cdrom_file2 = self.lineEdit_4.text()
-        bootfrom = self.comboBox.currentText()
-        dateTimeForVM = self.dateTimeEdit.text()
+        fda_file = self.vmdata.floppy
+        cdrom_file = self.vmdata.cd1
+        cdrom_file2 = self.vmdata.cd2
+        bootfrom = self.vmdata.bootfrom
+        dateTimeForVM = self.vmdata.timemgr
 
         print(fda_file)
         print(cdrom_file)
