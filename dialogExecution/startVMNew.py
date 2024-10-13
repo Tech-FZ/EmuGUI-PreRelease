@@ -156,17 +156,17 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 else:
                     qemu_cmd = qemu_cmd + f" -device {self.vmdata.vga}"
 
-            if self.vmSpecs[7] != "none":
-                if self.vmSpecs[1] == "i386" or self.vmSpecs[1] == "x86_64" or self.vmSpecs[1] == "ppc" or self.vmSpecs[1] == "ppc64" or self.vmSpecs[1] == "sparc" or self.vmSpecs[1] == "sparc64":
-                    qemu_cmd = qemu_cmd + f" -net nic,model={self.vmSpecs[7]} -net user"
+            if self.vmdata.net != "none":
+                if self.vmdata.arch == "i386" or self.vmdata.arch == "x86_64" or self.vmdata.arch == "ppc" or self.vmdata.arch == "ppc64" or self.vmdata.arch == "sparc" or self.vmdata.arch == "sparc64":
+                    qemu_cmd = qemu_cmd + f" -net nic,model={self.vmdata.net} -net user"
 
-                if self.vmSpecs[1] == "riscv32" or self.vmSpecs[1] == "riscv64" or self.vmSpecs[1] == "alpha":
-                    qemu_cmd = qemu_cmd + f" -net nic,model={self.vmSpecs[7]} -net user"
+                if self.vmdata.arch == "riscv32" or self.vmdata.arch == "riscv64" or self.vmdata.arch == "alpha":
+                    qemu_cmd = qemu_cmd + f" -net nic,model={self.vmdata.net} -net user"
 
-                elif self.vmSpecs[1] == "mips64el" or self.vmSpecs[1] == "mipsel":
-                    qemu_cmd = qemu_cmd + f" -nic user,model={self.vmSpecs[7]}"
+                elif self.vmdata.arch == "mips64el" or self.vmdata.arch == "mipsel":
+                    qemu_cmd = qemu_cmd + f" -nic user,model={self.vmdata.net}"
 
-                elif self.vmSpecs[1] == "aarch64" or self.vmSpecs[1] == "arm":
+                elif self.vmdata.arch == "aarch64" or self.vmdata.arch == "arm":
                     # Due to the circumstances here, for the VM, a random MAC address is
                     # generated at runtime. Due to that, the MAC changes every time you
                     # start your virtual machine.
@@ -184,12 +184,12 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                         i += 1
 
                     mac_to_use = f"{mac_gen[0]}:{mac_gen[1]}:{mac_gen[2]}:{mac_gen[3]}:{mac_gen[4]}:{mac_gen[5]}"
-                    qemu_cmd = qemu_cmd + f" -device {self.vmSpecs[7]},netdev=hostnet0,mac={mac_to_use} -netdev user,id=hostnet0"
+                    qemu_cmd = qemu_cmd + f" -device {self.vmdata.net},netdev=hostnet0,mac={mac_to_use} -netdev user,id=hostnet0"
 
             if self.vmSpecs[20] == "1":
                 qemu_cmd = qemu_cmd + f" -usb -device {self.vmSpecs[21]}"
             
-            """ if self.vmSpecs[7] == "1":
+            """ if self.vmdata.net == "1":
                 print("WARNING: Using the checkbox for the USB tablet is depreciated.")
                 print("This feature is going to be removed in a future update.")
                 print("Please use the combo box for this task instead.")
@@ -275,8 +275,8 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd = qemu_cmd + f" -append \"{self.vmSpecs[15]}\""
                 qemu_cmd_list.append(f"-append \"{self.vmSpecs[15]}\"")
 
-            if self.vmSpecs[16] == "USB Mouse" and self.vmSpecs[7] == "0":
-                if self.vmSpecs[1] == "aarch64" or self.vmSpecs[1] == "arm":
+            if self.vmSpecs[16] == "USB Mouse" and self.vmdata.net == "0":
+                if self.vmdata.arch == "aarch64" or self.vmdata.arch == "arm":
                     qemu_cmd = qemu_cmd + " -device usb-mouse"
                     qemu_cmd_list.append("-device usb-mouse")
 
@@ -284,8 +284,8 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                     qemu_cmd = qemu_cmd + " -usbdevice mouse"
                     qemu_cmd_list.append("-usbdevice mouse")
 
-            if self.vmSpecs[16] == "USB Tablet Device" and self.vmSpecs[7] == "0":
-                if self.vmSpecs[1] == "aarch64" or self.vmSpecs[1] == "arm":
+            if self.vmSpecs[16] == "USB Tablet Device" and self.vmdata.net == "0":
+                if self.vmdata.arch == "aarch64" or self.vmdata.arch == "arm":
                     qemu_cmd = qemu_cmd + " -device usb-tablet"
                     qemu_cmd_list.append("-device usb-tablet")
 
@@ -326,15 +326,15 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd_list.append("-enable-kvm")
 
             if self.lineEdit_3.text() != "":
-                if self.vmSpecs[1] == "x86_64":
+                if self.vmdata.arch == "x86_64":
                     qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis,tpmdev=tpm0"
                     qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis,tpmdev=tpm0")
 
-                elif self.vmSpecs[1] == "aarch64":
+                elif self.vmdata.arch == "aarch64":
                     qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis-device,tpmdev=tpm0"
                     qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis-device,tpmdev=tpm0")
 
-                elif self.vmSpecs[1] == "ppc64":
+                elif self.vmdata.arch == "ppc64":
                     qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-spapr,tpmdev=tpm0"
                     qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-spapr,tpmdev=tpm0")
 

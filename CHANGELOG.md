@@ -76,6 +76,7 @@
                     - Machine
                     - CPU
                     - VGA
+                    - Network
 
 ## Known issues
 
