@@ -80,6 +80,7 @@
                     - USB
                     - BIOS Directory
                     - Sound
+                    - Kernel
 
 ## Known issues
 

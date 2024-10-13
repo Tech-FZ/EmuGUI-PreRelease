@@ -263,9 +263,9 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                     qemu_cmd = qemu_cmd + " -device hda-duplex"
                     qemu_cmd_list.append(f"-device hda-duplex")
 
-            if self.vmSpecs[13] != "":
-                qemu_cmd = qemu_cmd + f" -kernel \"{self.vmSpecs[13]}\""
-                qemu_cmd_list.append(f"-kernel \"{self.vmSpecs[13]}\"")
+            if self.vmdata.kernel != "":
+                qemu_cmd = qemu_cmd + f" -kernel \"{self.vmdata.kernel}\""
+                qemu_cmd_list.append(f"-kernel \"{self.vmdata.kernel}\"")
 
             if self.vmSpecs[14] != "":
                 qemu_cmd = qemu_cmd + f" -initrd \"{self.vmSpecs[14]}\""
