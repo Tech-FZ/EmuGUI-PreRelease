@@ -32,9 +32,10 @@ import errors.errCodes
 from dialogExecution.errDialog import ErrDialog
 import services.pathfinder as pf
 import errors.logman
+import services.vm_data as vmd
 
 class StartVmNewDialog(QDialog, Ui_Dialog):
-    def __init__(self, parent=None):
+    def __init__(self, vmdata, parent=None):
         self.logman = errors.logman.LogMan()
         self.logman.logFile = self.logman.setLogFile()
         
@@ -47,6 +48,7 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.exec_folder = pf.retrieveExecFolder()
         self.connectSignalsSlots()
+        self.vmdata = vmd.VirtualMachineData(vmdata)
         
         self.architectures = [
             "i386", "x86_64", "ppc", "ppc64", "mips64", "mips64el",

@@ -61,6 +61,7 @@
 - The Edit VM dialog would now use the new OOP-based initialisation instead of the file-based one.
 - A new Start VM dialog has already been designed.
     - The code is in preparation.
+        - The vmdata can be passed on to the new Start VM dialog.
 
 ## Known issues
 
