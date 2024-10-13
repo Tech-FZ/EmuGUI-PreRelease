@@ -325,18 +325,18 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd = qemu_cmd + " -enable-kvm"
                 qemu_cmd_list.append("-enable-kvm")
 
-            if self.lineEdit_3.text() != "":
+            if self.le_tpm.text() != "":
                 if self.vmdata.arch == "x86_64":
-                    qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis,tpmdev=tpm0"
-                    qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis,tpmdev=tpm0")
+                    qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.le_tpm.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis,tpmdev=tpm0"
+                    qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.le_tpm.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis,tpmdev=tpm0")
 
                 elif self.vmdata.arch == "aarch64":
-                    qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis-device,tpmdev=tpm0"
-                    qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis-device,tpmdev=tpm0")
+                    qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.le_tpm.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis-device,tpmdev=tpm0"
+                    qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.le_tpm.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis-device,tpmdev=tpm0")
 
                 elif self.vmdata.arch == "ppc64":
-                    qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-spapr,tpmdev=tpm0"
-                    qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.lineEdit_3.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-spapr,tpmdev=tpm0")
+                    qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.le_tpm.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-spapr,tpmdev=tpm0"
+                    qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.le_tpm.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-spapr,tpmdev=tpm0")
 
             subprocess.Popen(qemu_cmd)
 

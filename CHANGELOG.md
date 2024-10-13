@@ -87,6 +87,7 @@
                     - BIOS file
                     - Additional args
                     - Acceleration
+                    - TPM
 
 ## Known issues
 
