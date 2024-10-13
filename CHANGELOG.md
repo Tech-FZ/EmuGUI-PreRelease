@@ -71,6 +71,7 @@
                 - Date and time
                 - Architecture selection
                 - Base command
+                - HDA Addition
 
 ## Known issues
 

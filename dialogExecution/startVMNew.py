@@ -112,33 +112,33 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd_list.append("-rtc")
                 qemu_cmd_list.append(f"base=\"{dateTimeForVM}\",clock=vm")
 
-            if self.vmSpecs[5] != "NULL":
+            if self.vmdata.hda != "NULL":
                 if magic.from_file(self.vmSpecs[5]) == "block special":
-                    qemu_cmd = qemu_cmd + f" -drive format=raw,file=\"{self.vmSpecs[5]}\""
+                    qemu_cmd = qemu_cmd + f" -drive format=raw,file=\"{self.vmdata.hda}\""
                     qemu_cmd_list.append("-drive")
-                    qemu_cmd_list.append(f"format=raw,file=\"{self.vmSpecs[5]}\"")
+                    qemu_cmd_list.append(f"format=raw,file=\"{self.vmdata.hda}\"")
 
                 else:
-                    if self.vmSpecs[26] == "Let QEMU decide":
-                        qemu_cmd = qemu_cmd + f" -hda \"{self.vmSpecs[5]}\""
+                    if self.vmdata.hda_control == "Let QEMU decide":
+                        qemu_cmd = qemu_cmd + f" -hda \"{self.vmdata.hda}\""
                         qemu_cmd_list.append("-hda")
-                        qemu_cmd_list.append(self.vmSpecs[5])
+                        qemu_cmd_list.append(self.vmdata.hda)
 
                     else:
                         qemu_cmd = qemu_cmd + " -drive"
                         qemu_cmd_list.append("-drive")
 
                         if self.vmSpecs[26] == "IDE":
-                            qemu_cmd = qemu_cmd + f" file=\"{self.vmSpecs[5]}\",if=ide,media=disk"
-                            qemu_cmd_list.append(f"file=\"{self.vmSpecs[5]}\",if=ide,media=disk")
+                            qemu_cmd = qemu_cmd + f" file=\"{self.vmdata.hda}\",if=ide,media=disk"
+                            qemu_cmd_list.append(f"file=\"{self.vmdata.hda}\",if=ide,media=disk")
 
                         elif self.vmSpecs[26] == "VirtIO SCSI":
-                            qemu_cmd = qemu_cmd + f" file=\"{self.vmSpecs[5]}\",if=none,discard=unmap,aio=native,cache=none,id=hd1 -device scsi-hd,drive=hd1,bus=scsi0.0"
-                            qemu_cmd_list.append(f"file=\"{self.vmSpecs[5]}\",if=none,discard=unmap,aio=native,cache=none,id=hd1 -device scsi-hd,drive=hd1,bus=scsi0.0")
+                            qemu_cmd = qemu_cmd + f" file=\"{self.vmdata.hda}\",if=none,discard=unmap,aio=native,cache=none,id=hd1 -device scsi-hd,drive=hd1,bus=scsi0.0"
+                            qemu_cmd_list.append(f"file=\"{self.vmdata.hda}\",if=none,discard=unmap,aio=native,cache=none,id=hd1 -device scsi-hd,drive=hd1,bus=scsi0.0")
 
                         elif self.vmSpecs[26] == "AHCI":
-                            qemu_cmd = qemu_cmd + f" file=\"{self.vmSpecs[5]}\",if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0"
-                            qemu_cmd_list.append(f"file=\"{self.vmSpecs[5]}\",if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0")
+                            qemu_cmd = qemu_cmd + f" file=\"{self.vmdata.hda}\",if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0"
+                            qemu_cmd_list.append(f"file=\"{self.vmdata.hda}\",if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0")
 
             if self.vmSpecs[2] != "Let QEMU decide":
                 qemu_cmd = qemu_cmd + f" -M {self.vmSpecs[2]}"
