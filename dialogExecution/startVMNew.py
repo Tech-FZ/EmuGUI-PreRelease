@@ -90,7 +90,7 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
 
         try:
             for architecture in self.architectures:
-                if self.vmSpecs[1] == architecture:
+                if self.vmdata.arch == architecture:
                     sel_query = f"""
                     SELECT value FROM settings
                     WHERE name = 'qemu-system-{architecture}';

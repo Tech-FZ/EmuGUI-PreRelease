@@ -66,6 +66,9 @@
         - The database connection would be set up.
         - The old code for actually starting the VM is used as a base.
             - References are changed to the new OOP ones.
+                - Media
+                - Date and time
+                - Architecture selection
 
 ## Known issues
 
