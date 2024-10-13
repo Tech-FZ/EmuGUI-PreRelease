@@ -267,9 +267,9 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd = qemu_cmd + f" -kernel \"{self.vmdata.kernel}\""
                 qemu_cmd_list.append(f"-kernel \"{self.vmdata.kernel}\"")
 
-            if self.vmSpecs[14] != "":
-                qemu_cmd = qemu_cmd + f" -initrd \"{self.vmSpecs[14]}\""
-                qemu_cmd_list.append(f"-initrd \"{self.vmSpecs[14]}\"")
+            if self.vmdata.initrd != "":
+                qemu_cmd = qemu_cmd + f" -initrd \"{self.vmdata.initrd}\""
+                qemu_cmd_list.append(f"-initrd \"{self.vmdata.initrd}\"")
 
             if self.vmSpecs[15] != "":
                 qemu_cmd = qemu_cmd + f" -append \"{self.vmSpecs[15]}\""

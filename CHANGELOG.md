@@ -81,6 +81,7 @@
                     - BIOS Directory
                     - Sound
                     - Kernel
+                    - Linux initrd
 
 ## Known issues
 
