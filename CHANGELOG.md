@@ -82,6 +82,7 @@
                     - Sound
                     - Kernel
                     - Linux initrd
+                    - Linux cmd args
 
 ## Known issues
 

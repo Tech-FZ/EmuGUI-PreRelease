@@ -271,9 +271,9 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd = qemu_cmd + f" -initrd \"{self.vmdata.initrd}\""
                 qemu_cmd_list.append(f"-initrd \"{self.vmdata.initrd}\"")
 
-            if self.vmSpecs[15] != "":
-                qemu_cmd = qemu_cmd + f" -append \"{self.vmSpecs[15]}\""
-                qemu_cmd_list.append(f"-append \"{self.vmSpecs[15]}\"")
+            if self.vmdata.linuxcmd != "":
+                qemu_cmd = qemu_cmd + f" -append \"{self.vmdata.linuxcmd}\""
+                qemu_cmd_list.append(f"-append \"{self.vmdata.linuxcmd}\"")
 
             if self.vmSpecs[16] == "USB Mouse" and self.vmdata.net == "0":
                 if self.vmdata.arch == "aarch64" or self.vmdata.arch == "arm":
