@@ -293,9 +293,9 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                     qemu_cmd = qemu_cmd + " -usbdevice tablet"
                     qemu_cmd_list.append("-usbdevice tablet")
 
-            if self.vmSpecs[18] != "" and self.vmSpecs[18] != None and self.vmSpecs[18] != "None":
-                qemu_cmd = qemu_cmd + f" -bios \"{self.vmSpecs[18]}\""
-                qemu_cmd_list.append(f"-bios \"{self.vmSpecs[18]}\"")
+            if self.vmdata.biosfile != "" and self.vmdata.biosfile != None and self.vmdata.biosfile != "None":
+                qemu_cmd = qemu_cmd + f" -bios \"{self.vmdata.biosfile}\""
+                qemu_cmd_list.append(f"-bios \"{self.vmdata.biosfile}\"")
 
             if self.vmSpecs[19] == "USB Keyboard":
                 qemu_cmd = qemu_cmd + " -device usb-kbd"

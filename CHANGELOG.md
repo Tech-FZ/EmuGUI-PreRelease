@@ -84,6 +84,7 @@
                     - Linux initrd
                     - Linux cmd args
                     - Mouse
+                    - BIOS file
 
 ## Known issues
 
