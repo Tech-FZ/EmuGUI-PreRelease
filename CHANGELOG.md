@@ -91,6 +91,7 @@
             - Clicking the corresponding button should start it now.
     - The main dialog is now opening that instead of the old one.
 - The vmdata converter has been removed again.
+- Editing the VM is now implemented.
 
 ## Known issues
 

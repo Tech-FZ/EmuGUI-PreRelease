@@ -2287,7 +2287,7 @@ class Window(QMainWindow, Ui_MainWindow):
             get_vm_to_start = f"""
             SELECT architecture, machine, cpu, ram, hda, vga, net, usbtablet, win2k, dirbios, additionalargs, sound, linuxkernel,
             linuxinitrid, linuxcmd, mousetype, cores, filebios, keyboardtype, usbsupport, usbcontroller, kbdtype, acceltype,
-            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy
+            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy, timemgr, bootfrom
             FROM virtualmachines WHERE name = '{selectedVM}'
             """
 
@@ -2298,32 +2298,18 @@ class Window(QMainWindow, Ui_MainWindow):
 
                 print(result)
 
+                vmdata = vmd.VirtualMachineData(
+                    selectedVM, result[0][0], result[0][1], result[0][2], result[0][16], result[0][3], result[0][5], result[0][6],
+                    result[0][9], result[0][17], result[0][11], result[0][12], result[0][13], result[0][14], result[0][15], result[0][18],
+                    result[0][21], result[0][19], result[0][20], result[0][22], result[0][23], result[0][24], result[0][25], result[0][26],
+                    result[0][27], result[0][28], result[0][29], result[0][30], result[0][4], result[0][10]
+                    )
+
                 architecture_of_vm = result[0][0]
-                machine_of_vm = result[0][1]
                 cpu_of_vm = result[0][2]
-                ram_of_vm = result[0][3]
-                hda_of_vm = result[0][4]
-                vga_of_vm = result[0][5]
-                net_of_vm = result[0][6]
                 usbtablet_wanted = result[0][7]
                 os_is_win2k = result[0][8]
-                dir_bios = result[0][9]
-                additional_arguments = result[0][10]
-                sound_card = result[0][11]
-                linux_kernel = result[0][12]
-                linux_initrid = result[0][13]
-                linux_cmd = result[0][14]
-                mouse_type = result[0][15]
-                cpu_cores = result[0][16]
-                file_bios = result[0][17]
-                kbd_type = result[0][18]
-                usb_support = result[0][19]
-                usb_controller = result[0][20]
-                kbd_layout = result[0][21]
                 accel_type = result[0][22]
-                cd_control1 = result[0][23]
-                cd_control2 = result[0][24]
-                hda_control = result[0][25]
 
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -2350,7 +2336,7 @@ class Window(QMainWindow, Ui_MainWindow):
             else:
                 tempVmDef = platformSpecific.unixSpecific.unixTempVmStarterFile()
                 
-            try:
+            """ try:
                 with open(tempVmDef, "w+") as tempVmDefFile:
                     tempVmDefFile.write(selectedVM + "\n")
                     tempVmDefFile.write(architecture_of_vm + "\n")
@@ -2395,7 +2381,7 @@ class Window(QMainWindow, Ui_MainWindow):
                         )
 
                 dialog = ErrDialog(self)
-                dialog.exec()
+                dialog.exec() """
 
             i = 0
 
@@ -2415,7 +2401,7 @@ class Window(QMainWindow, Ui_MainWindow):
                         dialog.exec()
 
                     else:
-                        dialog = EditVMNewDialog(self)
+                        dialog = EditVMNewDialog(vmdata, self)
                         dialog.exec()
                 
                     break
