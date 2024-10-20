@@ -51,6 +51,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         self.tabWidget.setCurrentIndex(0)
         self.hw_plugins = hwpr.read_hw_plugin()
         self.vmdata = vmdata
+        self.permanent = permanent
         #self.vmSpecs = self.readTempVmFile()
         self.fillForm()
         self.langDetect()
@@ -67,7 +68,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
     def connectSignalsSlots(self):
         self.btn_cancel.clicked.connect(self.close)
-        self.btn_ok.clicked.connect(self.finishCreation)
+        self.btn_ok.clicked.connect(self.modeSelector)
         self.cb_vhdu.currentTextChanged.connect(self.vhdAddingChange)
         self.cb_arch.currentTextChanged.connect(self.archChanged)
         self.btn_vhdp.clicked.connect(self.vhdBrowseLocation)
@@ -1214,6 +1215,15 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         return vmSpecs
     """
     
+    def modeSelector(self):
+        if self.permanent:
+            self.finishCreation()
+            
+        else:
+            self.oneTimeEdit()
+            
+        self.close()
+    
     def vhdManager(self):
         if platform.system() == "Windows":
             connection = platformSpecific.windowsSpecific.setupWindowsBackend()
@@ -1617,5 +1627,3 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
 
             dialog = ErrDialog(self)
             dialog.exec()
-
-        self.close()

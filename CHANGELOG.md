@@ -94,6 +94,7 @@
 - Editing the VM is now implemented.
 - Preparations for one-time edits have begun.
     - One-time edit functions are prepared.
+    - One-time edit is implemented.
 
 ## Known issues
 
