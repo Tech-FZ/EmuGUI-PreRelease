@@ -30,6 +30,7 @@ import translations.pl
 import locale
 import errors.errCodes
 from dialogExecution.errDialog import ErrDialog
+from dialogExecution.editVMNew import EditVMNewDialog
 import services.pathfinder as pf
 import errors.logman
 import services.vm_data as vmd
@@ -69,7 +70,12 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
             self.connection = platformSpecific.unixSpecific.setupUnixBackend()
         
     def connectSignalsSlots(self):
+        self.btn_oneTimeEdit.clicked.connect(self.openOneTimeEdit)
         self.btn_startVM.clicked.connect(self.startVirtualMachine)
+        
+    def openOneTimeEdit(self):
+        dialog = EditVMNewDialog(self.vmdata, False, self)
+        dialog.exec()
     
     def startVirtualMachine(self):
         connection = self.connection

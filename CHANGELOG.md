@@ -95,6 +95,7 @@
 - Preparations for one-time edits have begun.
     - One-time edit functions are prepared.
     - One-time edit is implemented.
+    - One-time edit can be accessed.
 
 ## Known issues
 
