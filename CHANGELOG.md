@@ -92,6 +92,7 @@
     - The main dialog is now opening that instead of the old one.
 - The vmdata converter has been removed again.
 - Editing the VM is now implemented.
+- Preparations for one-time edits have begun.
 
 ## Known issues
 

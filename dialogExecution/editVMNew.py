@@ -36,7 +36,7 @@ import services.vm_data as vmd
 from datetime import datetime
 
 class EditVMNewDialog(QDialog, Ui_Dialog):
-    def __init__(self, vmdata, parent=None):
+    def __init__(self, vmdata, permanent, parent=None):
         try:
             super().__init__(parent)
 

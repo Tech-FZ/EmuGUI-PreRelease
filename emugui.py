@@ -2401,7 +2401,7 @@ class Window(QMainWindow, Ui_MainWindow):
                         dialog.exec()
 
                     else:
-                        dialog = EditVMNewDialog(vmdata, self)
+                        dialog = EditVMNewDialog(vmdata, True, self)
                         dialog.exec()
                 
                     break
