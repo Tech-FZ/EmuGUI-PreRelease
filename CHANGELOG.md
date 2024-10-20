@@ -93,6 +93,7 @@
 - The vmdata converter has been removed again.
 - Editing the VM is now implemented.
 - Preparations for one-time edits have begun.
+    - One-time edit functions are prepared.
 
 ## Known issues
 

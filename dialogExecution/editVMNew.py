@@ -1213,16 +1213,8 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
         
         return vmSpecs
     """
-
-    def finishCreation(self):
-        with open(f"{self.exec_folder}translations/letqemudecide.txt", "r+", encoding="utf8") as letQemuDecideVariants:
-            letQemuDecideVariantsStr = letQemuDecideVariants.read()
-
-        with open(f"{self.exec_folder}translations/systemdefault.txt", "r+", encoding="utf8") as sysDefFile:
-            sysDefContent = sysDefFile.read()
-
-        # This applies the changes to your VM.
-        
+    
+    def vhdManager(self):
         if platform.system() == "Windows":
             connection = platformSpecific.windowsSpecific.setupWindowsBackend()
         
@@ -1230,21 +1222,7 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
             connection = platformSpecific.unixSpecific.setupUnixBackend()
 
         cursor = connection.cursor()
-
-        machine = self.cb_machine.currentText()
-        cpu = self.cb_cpu.currentText()
-
-        if cpu.startswith("Icelake-Client"):
-            cpu = "Icelake-Client"
-
-        ram = self.sb_ram.value()
-
-        if letQemuDecideVariantsStr.__contains__(machine):
-            machine = "Let QEMU decide"
-
-        if letQemuDecideVariantsStr.__contains__(cpu):
-            cpu = "Let QEMU decide"
-
+        
         if self.le_vhdp.text() == "" or self.le_vhdp.isEnabled() == False:
             vhd = "NULL"
         
@@ -1317,6 +1295,209 @@ class EditVMNewDialog(QDialog, Ui_Dialog):
                 
                 except:
                     print("The virtual disk could not be created. Please check if the path and the QEMU settings are correct.")
+                    
+        return vhd
+    
+    def oneTimeEdit(self):
+        with open(f"{self.exec_folder}translations/createnewvhd.txt", "r+", encoding="utf8") as creNewVhdFile:
+            creNewVhdContent = creNewVhdFile.read()
+
+        with open(f"{self.exec_folder}translations/addexistingvhd.txt", "r+", encoding="utf8") as addExistVhdFile:
+            addExistVhdContent = addExistVhdFile.read()
+
+        with open(f"{self.exec_folder}translations/addnovhd.txt", "r+", encoding="utf8") as noVhdFile:
+            noVhdContent = noVhdFile.read()
+
+        with open(f"{self.exec_folder}translations/letqemudecide.txt", "r+", encoding="utf8") as letQemuDecideFile:
+            letQemuDecideContent = letQemuDecideFile.read()
+                
+        self.vmdata.vm_name = self.le_name.text()
+        self.vmdata.arch = self.cb_arch.currentText()
+        
+        if letQemuDecideContent.__contains__(self.cb_machine.currentText()):
+            self.vmdata.machine = "Let QEMU decide"
+            
+        else:
+            self.vmdata.machine = self.cb_machine.currentText()
+        
+        if letQemuDecideContent.__contains__(self.cb_cpu.currentText()):
+            self.vmdata.cpu = "Let QEMU decide"
+        
+        else:
+            self.vmdata.cpu = self.cb_cpu.currentText()
+            
+        self.vmdata.cores = self.sb_cpuc.value()
+        self.vmdata.ram = self.sb_ram.value()
+        
+        if letQemuDecideContent.__contains__(self.cb_vga.currentText()):
+            self.vmdata.vga = "Let QEMU decide"
+            
+        else:
+            self.vmdata.vga = self.cb_vga.currentText()
+        
+        self.vmdata.net = self.cb_net.currentText()
+        self.vmdata.biosdir = self.le_biosloc.text()
+        self.vmdata.biosfile = self.le_biosf.text()
+        self.vmdata.sound = self.cb_sound.currentText()
+        self.vmdata.kernel = self.le_kernel.text()
+        self.vmdata.initrd = self.le_initrd.text()
+        self.vmdata.linuxcmd = self.le_cmd.text()
+        self.vmdata.mouse = self.cb_mouse.currentText()
+        self.vmdata.kbd = self.cb_kbdtype.currentText()
+        self.vmdata.kbdlayout = self.cb_kbdlayout.currentText()
+        
+        if self.chb_usb.isChecked():
+            self.vmdata.usb_support = "1"
+            
+        else:
+            self.vmdata.usb_support = "0"
+        
+        self.vmdata.usb_controller = self.cb_usb.currentText()
+        self.vmdata.hwaccel = self.cb_accel.currentText()
+        
+        if letQemuDecideContent.__contains__(self.cb_cdc1.currentText()):
+            self.vmdata.cd_control1 = "Let QEMU decide"
+        
+        else:
+            self.vmdata.cd_control1 = self.cb_cdc1.currentText()
+            
+        if letQemuDecideContent.__contains__(self.cb_cdc2.currentText()):
+            self.vmdata.cd_control2 = "Let QEMU decide"
+        
+        else:
+            self.vmdata.cd_control2 = self.cb_cdc2.currentText()
+            
+        if letQemuDecideContent.__contains__(self.cb_hddc.currentText()):
+            self.vmdata.hda_control = "Let QEMU decide"
+        
+        else:
+            self.vmdata.hda_control = self.cb_hddc.currentText()
+        
+        self.vmdata.cd1 = self.le_cd1.text()
+        self.vmdata.cd2 = self.le_cd2.text()
+        
+        if letQemuDecideContent.__contains__(self.cb_bootfrom.currentText()):
+            self.vmdata.bootfrom = "Let QEMU decide"
+        
+        else:
+            self.vmdata.bootfrom = self.cb_bootfrom.currentText()
+        
+        self.vmdata.floppy = self.le_floppy.text()
+        
+        if self.dtb_rtc.isEnabled():
+            self.vmdata.timemgr = self.dtb_rtc.text()
+            
+        else:
+            self.vmdata.timemgr = "system"
+            
+        self.vmdata.hda = self.vhdManager()
+        self.vmdata.addargs = self.le_addargs.text()
+
+    def finishCreation(self):
+        with open(f"{self.exec_folder}translations/letqemudecide.txt", "r+", encoding="utf8") as letQemuDecideVariants:
+            letQemuDecideVariantsStr = letQemuDecideVariants.read()
+
+        with open(f"{self.exec_folder}translations/systemdefault.txt", "r+", encoding="utf8") as sysDefFile:
+            sysDefContent = sysDefFile.read()
+
+        # This applies the changes to your VM.
+        
+        if platform.system() == "Windows":
+            connection = platformSpecific.windowsSpecific.setupWindowsBackend()
+        
+        else:
+            connection = platformSpecific.unixSpecific.setupUnixBackend()
+
+        cursor = connection.cursor()
+
+        machine = self.cb_machine.currentText()
+        cpu = self.cb_cpu.currentText()
+
+        if cpu.startswith("Icelake-Client"):
+            cpu = "Icelake-Client"
+
+        ram = self.sb_ram.value()
+
+        if letQemuDecideVariantsStr.__contains__(machine):
+            machine = "Let QEMU decide"
+
+        if letQemuDecideVariantsStr.__contains__(cpu):
+            cpu = "Let QEMU decide"
+            
+        vhd = self.vhdManager()
+
+        """ if self.le_vhdp.text() == "" or self.le_vhdp.isEnabled() == False:
+            vhd = "NULL"
+        
+        else:
+            vhd = self.le_vhdp.text()
+
+            if platform.system() == "Windows":
+                tempVmDef = platformSpecific.windowsSpecific.windowsTempVmStarterFile()
+        
+            else:
+                tempVmDef = platformSpecific.unixSpecific.unixTempVmStarterFile()
+
+            with open(tempVmDef, "r+") as tempVmDefFile:
+                vmSpecsRaw = tempVmDefFile.readlines()
+
+            vhdAction = vmSpecsRaw[0]
+
+            if self.cb_vhdf.isEnabled():
+                vhdAction = "overwrite"
+
+            else:
+                vhdAction = "keep"
+
+            get_qemu_img_bin = ""
+            SELECT value FROM settings
+            WHERE name = "qemu-img"
+            ""
+
+            vhd_cmd = ""
+
+            try:
+                cursor.execute(get_qemu_img_bin)
+                connection.commit()
+                result = cursor.fetchall()
+                qemu_binary = result[0][0]
+                vhd_size_in_b = None
+
+                if self.cb_maxsize.currentText().startswith("K"):
+                    vhd_size_in_b = self.sb_maxsize.value() * 1024
+
+                elif self.cb_maxsize.currentText().startswith("M"):
+                    vhd_size_in_b = self.sb_maxsize.value() * 1024 * 1024
+
+                elif self.cb_maxsize.currentText().startswith("G"):
+                    vhd_size_in_b = self.sb_maxsize.value() * 1024 * 1024 * 1024
+
+                print(vhd_size_in_b)
+
+                vhd_cmd = f"{qemu_binary} create -f {self.cb_vhdf.currentText()} \"{vhd}\" {str(vhd_size_in_b)}"
+
+                if vhdAction.startswith("overwrite"):
+                    subprocess.Popen(vhd_cmd)
+
+                print("The query was executed and the virtual disk created successfully.")
+        
+            except sqlite3.Error as e:
+                print(f"The SQLite module encountered an error: {e}.")
+
+            except:
+                print(f"The query was executed successfully, but the virtual disk couldn't be created. Trying to use subprocess.run")
+
+                try:
+                    #vhd_cmd_split = vhd_cmd.split(" ")
+                    vhd_cmd_split = [qemu_binary, "create", "-f", self.cb_vhdf.currentText(), vhd, str(vhd_size_in_b)]
+
+                    if vhdAction.startswith("overwrite"):
+                        subprocess.run(vhd_cmd_split)
+
+                    print("The query was executed and the virtual disk created successfully.")
+                
+                except:
+                    print("The virtual disk could not be created. Please check if the path and the QEMU settings are correct.") """
 
         if letQemuDecideVariantsStr.__contains__(self.cb_vga.currentText()):
             vga = "Let QEMU decide"
