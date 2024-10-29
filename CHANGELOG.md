@@ -1,4 +1,4 @@
-# EmuGUI v2.1.0.57xy_dev "Fatima Nejla" (based on v2.1.0.5700_dev)
+# EmuGUI v2.1.0.5702_dev "Fatima Nejla" (based on v2.1.0.5701_dev)
 
 ## WARNING
 
