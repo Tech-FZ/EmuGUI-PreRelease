@@ -107,11 +107,13 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         self.btn_cancel4.clicked.connect(self.close)
         self.btn_next4.clicked.connect(self.extBios)
 
-        # Page 5 (External BIOS)
+        # Page 5 (External BIOS and Floppy)
         self.btn_prev5.clicked.connect(self.vgaNetworkMenu)
         self.btn_cancel5.clicked.connect(self.close)
         self.btn_next5.clicked.connect(self.soundCard)
         self.btn_biosF.clicked.connect(self.extBiosFileLocation)
+        self.chb_rtc.checkStateChanged.connect(self.rtcTimeCheckboxHandler)
+        self.btn_floppy.clicked.connect(self.floppyLocation)
 
         # Page 6 (Sound card)
         self.btn_prev6.clicked.connect(self.extBios)
@@ -125,7 +127,9 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         self.btn_cancel7.clicked.connect(self.close)
         self.btn_next7.clicked.connect(self.accelSettings)
 
-        # Page 8 (Acceleration options)
+        # Page 8 (Acceleration/CD options)
+        self.btn_cd1.clicked.connect(self.cd1Location)
+        self.btn_cd2.clicked.connect(self.cd2Location)
         self.btn_prev8.clicked.connect(self.linuxVMSpecific)
         self.btn_next8.clicked.connect(self.win2kHacker)
         self.btn_cancel8.clicked.connect(self.close)
@@ -710,6 +714,31 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
 
         if filename:
             self.le_biosF.setText(filename)
+            
+    def rtcTimeCheckboxHandler(self):
+        if self.chb_rtc.isChecked():
+            self.dtb_rtc.setEnabled(True)
+            
+        else:
+            self.dtb_rtc.setEnabled(False)
+            
+    def floppyLocation(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select floppy disk', dir='.', filter='Floppy image (*.img);;Floppy file (*.flp);;Floppy image (*.ima);;All files (*.*)')
+
+        if filename:
+            self.le_floppy.setText(filename)
+            
+    def cd1Location(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select first ISO file', dir='.', filter='ISO image (*.iso);;All files (*.*)')
+
+        if filename:
+            self.le_cd1.setText(filename)
+            
+    def cd2Location(self):
+        filename, filter = QFileDialog.getOpenFileName(parent=self, caption='Select second ISO file', dir='.', filter='ISO image (*.iso);;All files (*.*)')
+
+        if filename:
+            self.le_cd2.setText(filename)
 
     def soundCard(self):
         self.stackedWidget.setCurrentIndex(5)
@@ -899,6 +928,18 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
         
         else:
             accelerator = self.cb_accel.currentText()
+            
+        if self.dtb_rtc.isEnabled():
+            timemgr = self.dtb_rtc.text()
+            
+        else:
+            timemgr = "system"
+            
+        if letQemuDecideVariantsStr.__contains__(self.cb_bootfrom.currentText()):
+            bootfrom = "Let QEMU decide"
+            
+        else:
+            bootfrom = self.cb_bootfrom.currentText()
         
         insert_into_vm_database = f"""
         INSERT INTO virtualmachines (
@@ -928,7 +969,12 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             acceltype,
             storagecontrollercd1,
             storagecontrollercd2,
-            hdacontrol
+            hdacontrol,
+            cd1,
+            cd2,
+            floppy,
+            timemgr,
+            bootfrom
         ) VALUES (
             "{self.le_vmname.text()}",
             "{self.cb_arch.currentText()}",
@@ -956,7 +1002,12 @@ class NewVirtualMachineDialog(QDialog, Ui_Dialog):
             "{accelerator}",
             "{cd_control1}",
             "{cd_control2}",
-            "{hda_control}"
+            "{hda_control}",
+            "{self.le_cd1.text()}",
+            "{self.le_cd2.text()}",
+            "{self.le_floppy.text()}",
+            "{timemgr}",
+            "{bootfrom}"
         );
         """
 

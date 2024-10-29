@@ -56,6 +56,7 @@ from dialogExecution.editVMNew import EditVMNewDialog
 from dialogExecution.win81NearEOS import Win812012R2NearEOS
 from dialogExecution.errDialog import ErrDialog
 from dialogExecution.settingsRequireRestart import *
+from dialogExecution.startVMNew import StartVmNewDialog
 
 try:
     import translations.de
@@ -111,6 +112,8 @@ except:
     print("Error code: W-12-JBJM9")
     print("If this error occurs multiple times, contact your administrator and/or ask for help on the EmuGUI Discord Server or on its GitHub repository.")
 
+import services.vm_data as vmd
+
 class Window(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         # This function initializes and runs EmuGUI
@@ -129,7 +132,7 @@ class Window(QMainWindow, Ui_MainWindow):
         logman = errors.logman.LogMan()
         logman.generateLogID()
         logman.logFile = logman.setLogFile()
-        self.version = "2.1.0.5701_dev"
+        self.version = "2.1.0.57xy_dev"
 
         self.architectures = [
             ["i386", self.lineEdit_4],
@@ -460,7 +463,12 @@ class Window(QMainWindow, Ui_MainWindow):
             acceltype TEXT DEFAULT "None" NOT NULL,
             storagecontrollercd1 TEXT DEFAULT "Let QEMU decide" NOT NULL,
             storagecontrollercd2 TEXT DEFAULT "Let QEMU decide" NOT NULL,
-            hdacontrol TEXT DEFAULT "Let QEMU decide" NOT NULL
+            hdacontrol TEXT DEFAULT "Let QEMU decide" NOT NULL,
+            cd1 TEXT,
+            cd2 TEXT,
+            floppy TEXT,
+            timemgr TEXT DEFAULT "system" NOT NULL,
+            bootfrom TEXT DEFAULT "Let QEMU decide" NOT NULL
         );
         """
 
@@ -513,6 +521,11 @@ class Window(QMainWindow, Ui_MainWindow):
 
         select12ColumnsVM2 = """
         SELECT hdacontrol FROM virtualmachines;
+        """
+        
+        # The v2.1 feature set
+        select21ColumnsVM = """
+        SELECT cd1, cd2, floppy, timemgr, bootfrom FROM virtualmachines;
         """
 
         insertSoundColVM = """
@@ -588,6 +601,31 @@ class Window(QMainWindow, Ui_MainWindow):
         inserthdaControlVM = """
         ALTER TABLE virtualmachines
         ADD COLUMN hdacontrol TEXT DEFAULT "Let QEMU decide" NOT NULL;
+        """
+        
+        insertCd1VM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN cd1 TEXT;
+        """
+        
+        insertCd2VM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN cd2 TEXT;
+        """
+        
+        insertFloppyVM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN floppy TEXT;
+        """
+        
+        insertTimemgrVM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN timemgr TEXT DEFAULT "system" NOT NULL;
+        """
+        
+        insertBootfromVM = """
+        ALTER TABLE virtualmachines
+        ADD COLUMN bootfrom TEXT DEFAULT "Let QEMU decide" NOT NULL;
         """
 
         insert_qemu_img = """
@@ -1526,6 +1564,47 @@ class Window(QMainWindow, Ui_MainWindow):
 
                 dialog = ErrDialog(self)
                 dialog.exec()
+                
+        try:
+            cursor.execute(select21ColumnsVM)
+            connection.commit()
+            result = cursor.fetchall()
+
+            try:
+                qemu_img_slot = str(result[0])
+                print("The query was executed successfully. The v2.1 feature columns already are in the VM table.")
+
+            except:
+                pass
+        
+        except sqlite3.Error as e:
+            try:
+                features21 = [insertCd1VM, insertCd2VM, insertFloppyVM, insertTimemgrVM, insertBootfromVM]
+                
+                for feature in features21:
+                    cursor.execute(feature)
+                    connection.commit()
+                    
+                print("The queries were executed successfully. The missing features have been added to the database.")
+            
+            except sqlite3.Error as e:
+                print(f"The SQLite module encountered an error: {e}.")
+
+                if platform.system() == "Windows":
+                    errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
+        
+                else:
+                    errorFile = platformSpecific.unixSpecific.unixErrorFile()
+
+                with open(errorFile, "w+") as errCodeFile:
+                    errCodeFile.write(errors.errCodes.errCodes[2])
+
+                logman.writeToLogFile(
+                    f"{errors.errCodes.errCodes[2]}: Could not connect to the database to update the VM list."
+                    )
+
+                dialog = ErrDialog(self)
+                dialog.exec()
 
         try:
             cursor.execute(debug_db_settings)
@@ -1614,6 +1693,7 @@ class Window(QMainWindow, Ui_MainWindow):
         cursor = connection.cursor()
         logman = errors.logman.LogMan()
         logman.logFile = logman.setLogFile()
+        
 
         try:
             cursor.execute(debug_db_settings)
@@ -1628,7 +1708,7 @@ class Window(QMainWindow, Ui_MainWindow):
             get_vm_to_start = f"""
             SELECT architecture, machine, cpu, ram, hda, vga, net, usbtablet, win2k, dirbios, additionalargs, sound, linuxkernel,
             linuxinitrid, linuxcmd, mousetype, cores, filebios, keyboardtype, usbsupport, usbcontroller, kbdtype, acceltype,
-            storagecontrollercd1, storagecontrollercd2, hdacontrol
+            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy, timemgr, bootfrom
             FROM virtualmachines WHERE name = '{selectedVM}'
             """
 
@@ -1638,33 +1718,19 @@ class Window(QMainWindow, Ui_MainWindow):
                 result = cursor.fetchall()
 
                 print(result)
+                
+                vmdata = vmd.VirtualMachineData(
+                    selectedVM, result[0][0], result[0][1], result[0][2], result[0][16], result[0][3], result[0][5], result[0][6],
+                    result[0][9], result[0][17], result[0][11], result[0][12], result[0][13], result[0][14], result[0][15], result[0][18],
+                    result[0][21], result[0][19], result[0][20], result[0][22], result[0][23], result[0][24], result[0][25], result[0][26],
+                    result[0][27], result[0][28], result[0][29], result[0][30], result[0][4], result[0][10]
+                    )
 
                 architecture_of_vm = result[0][0]
-                machine_of_vm = result[0][1]
                 cpu_of_vm = result[0][2]
-                ram_of_vm = result[0][3]
-                hda_of_vm = result[0][4]
-                vga_of_vm = result[0][5]
-                net_of_vm = result[0][6]
                 usbtablet_wanted = result[0][7]
                 os_is_win2k = result[0][8]
-                dir_bios = result[0][9]
-                additional_arguments = result[0][10]
-                sound_card = result[0][11]
-                linux_kernel = result[0][12]
-                linux_initrid = result[0][13]
-                linux_cmd = result[0][14]
-                mouse_type = result[0][15]
-                cpu_cores = result[0][16]
-                file_bios = result[0][17]
-                kbd_type = result[0][18]
-                usb_support = result[0][19]
-                usb_controller = result[0][20]
-                kbd_layout = result[0][21]
                 accel_type = result[0][22]
-                cd_control1 = result[0][23]
-                cd_control2 = result[0][24]
-                hda_control = result[0][25]
 
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -1684,60 +1750,7 @@ class Window(QMainWindow, Ui_MainWindow):
 
                 dialog = ErrDialog(self)
                 dialog.exec()
-
-            if platform.system() == "Windows":
-                tempVmDef = platformSpecific.windowsSpecific.windowsTempVmStarterFile()
-        
-            else:
-                tempVmDef = platformSpecific.unixSpecific.unixTempVmStarterFile()
                 
-            try:
-                with open(tempVmDef, "w+") as tempVmDefFile:
-                    tempVmDefFile.write(selectedVM + "\n")
-                    tempVmDefFile.write(architecture_of_vm + "\n")
-                    tempVmDefFile.write(machine_of_vm + "\n")
-                    tempVmDefFile.write(cpu_of_vm + "\n")
-                    tempVmDefFile.write(str(ram_of_vm) + "\n")
-                    tempVmDefFile.write(hda_of_vm + "\n")
-                    tempVmDefFile.write(vga_of_vm + "\n")
-                    tempVmDefFile.write(net_of_vm + "\n")
-                    tempVmDefFile.write(str(usbtablet_wanted) + "\n")
-                    tempVmDefFile.write(str(os_is_win2k) + "\n")
-                    tempVmDefFile.write(dir_bios + "\n")
-                    tempVmDefFile.write(additional_arguments + "\n")
-                    tempVmDefFile.write(sound_card + "\n")
-                    tempVmDefFile.write(linux_kernel + "\n")
-                    tempVmDefFile.write(linux_initrid + "\n")
-                    tempVmDefFile.write(linux_cmd + "\n")
-                    tempVmDefFile.write(mouse_type + "\n")
-                    tempVmDefFile.write(str(cpu_cores) + "\n")
-                    tempVmDefFile.write(str(file_bios) + "\n")
-                    tempVmDefFile.write(kbd_type + "\n")
-                    tempVmDefFile.write(str(usb_support) + "\n")
-                    tempVmDefFile.write(usb_controller + "\n")
-                    tempVmDefFile.write(kbd_layout + "\n")
-                    tempVmDefFile.write(accel_type + "\n")
-                    tempVmDefFile.write(cd_control1 + "\n")
-                    tempVmDefFile.write(cd_control2 + "\n")
-                    tempVmDefFile.write(hda_control + "\n")
-
-            except:
-                if platform.system() == "Windows":
-                    errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
-        
-                else:
-                    errorFile = platformSpecific.unixSpecific.unixErrorFile()
-
-                with open(errorFile, "w+") as errCodeFile:
-                    errCodeFile.write(errors.errCodes.errCodes[36])
-
-                logman.writeToLogFile(
-                    f"{errors.errCodes.errCodes[36]}: Could not write VM data onto temporary definition file."
-                    )
-
-                dialog = ErrDialog(self)
-                dialog.exec()
-
             if usbtablet_wanted == 1:
                 if platform.system() == "Windows":
                     errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
@@ -1801,7 +1814,7 @@ class Window(QMainWindow, Ui_MainWindow):
                     for res in result_settings:
                         if res[0] == f"qemu-system-{architecture_of_vm}":
                             if res[1] != "":
-                                dialog = StartVirtualMachineDialog(self)
+                                dialog = StartVmNewDialog(vmdata, self)
                                 dialog.exec()
                                 arch_supported = True
                                 break
@@ -1884,7 +1897,7 @@ class Window(QMainWindow, Ui_MainWindow):
             get_vm_to_start = f"""
             SELECT architecture, machine, cpu, ram, hda, vga, net, usbtablet, win2k, dirbios, additionalargs, sound, linuxkernel,
             linuxinitrid, linuxcmd, mousetype, cores, filebios, keyboardtype, usbsupport, usbcontroller, kbdtype, acceltype,
-            storagecontrollercd1, storagecontrollercd2, hdacontrol
+            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy
             FROM virtualmachines WHERE name = '{selectedVM}'
             """
 
@@ -2274,7 +2287,7 @@ class Window(QMainWindow, Ui_MainWindow):
             get_vm_to_start = f"""
             SELECT architecture, machine, cpu, ram, hda, vga, net, usbtablet, win2k, dirbios, additionalargs, sound, linuxkernel,
             linuxinitrid, linuxcmd, mousetype, cores, filebios, keyboardtype, usbsupport, usbcontroller, kbdtype, acceltype,
-            storagecontrollercd1, storagecontrollercd2, hdacontrol
+            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy, timemgr, bootfrom
             FROM virtualmachines WHERE name = '{selectedVM}'
             """
 
@@ -2285,32 +2298,18 @@ class Window(QMainWindow, Ui_MainWindow):
 
                 print(result)
 
+                vmdata = vmd.VirtualMachineData(
+                    selectedVM, result[0][0], result[0][1], result[0][2], result[0][16], result[0][3], result[0][5], result[0][6],
+                    result[0][9], result[0][17], result[0][11], result[0][12], result[0][13], result[0][14], result[0][15], result[0][18],
+                    result[0][21], result[0][19], result[0][20], result[0][22], result[0][23], result[0][24], result[0][25], result[0][26],
+                    result[0][27], result[0][28], result[0][29], result[0][30], result[0][4], result[0][10]
+                    )
+
                 architecture_of_vm = result[0][0]
-                machine_of_vm = result[0][1]
                 cpu_of_vm = result[0][2]
-                ram_of_vm = result[0][3]
-                hda_of_vm = result[0][4]
-                vga_of_vm = result[0][5]
-                net_of_vm = result[0][6]
                 usbtablet_wanted = result[0][7]
                 os_is_win2k = result[0][8]
-                dir_bios = result[0][9]
-                additional_arguments = result[0][10]
-                sound_card = result[0][11]
-                linux_kernel = result[0][12]
-                linux_initrid = result[0][13]
-                linux_cmd = result[0][14]
-                mouse_type = result[0][15]
-                cpu_cores = result[0][16]
-                file_bios = result[0][17]
-                kbd_type = result[0][18]
-                usb_support = result[0][19]
-                usb_controller = result[0][20]
-                kbd_layout = result[0][21]
                 accel_type = result[0][22]
-                cd_control1 = result[0][23]
-                cd_control2 = result[0][24]
-                hda_control = result[0][25]
 
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -2337,7 +2336,7 @@ class Window(QMainWindow, Ui_MainWindow):
             else:
                 tempVmDef = platformSpecific.unixSpecific.unixTempVmStarterFile()
                 
-            try:
+            """ try:
                 with open(tempVmDef, "w+") as tempVmDefFile:
                     tempVmDefFile.write(selectedVM + "\n")
                     tempVmDefFile.write(architecture_of_vm + "\n")
@@ -2382,7 +2381,7 @@ class Window(QMainWindow, Ui_MainWindow):
                         )
 
                 dialog = ErrDialog(self)
-                dialog.exec()
+                dialog.exec() """
 
             i = 0
 
@@ -2402,7 +2401,7 @@ class Window(QMainWindow, Ui_MainWindow):
                         dialog.exec()
 
                     else:
-                        dialog = EditVMNewDialog(self)
+                        dialog = EditVMNewDialog(vmdata, True, self)
                         dialog.exec()
                 
                     break
