@@ -100,6 +100,7 @@
     - One-time edit functions are prepared.
     - One-time edit is implemented.
     - One-time edit can be accessed.
+- The HDA stuff had to be migrated.
 
 ## Known issues
 

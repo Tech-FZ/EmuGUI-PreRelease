@@ -119,7 +119,7 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                 qemu_cmd_list.append(f"base=\"{dateTimeForVM}\",clock=vm")
 
             if self.vmdata.hda != "NULL":
-                if magic.from_file(self.vmSpecs[5]) == "block special":
+                if magic.from_file(self.vmdata.hda) == "block special":
                     qemu_cmd = qemu_cmd + f" -drive format=raw,file=\"{self.vmdata.hda}\""
                     qemu_cmd_list.append("-drive")
                     qemu_cmd_list.append(f"format=raw,file=\"{self.vmdata.hda}\"")
@@ -134,15 +134,15 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                         qemu_cmd = qemu_cmd + " -drive"
                         qemu_cmd_list.append("-drive")
 
-                        if self.vmSpecs[26] == "IDE":
+                        if self.vmdata.hda_control == "IDE":
                             qemu_cmd = qemu_cmd + f" file=\"{self.vmdata.hda}\",if=ide,media=disk"
                             qemu_cmd_list.append(f"file=\"{self.vmdata.hda}\",if=ide,media=disk")
 
-                        elif self.vmSpecs[26] == "VirtIO SCSI":
+                        elif self.vmdata.hda_control == "VirtIO SCSI":
                             qemu_cmd = qemu_cmd + f" file=\"{self.vmdata.hda}\",if=none,discard=unmap,aio=native,cache=none,id=hd1 -device scsi-hd,drive=hd1,bus=scsi0.0"
                             qemu_cmd_list.append(f"file=\"{self.vmdata.hda}\",if=none,discard=unmap,aio=native,cache=none,id=hd1 -device scsi-hd,drive=hd1,bus=scsi0.0")
 
-                        elif self.vmSpecs[26] == "AHCI":
+                        elif self.vmdata.hda_control == "AHCI":
                             qemu_cmd = qemu_cmd + f" file=\"{self.vmdata.hda}\",if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0"
                             qemu_cmd_list.append(f"file=\"{self.vmdata.hda}\",if=none -device ahci,id=ahci -device ide-hd,drive=disk,bus=ahci.0")
 
