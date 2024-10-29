@@ -149,6 +149,9 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
             if self.vmdata.machine != "Let QEMU decide":
                 qemu_cmd = qemu_cmd + f" -M {self.vmdata.machine}"
 
+            elif self.vmdata.arch == "aarch64" or self.vmdata.arch == "arm":
+                qemu_cmd = qemu_cmd + " -M virt"
+
             if self.vmdata.cpu != "Let QEMU decide":
                 qemu_cmd = qemu_cmd + f" -cpu {self.vmdata.cpu}"
 
