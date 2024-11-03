@@ -1,12 +1,13 @@
 import os
 import sqlite3
 from pathlib import Path
+from win32com.shell import shell, shellcon
 
 def setupWindowsBackend():
     connection = None
 
     try:
-        connection = sqlite3.connect(f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\virtual_machines.sqlite")
+        connection = sqlite3.connect(f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\virtual_machines.sqlite")
         print("Connection established.")
 
     except sqlite3.Error as e:
@@ -14,14 +15,14 @@ def setupWindowsBackend():
 
         try:
             windowsCreEmuGUIFolder()
-            file = open(f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\virtual_machines.sqlite", "w+")
+            file = open(f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\virtual_machines.sqlite", "w+")
             file.close()
 
         except:
             print("EmuGUI wasn't able to create the file.")
 
         try:
-            connection = sqlite3.connect(f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\virtual_machines.sqlite")
+            connection = sqlite3.connect(f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\virtual_machines.sqlite")
             print("Connection established.")
 
         except sqlite3.Error as e:
@@ -30,30 +31,30 @@ def setupWindowsBackend():
     return connection
 
 def windowsTempVmStarterFile():
-    fileName = f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\vmstart.txt"
+    fileName = f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\vmstart.txt"
     return fileName
 
 def windowsLanguageFile():
-    fileName = f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\lang.txt"
+    fileName = f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\lang.txt"
     return fileName
 
 def windowsUpdateFile():
-    fileName = f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\update.txt"
+    fileName = f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\update.txt"
     return fileName
 
 def windowsExportFile():
-    fileName = f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\vmdef.txt"
+    fileName = f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\vmdef.txt"
     return fileName
 
 def windowsErrorFile():
-    fileName = f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\error.txt"
+    fileName = f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\error.txt"
 
     return fileName
 
 def windowsLogFile(logID):
-    fileName = f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI\\log-{logID}.txt"
+    fileName = f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI\\log-{logID}.txt"
 
     return fileName
 
 def windowsCreEmuGUIFolder():
-    Path(f"{os.environ['USERPROFILE']}\\Documents\\EmuGUI").mkdir(parents=True, exist_ok=True)
+    Path(f"{shell.SHGetFolderPath(0,shellcon.CSIDL_PERSONAL, None, 0)}\\EmuGUI").mkdir(parents=True, exist_ok=True)

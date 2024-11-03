@@ -44,7 +44,7 @@
 
 ## Changes compared to v2.1.0.5702_dev
 
-- pending
+- EmuGUI now utilises the Win32 API on Windows. This is to fix an issue where EmuGUI is not able to determine the Documents folder properly.
 
 ## Known issues
 
