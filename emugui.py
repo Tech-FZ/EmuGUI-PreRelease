@@ -213,19 +213,19 @@ class Window(QMainWindow, Ui_MainWindow):
             f"{errors.errCodes.errCodes[44]}: Device contains {psutil.virtual_memory().total} bytes of RAM"
             )
         
-        if round(psutil.virtual_memory().total / (1024 * 3), 2) < 3.84: # Ik, should be 4, but I defined 3.84 GB bc of most PC's habits of taking some RAM away
+        if round(psutil.virtual_memory().total / (1024 ** 3), 2) < 3.84: # Ik, should be 4, but I defined 3.84 GB bc of most PC's habits of taking some RAM away
             logman.writeToLogFile(
                 f"{errors.errCodes.errCodes[45]}: Less than 4 GB of RAM detected! Proceed at your own risk. Support requests won't be prioritised."
                 )
             
         if platform.system() == "Windows":
             winvers = sys.getwindowsversion()
-            if winvers.build >= 21296 and round(psutil.virtual_memory().total / (1024 * 3), 2) < 5.84:
+            if winvers.build >= 21296 and round(psutil.virtual_memory().total / (1024 ** 3), 2) < 5.84:
                 logman.writeToLogFile(
                     f"{errors.errCodes.errCodes[46]}: Less than 6 GB of RAM detected! As you're using Windows 11, proceed at your own risk. Support requests won't be prioritised."
                     )
                 
-        if round(psutil.virtual_memory().total / (1024 * 3), 2) < 7.84:
+        if round(psutil.virtual_memory().total / (1024 ** 3), 2) < 7.84:
             logman.writeToLogFile(
                 f"{errors.errCodes.errCodes[45]}: Starting 11th November, 2025, you will need 8 GB of RAM (12 GB if you use integrated graphics)."
             )
@@ -280,7 +280,7 @@ class Window(QMainWindow, Ui_MainWindow):
         self.prepareDatabase(self.connection)
         self.updateVmList()
 
-        if (os.cpu_count() < 4 or round(psutil.virtual_memory().total / (1024 * 3), 2) < 7.84 or (platform.system() == "Windows" and sys.getwindowsversion().build < 14393)):
+        if (os.cpu_count() < 4 or round(psutil.virtual_memory().total / (1024 ** 3), 2) < 7.84 or (platform.system() == "Windows" and sys.getwindowsversion().build < 14393)):
             self.label_8.setText(self.label_8.text() + f"\nYour computer will be unsupported in its current form starting 11th November, 2025. Please check the logs, your system information and your upgrade/replacement options to see what you can do to keep using EmuGUI properly.")
     
     def resizeEvent(self, event: QtGui.QResizeEvent):
