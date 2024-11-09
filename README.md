@@ -58,7 +58,7 @@ These requirements will be valid starting 11th November, 2025. If you are better
 | OS | Windows 10 *Version 1607*, Windows Server 2016 or later (x64); The latest (LTS) version of your Linux distribution (x64) |
 | Python | *3.9* or newer |
 | Processor | x64 Processor *with 4 threads (can be 2 or 4 cores)* and *@2.5 GHz*¹ |
-| RAM | *8* GB *(12 GB if using integrated graphics)*¹ |
+| RAM | *8* GB (*12 GB if using integrated graphics*)¹ |
 | HDD | *4* GB¹ |
 | Graphics | *DirectX 11 or OpenGL 3.3*² |
 

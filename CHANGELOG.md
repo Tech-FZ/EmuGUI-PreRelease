@@ -108,6 +108,7 @@
 - The logs now tell you if your system is unsupported.
 - In the "About" section, you will read a message about this thing (now also for RAM).
 - You will find the updated requirements in the readme.
+    - Formatting fixed
 
 ## Known issues
 
