@@ -230,6 +230,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 f"{errors.errCodes.errCodes[45]}: Starting 11th November, 2025, you will need 8 GB of RAM (12 GB if you use integrated graphics)."
             )
 
+        self.label_8.setWordWrap(True)
         self.label_8.setText(f"EmuGUI {self.version}\nCodename 'Fatima Nejla'")
         self.setWindowTitle(f"EmuGUI {self.version}")
 
@@ -279,14 +280,8 @@ class Window(QMainWindow, Ui_MainWindow):
         self.prepareDatabase(self.connection)
         self.updateVmList()
 
-        if platform.system() == "Windows":
-            winvers = sys.getwindowsversion()
-            if winvers.major <= 6 and winvers.minor <= 3:
-                dialog = Win812012R2NearEOS(self)
-                dialog.exec()
-                
-                self.label_8.setText(
-                    f"EmuGUI {self.version}\nCodename 'Ioana Rosa'\nYour OS is no longer supported by EmuGUI. You should upgrade at least to Windows 10. You're currently running Windows {platform.release()}")
+        if (os.cpu_count() < 4 or round(psutil.virtual_memory().total / (1024 * 3), 2) < 7.84 or (platform.system() == "Windows" and sys.getwindowsversion().build < 14393)):
+            self.label_8.setText(self.label_8.text() + f"\nYour computer will be unsupported in its current form starting 11th November, 2025. Please check the logs, your system information and your upgrade/replacement options to see what you can do to keep using EmuGUI properly.")
     
     def resizeEvent(self, event: QtGui.QResizeEvent):
         super().resizeEvent(event)

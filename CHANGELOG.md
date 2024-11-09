@@ -106,6 +106,7 @@
 ## Changes compared to v2.1.0.57aa_dev
 
 - The logs now tell you if your system is unsupported.
+- In the "About" section, you will read a message about this thing.
 
 ## Known issues
 
@@ -114,6 +115,7 @@
 - As for the TPM functionality, you must run `mkdir (insert-path-here)` and `swtpm socket --tpm2 --tpmstate dir=(insert-path-here) --ctrl type=unixio,path=(insert-path-here)/swtpm-sock --log level=20` in a terminal (You can leave the `--tpm2` argument away tho if you plan to use TPM 1.2 instead).
 - The QCOW2 format is prone to not work for some Windows VMs.
 - The new settings aren't applied yet. However, as the way to temporarily save VM settings is to be changed anyway, this won't be fixed until then.
+- The RAM checks don't work properly.
 
 # EmuGUI v2.1.0.57aa_dev "Fatima Nejla" (based on v2.1.0.5702_dev)
 
