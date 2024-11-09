@@ -132,7 +132,7 @@ class Window(QMainWindow, Ui_MainWindow):
         logman = errors.logman.LogMan()
         logman.generateLogID()
         logman.logFile = logman.setLogFile()
-        self.version = "2.1.0.57aa_dev"
+        self.version = "2.1.0.57ab_dev"
 
         self.architectures = [
             ["i386", self.lineEdit_4],
@@ -185,6 +185,11 @@ class Window(QMainWindow, Ui_MainWindow):
             logman.writeToLogFile(
                 f"{errors.errCodes.errCodes[40]}: Device powered by {platform.uname().system} {platform.uname().release}, Version {platform.uname().version}"
                 )
+            
+        if platform.system() == "Windows" and sys.getwindowsversion().build <= 14393:
+            logman.writeToLogFile(
+                f"{errors.errCodes.errCodes[31]}: Starting 11th November, 2025, you will need to update to Windows 10 1607 or later. Replacing Windows 10 entirely is recommended."
+            )
         
         logman.writeToLogFile(
             f"{errors.errCodes.errCodes[41]}: EmuGUI powered by Python {platform.python_version()} {platform.python_branch()}, compiled with {platform.python_compiler()}"
@@ -198,6 +203,11 @@ class Window(QMainWindow, Ui_MainWindow):
             logman.writeToLogFile(
                 f"{errors.errCodes.errCodes[43]}: Single-core CPU detected! Proceed at your own risk. Support requests won't be prioritised."
                 )
+            
+        if os.cpu_count() < 4:
+            logman.writeToLogFile(
+                f"{errors.errCodes.errCodes[43]}: Your CPU will no longer be supported starting 11th November, 2025."
+            )
             
         logman.writeToLogFile(
             f"{errors.errCodes.errCodes[44]}: Device contains {psutil.virtual_memory().total} bytes of RAM"
@@ -214,6 +224,11 @@ class Window(QMainWindow, Ui_MainWindow):
                 logman.writeToLogFile(
                     f"{errors.errCodes.errCodes[46]}: Less than 6 GB of RAM detected! As you're using Windows 11, proceed at your own risk. Support requests won't be prioritised."
                     )
+                
+        if round(psutil.virtual_memory().total / (1024 * 3), 2) < 7.84:
+            logman.writeToLogFile(
+                f"{errors.errCodes.errCodes[45]}: Starting 11th November, 2025, you will need 8 GB of RAM (12 GB if you use integrated graphics)."
+            )
 
         self.label_8.setText(f"EmuGUI {self.version}\nCodename 'Fatima Nejla'")
         self.setWindowTitle(f"EmuGUI {self.version}")
