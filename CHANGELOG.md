@@ -46,6 +46,10 @@
 
 - EmuGUI now utilises the Win32 API on Windows. This is to fix an issue where EmuGUI is not able to determine the Documents folder properly.
 - The changes from 2.0.9 have been added to the changelog.
+- The logs now tell you if your system is unsupported.
+- In the "About" section, you will read a message about this thing (now also for RAM).
+- You will find the updated requirements in the readme.
+    - Formatting fixed
 
 ## Known issues
 
