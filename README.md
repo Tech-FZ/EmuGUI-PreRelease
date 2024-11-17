@@ -40,6 +40,7 @@ For the update checker, a version code is being used instead of the number. Here
 | Feature update | current version code rounded up to the next hundred (e. g. 4237 becomes 4300) |
 
 ## System requirements
+
 | Component | Requirement |
 |-------|--------|
 | OS | Windows 10, Windows Server 2016 or later (x64); The latest (LTS) version of your Linux distribution (x64) |
@@ -48,7 +49,22 @@ For the update checker, a version code is being used instead of the number. Here
 | RAM | 6 GB¹ |
 | HDD | 2 GB¹ |
 
+### New requirements
+
+These requirements will be valid starting 11th November, 2025. If you are better than that, it is automatically supported.
+
+| Component | Requirement |
+|-------|--------|
+| OS | Windows 10 *Version 1607*, Windows Server 2016 or later (x64); The latest (LTS) version of your Linux distribution (x64) |
+| Python | *3.9* or newer |
+| Processor | x64 Processor *with 4 threads (can be 2 or 4 cores)* and *@2.5 GHz*¹ |
+| RAM | *8* GB (*12 GB if using integrated graphics*)¹ |
+| HDD | *4* GB¹ |
+| Graphics | *DirectX 11 or OpenGL 3.3*² |
+
 *¹ This is the absolute minimum, the required performance depends on the operating system you want to run.*
+
+*² It's for your host operating system, not for EmuGUI.*
 
 ## Dependencies
 

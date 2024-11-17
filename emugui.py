@@ -132,7 +132,7 @@ class Window(QMainWindow, Ui_MainWindow):
         logman = errors.logman.LogMan()
         logman.generateLogID()
         logman.logFile = logman.setLogFile()
-        self.version = "2.1.0.57aa_dev"
+        self.version = "2.1.0.57ab_dev"
 
         self.architectures = [
             ["i386", self.lineEdit_4],
@@ -185,6 +185,11 @@ class Window(QMainWindow, Ui_MainWindow):
             logman.writeToLogFile(
                 f"{errors.errCodes.errCodes[40]}: Device powered by {platform.uname().system} {platform.uname().release}, Version {platform.uname().version}"
                 )
+            
+        if platform.system() == "Windows" and sys.getwindowsversion().build <= 14393:
+            logman.writeToLogFile(
+                f"{errors.errCodes.errCodes[31]}: Starting 11th November, 2025, you will need to update to Windows 10 1607 or later. Replacing Windows 10 entirely is recommended."
+            )
         
         logman.writeToLogFile(
             f"{errors.errCodes.errCodes[41]}: EmuGUI powered by Python {platform.python_version()} {platform.python_branch()}, compiled with {platform.python_compiler()}"
@@ -199,22 +204,33 @@ class Window(QMainWindow, Ui_MainWindow):
                 f"{errors.errCodes.errCodes[43]}: Single-core CPU detected! Proceed at your own risk. Support requests won't be prioritised."
                 )
             
+        if os.cpu_count() < 4:
+            logman.writeToLogFile(
+                f"{errors.errCodes.errCodes[43]}: Your CPU will no longer be supported starting 11th November, 2025."
+            )
+            
         logman.writeToLogFile(
             f"{errors.errCodes.errCodes[44]}: Device contains {psutil.virtual_memory().total} bytes of RAM"
             )
         
-        if round(psutil.virtual_memory().total / (1024 * 3), 2) < 3.84: # Ik, should be 4, but I defined 3.84 GB bc of most PC's habits of taking some RAM away
+        if round(psutil.virtual_memory().total / (1024 ** 3), 2) < 3.84: # Ik, should be 4, but I defined 3.84 GB bc of most PC's habits of taking some RAM away
             logman.writeToLogFile(
                 f"{errors.errCodes.errCodes[45]}: Less than 4 GB of RAM detected! Proceed at your own risk. Support requests won't be prioritised."
                 )
             
         if platform.system() == "Windows":
             winvers = sys.getwindowsversion()
-            if winvers.build >= 21296 and round(psutil.virtual_memory().total / (1024 * 3), 2) < 5.84:
+            if winvers.build >= 21296 and round(psutil.virtual_memory().total / (1024 ** 3), 2) < 5.84:
                 logman.writeToLogFile(
                     f"{errors.errCodes.errCodes[46]}: Less than 6 GB of RAM detected! As you're using Windows 11, proceed at your own risk. Support requests won't be prioritised."
                     )
+                
+        if round(psutil.virtual_memory().total / (1024 ** 3), 2) < 7.84:
+            logman.writeToLogFile(
+                f"{errors.errCodes.errCodes[45]}: Starting 11th November, 2025, you will need 8 GB of RAM (12 GB if you use integrated graphics)."
+            )
 
+        self.label_8.setWordWrap(True)
         self.label_8.setText(f"EmuGUI {self.version}\nCodename 'Fatima Nejla'")
         self.setWindowTitle(f"EmuGUI {self.version}")
 
@@ -264,14 +280,8 @@ class Window(QMainWindow, Ui_MainWindow):
         self.prepareDatabase(self.connection)
         self.updateVmList()
 
-        if platform.system() == "Windows":
-            winvers = sys.getwindowsversion()
-            if winvers.major <= 6 and winvers.minor <= 3:
-                dialog = Win812012R2NearEOS(self)
-                dialog.exec()
-                
-                self.label_8.setText(
-                    f"EmuGUI {self.version}\nCodename 'Ioana Rosa'\nYour OS is no longer supported by EmuGUI. You should upgrade at least to Windows 10. You're currently running Windows {platform.release()}")
+        if (os.cpu_count() < 4 or round(psutil.virtual_memory().total / (1024 ** 3), 2) < 7.84 or (platform.system() == "Windows" and sys.getwindowsversion().build < 14393)):
+            self.label_8.setText(self.label_8.text() + f"\nYour computer will be unsupported in its current form starting 11th November, 2025. Please check the logs, your system information and your upgrade/replacement options to see what you can do to keep using EmuGUI properly.")
     
     def resizeEvent(self, event: QtGui.QResizeEvent):
         super().resizeEvent(event)
