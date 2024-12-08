@@ -1,6 +1,7 @@
 from uiScripts.ui_Win81SupportNearsEnd import Ui_Dialog
 from PySide6.QtWidgets import *
 from PySide6 import QtGui
+import webbrowser
 
 class Win812012R2NearEOS(QDialog, Ui_Dialog):
     def __init__(self, parent = None):
@@ -14,6 +15,7 @@ You will need the following specifications for your host system to remain suppor
 - Windows 10 1607, Server 2016 or the latest version of your Linux distribution (amd64)
 - 4-threaded CPU
 - 8 GB of RAM your OS can share with running applications
+- 4 GB of free hard disk space
         
 Please visit the GitHub repository to learn more.
         """
@@ -29,3 +31,7 @@ Please visit the GitHub repository to learn more.
 
     def connectSignalsSlots(self):
         self.pushButton.clicked.connect(self.close)
+        self.learnMoreBtn.clicked.connect(self.learnMore)
+
+    def learnMore(self):
+        webbrowser.open("https://github.com/Tech-FZ/EmuGUI/wiki/EmuGUI-receiving-higher-hardware-requirements-starting-11th-November,-2025")

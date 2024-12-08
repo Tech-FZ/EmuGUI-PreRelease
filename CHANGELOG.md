@@ -57,6 +57,7 @@
 
 - You are now notified via a dialog should your system become unsupported.
     - Formatting fixed.
+    - "Learn more" button added.
 
 ## Known issues
 
