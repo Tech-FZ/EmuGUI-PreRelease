@@ -1,3 +1,66 @@
+# EmuGUI v2.1.0.5704_dev "Fatima Nejla" (based on v2.1.0.5703_dev)
+
+## WARNING
+
+- This is a pre-release, so please don't use this for any productive purposes.
+- You now need the latest version of your Linux distribution or at least Windows 10 to get official support for this release.
+
+## Changes compared to v2.0.6.5617
+
+- Thanks to Mizuki, we now have more flexible Windows-specific code.
+- As per the depreciation policy, the old USB Tablet checkbox has been removed for good.
+- The VM table on the database can now save information which you would set when starting the VM (excluding TPM information).
+    - The bootfrom part has been added afterwards.
+- The VM dialogs now show UI elements for those settings.
+- The time settings can now be enabled and disabled in the VM dialogs using the RTC checkbox.
+- The floppy seems to be able to get set on the dialogs.
+- The newcomers can now be saved onto the database permanently.
+- The CD Browse buttons work now.
+- A class for storing VMs is on its way to replace the bad temporary file saving practice with good OOP practice.
+- The edit VM dialog is being adapted to the new OOP-based approach.
+- The Win2k checkbox is to be removed because of the OOP adaption.
+    - The Edit VM dialog will now turn the Win2k optimisations off regardless of what you really want.
+- The Edit VM dialog would now use the new OOP-based initialisation instead of the file-based one.
+    - A log text had to be adjusted.
+- A new Start VM dialog has already been implemented.
+- The vmdata converter has been removed again.
+- Editing the VM is now implemented.
+- One-time edit is implemented.
+- The HDA stuff had to be migrated.
+- EmuGUI now utilises the Win32 API on Windows. This is to fix an issue where EmuGUI is not able to determine the Documents folder properly.
+- The changes from 2.0.9 have been added to the changelog.
+- The logs now tell you if your system is unsupported.
+- In the "About" section, you will read a message about this thing (now also for RAM).
+- You will find the updated requirements in the readme.
+    - Formatting fixed
+- The now required win32com has been added for Windows compiling procedures.
+
+## Foreported 
+
+### From v2.0.7.5618
+
+- When creating new VMs, you can now choose custom BIOS files again.
+
+### From v2.0.8.5619
+
+- The keyboard layout is now set correctly.
+
+### From v2.0.9.5620 (kinda)
+
+- ARM machines are now defaulted to "virt" by EmuGUI. (or at least they should be)
+
+## Changes compared to v2.1.0.5702_dev
+
+- The new Fatima Nejla banner has been added.
+
+## Known issues
+
+- Unfortunately, you might have to run EmuGUI from the terminal on Linux.
+- You will not be notified about any more updates for now as update.txt will not be updated.
+- As for the TPM functionality, you must run `mkdir (insert-path-here)` and `swtpm socket --tpm2 --tpmstate dir=(insert-path-here) --ctrl type=unixio,path=(insert-path-here)/swtpm-sock --log level=20` in a terminal (You can leave the `--tpm2` argument away tho if you plan to use TPM 1.2 instead).
+- The QCOW2 format is prone to not work for some Windows VMs.
+- The new settings aren't applied yet. However, as the way to temporarily save VM settings is to be changed anyway, this won't be fixed until then.
+
 # EmuGUI v2.1.0.5703_dev "Fatima Nejla" (based on v2.1.0.5702_dev)
 
 ## WARNING
@@ -46,6 +109,11 @@
 
 - EmuGUI now utilises the Win32 API on Windows. This is to fix an issue where EmuGUI is not able to determine the Documents folder properly.
 - The changes from 2.0.9 have been added to the changelog.
+- The logs now tell you if your system is unsupported.
+- In the "About" section, you will read a message about this thing (now also for RAM).
+- You will find the updated requirements in the readme.
+    - Formatting fixed
+- The now required win32com has been added for Windows compiling procedures.
 
 ## Known issues
 

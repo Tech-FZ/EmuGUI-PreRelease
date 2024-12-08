@@ -148,7 +148,7 @@ These requirements will be valid starting 11th November, 2025. If you are better
 8. After that is done, type: `python -m venv your-venv-name` OUTSIDE of the code folder. You can call it whatever you want, but don't forget that it is NOT allowed to get into the EmuGUI repository under any circumstances.
 9. Wait until VS Code notices your venv and select it. You might need to restart the editor for it to recognize your virtual environment after it has been created.
 10. With your virtual environment selected, try to run a Python script. If it throws an error, that's okay. We just need to activate the venv anyway.
-11. Within the terminal VS Code just opened, type: `pip install --upgrade pip PyInstaller PyQt6 PyQt6-tools PySide6 python-magic-bin requests python-dateutil psutil`
+11. Within the terminal VS Code just opened, type: `pip install --upgrade pip PyInstaller PyQt6 PyQt6-tools PySide6 python-magic-bin requests python-dateutil psutil pywin32`
 12. After this is done, run the main.py script.
 13. To compile the program for users who don't have Python installed, type: `PyInstaller --icon .\EmuGUI.ico .\emugui.py`
 14. After that is finished, copy the code into the dist folder PyInstaller created.
@@ -167,7 +167,7 @@ These requirements will be valid starting 11th November, 2025. If you are better
 8. After that is done, type: `python -m venv your-venv-name` OUTSIDE of the code folder. You can call it whatever you want, but don't forget that it is NOT allowed to get into the EmuGUI repository under any circumstances.
 9. Wait until VS Code notices your venv and select it. You might need to restart the editor for it to recognize your virtual environment after it has been created.
 10. With your virtual environment selected, try to run a Python script. If it throws an error, that's okay. We just need to activate the venv anyway.
-11. Within the terminal VS Code just opened, type: `pip install --upgrade pip cx_Freeze PyQt6 PyQt6-tools PySide6 python-magic-bin requests python-dateutil psutil`
+11. Within the terminal VS Code just opened, type: `pip install --upgrade pip cx_Freeze PyQt6 PyQt6-tools PySide6 python-magic-bin requests python-dateutil psutil pywin32`
 12. After this is done, run the main.py script.
 13. To compile the program for users who don't have Python installed, type: `cxfreeze -c emugui.py --target-dir dist --icon EmuGUI.ico`
 14. After that is finished, copy the code into the dist folder cx_Freeze created.
@@ -188,7 +188,7 @@ These requirements will be valid starting 11th November, 2025. If you are better
 10. After that is done, type: `python -m venv your-venv-name`. OUTSIDE of the code folder. You can call it whatever you want, but don't forget that it is NOT allowed to get into the EmuGUI repository under any circumstances.
 11. Wait until VS Code notices your venv and select it. You might need to restart the editor for it to recognize your virtual environment after it has been created.
 12. With your virtual environment selected, try to run a Python script. If it throws an error, that's okay. We just need to activate the venv anyway.
-13. Within the terminal VS Code just opened, type: `pip install --upgrade pip PyInstaller PySide6 python-magic-bin requests python-dateutil psutil`
+13. Within the terminal VS Code just opened, type: `pip install --upgrade pip PyInstaller PySide6 python-magic-bin requests python-dateutil psutil pywin32`
 14. After this is done, run the main.py script.
 15. To compile the program for users who don't have Python installed, type: `PyInstaller --icon .\EmuGUI.ico .\emugui.py`
 16. After that is finished, copy the code into the dist folder PyInstaller created.
@@ -209,7 +209,7 @@ These requirements will be valid starting 11th November, 2025. If you are better
 10. After that is done, type: `python -m venv your-venv-name`. OUTSIDE of the code folder. You can call it whatever you want, but don't forget that it is NOT allowed to get into the EmuGUI repository under any circumstances.
 11. Wait until VS Code notices your venv and select it. You might need to restart the editor for it to recognize your virtual environment after it has been created.
 12. With your virtual environment selected, try to run a Python script. If it throws an error, that's okay. We just need to activate the venv anyway.
-13. Within the terminal VS Code just opened, type: `pip install --upgrade pip cx_Freeze PySide6 python-magic-bin requests python-dateutil psutil`
+13. Within the terminal VS Code just opened, type: `pip install --upgrade pip cx_Freeze PySide6 python-magic-bin requests python-dateutil psutil pywin32`
 14. After this is done, run the main.py script.
 15. To compile the program for users who don't have Python installed, type: `cxfreeze -c emugui.py --target-dir dist --icon EmuGUI.ico`
 16. After that is finished, copy the code into the dist folder cx_Freeze created.
@@ -227,7 +227,7 @@ These requirements will be valid starting 11th November, 2025. If you are better
 7. Open Visual Studio Code in that folder.
 8. Open Anaconda Navigator and create a new virtual environment.
 9. Open the venv in VS Code and try to run a Python script with it.
-10. Within the VS Code terminal, type: `& pip install --upgrade pip PyInstaller PySide6 python-magic-bin PyQt6 requests python-dateutil psutil`
+10. Within the VS Code terminal, type: `& pip install --upgrade pip PyInstaller PySide6 python-magic-bin PyQt6 requests python-dateutil psutil pywin32`
 11. After this is done, run the main.py script.
 12. To compile the program for users who don't have Python installed, type: `& PyInstaller --icon .\EmuGUI.ico .\emugui.py`
 13. After that is finished, copy the code into the dist folder PyInstaller created.
@@ -245,7 +245,7 @@ These requirements will be valid starting 11th November, 2025. If you are better
 7. Open Visual Studio Code in that folder.
 8. Open Anaconda Navigator and create a new virtual environment.
 9. Open the venv in VS Code and try to run a Python script with it.
-10. Within the VS Code terminal, type: `& pip install --upgrade pip cx_Freeze PySide6 python-magic-bin PyQt6 requests python-dateutil psutil`
+10. Within the VS Code terminal, type: `& pip install --upgrade pip cx_Freeze PySide6 python-magic-bin PyQt6 requests python-dateutil psutil pywin32`
 11. After this is done, run the main.py script.
 12. To compile the program for users who don't have Python installed, type: `& cxfreeze -c emugui.py --target-dir dist --icon EmuGUI.ico`
 13. After that is finished, copy the code into the dist folder cx_Freeze created.

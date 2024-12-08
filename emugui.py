@@ -132,7 +132,7 @@ class Window(QMainWindow, Ui_MainWindow):
         logman = errors.logman.LogMan()
         logman.generateLogID()
         logman.logFile = logman.setLogFile()
-        self.version = "2.1.0.57ab_dev"
+        self.version = "2.1.0.5704_dev"
 
         self.architectures = [
             ["i386", self.lineEdit_4],
@@ -246,7 +246,7 @@ class Window(QMainWindow, Ui_MainWindow):
         except:
             pass
 
-        self.versionCode = 5702
+        self.versionCode = 5704
 
         if platform.system() == "Windows":
             self.connection = platformSpecific.windowsSpecific.setupWindowsBackend()
@@ -344,7 +344,7 @@ class Window(QMainWindow, Ui_MainWindow):
             self.label_6.setPixmap(QtGui.QPixmap(f"{self.exec_folder}banners/RobertRabbit.png"))
 
         else:
-            self.label_6.setPixmap(QtGui.QPixmap(f"{self.exec_folder}banners/IoanaRosa.png"))
+            self.label_6.setPixmap(QtGui.QPixmap(f"{self.exec_folder}banners/FatimaNejla.png"))
 
         if datetime.date.today().day == 1 and datetime.date.today().month == 4:
             pixmap = self.label_6.pixmap()
