@@ -56,6 +56,7 @@
 ### System requirement branch
 
 - You are now notified via a dialog should your system become unsupported.
+    - Formatting fixed.
 
 ## Known issues
 
