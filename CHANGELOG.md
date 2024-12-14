@@ -1,4 +1,4 @@
-# EmuGUI v2.1.0.5704_dev "Fatima Nejla" (based on v2.1.0.5703_dev)
+# EmuGUI v2.1.0.5704_b1 "Fatima Nejla" (based on v2.1.0.5703_dev)
 
 ## WARNING
 
@@ -49,12 +49,9 @@
 
 - ARM machines are now defaulted to "virt" by EmuGUI. (or at least they should be)
 
-## Changes compared to v2.1.0.5702_dev
+## Changes compared to v2.1.0.5703_dev
 
 - The new Fatima Nejla banner has been added.
-
-### System requirement branch
-
 - You are now notified via a dialog should your system become unsupported.
     - Formatting fixed.
     - "Learn more" button added.
