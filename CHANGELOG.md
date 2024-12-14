@@ -53,6 +53,12 @@
 
 - The new Fatima Nejla banner has been added.
 
+### System requirement branch
+
+- You are now notified via a dialog should your system become unsupported.
+    - Formatting fixed.
+    - "Learn more" button added.
+
 ## Known issues
 
 - Unfortunately, you might have to run EmuGUI from the terminal on Linux.

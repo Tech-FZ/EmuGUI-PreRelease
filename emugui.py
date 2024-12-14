@@ -282,6 +282,8 @@ class Window(QMainWindow, Ui_MainWindow):
 
         if (os.cpu_count() < 4 or round(psutil.virtual_memory().total / (1024 ** 3), 2) < 7.84 or (platform.system() == "Windows" and sys.getwindowsversion().build < 14393)):
             self.label_8.setText(self.label_8.text() + f"\nYour computer will be unsupported in its current form starting 11th November, 2025. Please check the logs, your system information and your upgrade/replacement options to see what you can do to keep using EmuGUI properly.")
+            dialog = Win812012R2NearEOS(self)
+            dialog.show()
     
     def resizeEvent(self, event: QtGui.QResizeEvent):
         super().resizeEvent(event)

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Win81SupportNearsEnd.ui'
+## Form generated from reading UI file 'Win81SupportNearsEndHfaJdn.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.1
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -43,6 +43,11 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.pushButton, 1, 0, 1, 1)
 
+        self.learnMoreBtn = QPushButton(self.gridLayoutWidget)
+        self.learnMoreBtn.setObjectName(u"learnMoreBtn")
+
+        self.gridLayout.addWidget(self.learnMoreBtn, 2, 0, 1, 1)
+
 
         self.retranslateUi(Dialog)
 
@@ -51,7 +56,8 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"If you got EmuGUI running on Windows 8.1 or Windows Server 2012 R2, congratulations. Unfortunately, these OSes aren't supported anymore.", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"Sorry to notify you but Windows 8.1 and Windows Server 2012 R2 are only supported until February 14th, 2023.", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"OK", None))
+        self.learnMoreBtn.setText(QCoreApplication.translate("Dialog", u"Learn more", None))
     # retranslateUi
 
