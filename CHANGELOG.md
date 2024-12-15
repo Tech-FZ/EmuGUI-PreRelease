@@ -58,6 +58,7 @@
 - Logging has been applied to starting VMs.
 - For existing translations, the following has been set up:
     - VGA combobox "Let QEMU decide".
+    - Fifth new VM page
 
 ## Known issues
 

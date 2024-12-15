@@ -212,8 +212,11 @@ def translateNewVmRU(window):
         ) # Location of external\nBIOS file (Leave\nempty to use the\ndefault BIOS)
 
     window.lbl_biosF.setText("Внешний файл BIOS") # External BIOS file
+    window.chb_rtc.setText("Use RTC option") # Use RTC option
+    window.lbl_floppy.setText("Floppy disk") # Floppy disk
 
     window.btn_biosF.setText("Обзор") # Browse
+    window.btn_floppy.setText("Обзор") # Browse
     window.btn_prev5.setText("< Назад") # < Previous
     window.btn_next5.setText("Дальше >") # Next >
     window.btn_cancel5.setText("Отмена") # Cancel

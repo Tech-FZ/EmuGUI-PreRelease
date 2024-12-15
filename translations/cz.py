@@ -210,8 +210,11 @@ def translateNewVmCZ(window):
         ) # Location of external\nBIOS file (Leave\nempty to use the\ndefault BIOS)
 
     window.lbl_biosF.setText("Externí Soubor BIOS") # External BIOS file
+    window.chb_rtc.setText("Use RTC option") # Use RTC option
+    window.lbl_floppy.setText("Floppy disk") # Floppy disk
 
     window.btn_biosF.setText("Hledat") # Browse
+    window.btn_floppy.setText("Hledat") # Browse
     window.btn_prev5.setText("< Předchozí") # < Previous
     window.btn_next5.setText("Další >") # Next >
     window.btn_cancel5.setText("Zrušit") # Cancel

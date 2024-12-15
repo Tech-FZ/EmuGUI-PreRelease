@@ -210,8 +210,11 @@ def translateNewVmDE(window):
         ) # Location of external\nBIOS file (Leave\nempty to use the\ndefault BIOS)
 
     window.lbl_biosF.setText("Externe BIOS-Datei") # External BIOS file
+    window.chb_rtc.setText("Use RTC option") # Use RTC option
+    window.lbl_floppy.setText("Floppy disk") # Floppy disk
 
     window.btn_biosF.setText("Durchsuchen") # Browse
+    window.btn_floppy.setText("Durchsuchen") # Browse
     window.btn_prev5.setText("< Zurück") # < Previous
     window.btn_next5.setText("Weiter >") # Next >
     window.btn_cancel5.setText("Abbrechen") # Cancel
