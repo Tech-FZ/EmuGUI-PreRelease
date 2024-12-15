@@ -347,19 +347,38 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
                     qemu_cmd = qemu_cmd + f" -chardev socket,id=chrtpm,path={self.le_tpm.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-spapr,tpmdev=tpm0"
                     qemu_cmd_list.append(f"-chardev socket,id=chrtpm,path={self.le_tpm.text()}/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-spapr,tpmdev=tpm0")
 
+            self.logman.writeToLogFile(
+                    f"{errors.errCodes.errCodes[64]}: QEMU command: {qemu_cmd}"
+                )
+
             subprocess.Popen(qemu_cmd)
 
         except sqlite3.Error as e:
             print(f"The SQLite module encountered an error: {e}.")
+
+            self.logman.writeToLogFile(
+                f"{errors.errCodes.errCodes[12]}: SQLite encountered an error while retrieving the QEMU executable path. Its output: {e}"
+            )
+
+            dialog = ErrDialog(self)
+            dialog.exec()
         
         except:
             print("Qemu couldn't be executed. Trying subprocess.run")
+
+            self.logman.writeToLogFile(
+                    f"{errors.errCodes.errCodes[64]}: QEMU command: {qemu_cmd}"
+                )
 
             try:
                 subprocess.run(shlex.split(qemu_cmd))
             
             except:
                 print("Qemu couldn't be executed. Trying subprocess.call.")
+
+                self.logman.writeToLogFile(
+                    f"{errors.errCodes.errCodes[64]}: QEMU command: {qemu_cmd}"
+                )
 
                 try:
                     if platform.system() == "Windows":
@@ -370,5 +389,12 @@ class StartVmNewDialog(QDialog, Ui_Dialog):
 
                 except:
                     print("Qemu couldn't be executed. Please check if the settings of your VM and/or the QEMU paths are correct.")
+
+                    self.logman.writeToLogFile(
+                        f"{errors.errCodes.errCodes[14]}: EmuGUI failed to start the QEMU VM. Please check the settings."
+                    )
+
+                    dialog = ErrDialog(self)
+                    dialog.exec()
         
         self.close()

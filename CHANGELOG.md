@@ -55,7 +55,7 @@
 
 ## Changes compared to v2.1.0.5704_b1
 
-
+- Logging has been applied to starting VMs.
 
 ## Known issues
 
