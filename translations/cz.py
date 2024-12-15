@@ -184,6 +184,16 @@ def translateNewVmCZ(window):
 
     # Fourth page
     window.lbl_vga.setText("VGA") # VGA
+
+    i = 0
+
+    while i < window.cb_vga.count():
+        if window.cb_vga.itemText(i) == "Let QEMU decide" or window.cb_vga.itemText(i) == "QEMU überlassen":
+            window.cb_vga.setItemText(i, "Ať rozhodne QEMU") # Let QEMU decide
+            break
+
+        i += 1
+
     window.lbl_net.setText("Síť") # Network
     window.lbl_mouse.setText("Myš") # Mouse
 

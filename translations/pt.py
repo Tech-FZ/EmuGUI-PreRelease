@@ -184,6 +184,16 @@ def translateNewVmPT(window):
 
     # Fourth page
     window.lbl_vga.setText("VGA") # VGA
+
+    i = 0
+
+    while i < window.cb_vga.count():
+        if window.cb_vga.itemText(i) == "Let QEMU decide" or window.cb_vga.itemText(i) == "QEMU überlassen":
+            window.cb_vga.setItemText(i, "Deixe o QEMU decidir") # Let QEMU decide
+            break
+
+        i += 1
+
     window.lbl_net.setText("Rede") # Network
     window.lbl_mouse.setText("Mouse") # Mouse
 

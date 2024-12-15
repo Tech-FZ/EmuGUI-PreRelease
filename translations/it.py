@@ -26,34 +26,14 @@ def translateMainIT(window):
 
     while i < window.comboBox_4.count():
         sysDefSet("Predefinito di sistema", window.comboBox_4, i) # System default
-        #if window.comboBox_4.itemText(i) == "System default" or window.comboBox_4.itemText(i) == "Systemstandard":
-        #    window.comboBox_4.setItemText(i, "System default") # System default
-        #    break
-
         i += 1
-
-        #if window.comboBox_4.itemText(i) == "По умолчанию системы" or window.comboBox_4.itemText(i) == "Па змаўчанні сістэмы":
-        #    window.comboBox_4.setItemText(i, "System default") # System default
-        #    break
-
-        #i += 1
 
     # Combo box for themes
     i = 0
 
     while i < window.comboBox_5.count():
         sysDefSet("Predefinito di sistema", window.comboBox_5, i) # System default
-        #if window.comboBox_5.itemText(i) == "System default" or window.comboBox_5.itemText(i) == "Systemstandard":
-        #    window.comboBox_5.setItemText(i, "System default") # System default
-        #    break
-
         i += 1
-
-        #if window.comboBox_5.itemText(i) == "По умолчанию системы" or window.comboBox_5.itemText(i) == "Па змаўчанні сістэмы":
-        #    window.comboBox_5.setItemText(i, "System default") # System default
-        #    break
-
-        #i += 1
 
     # QEMU tab
     window.label.setText("Percorso di qemu-img") # qemu-img Path
@@ -202,6 +182,16 @@ def translateNewVmIT(window):
 
     # Fourth page
     window.lbl_vga.setText("VGA") # VGA
+
+    i = 0
+
+    while i < window.cb_vga.count():
+        if window.cb_vga.itemText(i) == "Let QEMU decide" or window.cb_vga.itemText(i) == "QEMU überlassen":
+            window.cb_vga.setItemText(i, "Lascia che QEMU decida") # Let QEMU decide
+            break
+
+        i += 1
+
     window.lbl_net.setText("Rete") # Network
     window.lbl_mouse.setText("Mouse") # Mouse
 
