@@ -1,4 +1,4 @@
-# EmuGUI v2.1.0.57ac_b2 "Fatima Nejla" (based on v2.1.0.5704_b1)
+# EmuGUI v2.1.0.5705_rc1 "Fatima Nejla" (based on v2.1.0.5704_b1)
 
 ## WARNING
 
@@ -56,6 +56,7 @@
 ## Changes compared to v2.1.0.5704_b1
 
 - Logging has been applied to starting VMs.
+- The version code variable has been removed
 
 ## Known issues
 
