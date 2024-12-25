@@ -56,7 +56,8 @@
 ## Changes compared to v2.1.0.5704_b1
 
 - Logging has been applied to starting VMs.
-- The version code variable has been removed
+- The version code variable has been removed.
+- The requirements.txt file has been added for you to be able to see which version of which module should be used.
 
 ## Known issues
 
