@@ -1,6 +1,8 @@
  # Importing required modules
 import os
 
+import services.vm_data
+
 try:
     import platform
 
@@ -95,6 +97,8 @@ import dateutil.easter
 import zipfile
 import errors.logman
 import errors.logID
+import threading
+import services.export
 
 try:
     import psutil
@@ -132,7 +136,7 @@ class Window(QMainWindow, Ui_MainWindow):
         logman = errors.logman.LogMan()
         logman.generateLogID()
         logman.logFile = logman.setLogFile()
-        self.version = "2.1.0.5705_rc1"
+        self.version = "2.1.0.57ac_rc1"
 
         self.architectures = [
             ["i386", self.lineEdit_4],
@@ -1942,6 +1946,15 @@ class Window(QMainWindow, Ui_MainWindow):
                 cd_control1 = result[0][23]
                 cd_control2 = result[0][24]
                 hda_control = result[0][25]
+                cd1 = result[0][26]
+                cd2 = result[0][27]
+                floppy = result[0][28]
+                
+                vmdata = services.vm_data.VirtualMachineData(
+                    selectedVM, architecture_of_vm, machine_of_vm, cpu_of_vm, cpu_cores, ram_of_vm, vga_of_vm, net_of_vm, dir_bios, file_bios, sound_card, 
+                    linux_kernel, linux_initrid, linux_cmd, mouse_type, kbd_type, kbd_layout, usb_support, usb_controller, accel_type, cd_control1, cd_control2,
+                    hda_control, cd1, cd2, floppy, 
+                    )
 
             except sqlite3.Error as e:
                 print(f"The SQLite module encountered an error: {e}.")
@@ -2015,33 +2028,36 @@ class Window(QMainWindow, Ui_MainWindow):
             filename, filter = QFileDialog.getSaveFileName(parent=self, caption='Export VM file', dir='.', filter='ZIP file (*.zip);;All files (*.*)')
 
             if filename:
+                exportThread = threading.Thread(target=services.export.exportVirtualMachine, args=(vmdata, filename, tempVmDef, logman, self))
+                exportThread.start()
+                
                 with zipfile.ZipFile(filename, "w") as vmFile:
                     vmFile.write(tempVmDef, os.path.basename(tempVmDef))
 
                     if hda_of_vm != "NULL":
                         vmFile.write(hda_of_vm, os.path.basename(hda_of_vm))
 
-                if os.path.exists(filename):
-                    print("Export successful!")
+                # if os.path.exists(filename):
+                #     print("Export successful!")
 
-                else:
-                    print("Export failed!")
+                # else:
+                #     print("Export failed!")
 
-                    if platform.system() == "Windows":
-                        errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
+                #     if platform.system() == "Windows":
+                #         errorFile = platformSpecific.windowsSpecific.windowsErrorFile()
         
-                    else:
-                        errorFile = platformSpecific.unixSpecific.unixErrorFile()
+                #     else:
+                #         errorFile = platformSpecific.unixSpecific.unixErrorFile()
 
-                    with open(errorFile, "w+") as errCodeFile:
-                        errCodeFile.write(errors.errCodes.errCodes[33])
+                #     with open(errorFile, "w+") as errCodeFile:
+                #         errCodeFile.write(errors.errCodes.errCodes[33])
 
-                    logman.writeToLogFile(
-                        f"{errors.errCodes.errCodes[33]}: This VM could not be exported. Please check its settings."
-                        )
+                #     logman.writeToLogFile(
+                #         f"{errors.errCodes.errCodes[33]}: This VM could not be exported. Please check its settings."
+                #         )
 
-                    dialog = ErrDialog(self)
-                    dialog.exec()
+                #     dialog = ErrDialog(self)
+                #     dialog.exec()
 
         except sqlite3.Error as e:
             print(f"The SQLite module encountered an error: {e}.")
