@@ -41,6 +41,7 @@
 - Included 2.0.10 changelog.
 - Multithreading of export VMs set up and working.
 - The delcache scripts have been updated to accomodate the `__pycache__` folder in the root of the project.
+- A dialog with a progress bar has been added.
 
 ## Foreported 
 
