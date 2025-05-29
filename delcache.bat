@@ -34,3 +34,8 @@ if exist services\__pycache__\ (
     del services\__pycache__\*.* /q
     rd services\__pycache__\ 
 )
+
+if exist __pycache__\ (
+    del __pycache__\*.* /q
+    rd __pycache__\
+)

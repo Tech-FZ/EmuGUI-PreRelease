@@ -39,7 +39,8 @@
     - Formatting fixed.
     - "Learn more" button added.
 - Included 2.0.10 changelog.
-- Multithreading of export VMs set up.
+- Multithreading of export VMs set up and working.
+- The delcache scripts have been updated to accomodate the `__pycache__` folder in the root of the project.
 
 ## Foreported 
 
@@ -68,6 +69,7 @@
 - As for the TPM functionality, you must run `mkdir (insert-path-here)` and `swtpm socket --tpm2 --tpmstate dir=(insert-path-here) --ctrl type=unixio,path=(insert-path-here)/swtpm-sock --log level=20` in a terminal (You can leave the `--tpm2` argument away tho if you plan to use TPM 1.2 instead).
 - The QCOW2 format is prone to not work for some Windows VMs.
 - The new settings aren't applied yet. However, as the way to temporarily save VM settings is to be changed anyway, this won't be fixed until then.
+- There is no progress bar for exporting the VMs yet.
 
 # EmuGUI v2.1.0.5705_rc1 "Fatima Nejla" (based on v2.1.0.5704_b1)
 

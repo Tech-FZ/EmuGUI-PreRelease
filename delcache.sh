@@ -25,3 +25,7 @@ fi
 if [ -d services/__pycache__ ]; then
     rm -r services/__pycache__
 fi
+
+if [ -d __pycache__ ]; then
+    rm -r __pycache__
+fi

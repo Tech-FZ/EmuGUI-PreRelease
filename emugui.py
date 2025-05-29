@@ -1911,7 +1911,7 @@ class Window(QMainWindow, Ui_MainWindow):
             get_vm_to_start = f"""
             SELECT architecture, machine, cpu, ram, hda, vga, net, usbtablet, win2k, dirbios, additionalargs, sound, linuxkernel,
             linuxinitrid, linuxcmd, mousetype, cores, filebios, keyboardtype, usbsupport, usbcontroller, kbdtype, acceltype,
-            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy
+            storagecontrollercd1, storagecontrollercd2, hdacontrol, cd1, cd2, floppy, timemgr, bootfrom
             FROM virtualmachines WHERE name = '{selectedVM}'
             """
 
@@ -1949,11 +1949,13 @@ class Window(QMainWindow, Ui_MainWindow):
                 cd1 = result[0][26]
                 cd2 = result[0][27]
                 floppy = result[0][28]
+                timemgr = result[0][29]
+                bootfrom = result[0][30]
                 
                 vmdata = services.vm_data.VirtualMachineData(
                     selectedVM, architecture_of_vm, machine_of_vm, cpu_of_vm, cpu_cores, ram_of_vm, vga_of_vm, net_of_vm, dir_bios, file_bios, sound_card, 
                     linux_kernel, linux_initrid, linux_cmd, mouse_type, kbd_type, kbd_layout, usb_support, usb_controller, accel_type, cd_control1, cd_control2,
-                    hda_control, cd1, cd2, floppy, 
+                    hda_control, cd1, cd2, floppy, timemgr, bootfrom, hda_of_vm, additional_arguments
                     )
 
             except sqlite3.Error as e:
@@ -2031,11 +2033,11 @@ class Window(QMainWindow, Ui_MainWindow):
                 exportThread = threading.Thread(target=services.export.exportVirtualMachine, args=(vmdata, filename, tempVmDef, logman, self))
                 exportThread.start()
                 
-                with zipfile.ZipFile(filename, "w") as vmFile:
-                    vmFile.write(tempVmDef, os.path.basename(tempVmDef))
+                #with zipfile.ZipFile(filename, "w") as vmFile:
+                 #   vmFile.write(tempVmDef, os.path.basename(tempVmDef))
 
-                    if hda_of_vm != "NULL":
-                        vmFile.write(hda_of_vm, os.path.basename(hda_of_vm))
+                  #  if hda_of_vm != "NULL":
+                   #     vmFile.write(hda_of_vm, os.path.basename(hda_of_vm))
 
                 # if os.path.exists(filename):
                 #     print("Export successful!")
